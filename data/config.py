@@ -42,12 +42,17 @@ class TgBot:
     ip: str
     I18N_DOMAIN: str
     moderate_chat: int
+    use_redis: bool
 
 
 @dataclass(frozen=True, slots=True)
 class Miscellaneous:
     secret_key: str
     yandex_api_key: str
+    client_id: str
+    redirect_url: URL
+    yoomoney_key: str
+    production: bool
 
 
 @dataclass(frozen=True, slots=True)
@@ -91,6 +96,7 @@ def load_config() -> Config:
             timezone=env.str("TIMEZONE"),
             I18N_DOMAIN="dating",
             moderate_chat=env.int("MODERATE_CHAT"),
+            use_redis=env.bool("USE_REDIS"),
         ),
         db=DataBaseConfig(
             user=env.str("POSTGRES_USER"),
@@ -102,6 +108,10 @@ def load_config() -> Config:
         misc=Miscellaneous(
             secret_key=env.str("SECRET_KEY"),
             yandex_api_key=env.str("API_KEY"),
+            client_id=env.str("CLIENT_ID"),
+            redirect_url=env.str("REDIRECT_URI"),
+            yoomoney_key=env.str("YOOMONEY_KEY"),
+            production=env.bool("PRODUCTION"),
         ),
     )
 
