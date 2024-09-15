@@ -234,7 +234,8 @@ async def fill_form(message: types.Message) -> None:
     x = message.location.longitude
     y = message.location.latitude
     address = await client.address(f"{x}", f"{y}")
-    address = address.join(address)
+    address = address.split(",")[0:2]
+    address = ",".join(address)
     await db_commands.update_user_data(
         telegram_id=message.from_user.id,
         city=address,
