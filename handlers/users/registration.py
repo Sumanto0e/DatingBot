@@ -231,18 +231,34 @@ async def get_city(message: types.Message) -> None:
 
 @dp.message_handler(content_types=["location"], state=RegData.town)
 async def fill_form(message: types.Message) -> None:
+    # Dapatkan koordinat lokasi
     x = message.location.longitude
     y = message.location.latitude
+    
+    # Dapatkan alamat berdasarkan koordinat
     address = await client.address(f"{x}", f"{y}")
-    address_parts = address.split(",")[0:2]
-    address = ",".join(address_parts)
+
+    # Cek apakah address valid
+    if not address:
+        # Jika address kosong atau None, beri tahu pengguna
+        await message.answer("Maaf, alamat tidak ditemukan berdasarkan lokasi Anda.")
+        return  # Keluar dari fungsi jika tidak ada alamat
+    
+    # Debugging: Cek alamat yang didapatkan (log untuk verifikasi)
+    print(f"Address: {address}")
+    
+    # Update data pengguna dalam database
     await db_commands.update_user_data(
         telegram_id=message.from_user.id,
-        city=address,
+        city=address,  # Pastikan address tidak kosong
         longitude=x,
         latitude=y,
-        need_city=address,
+        need_city=address,  # Pastikan address tidak kosong
     )
+
+    # Kirim pesan balasan ke pengguna
+    await message.answer(f"Lokasi Anda ({address}) telah diterima.")
+
 
     await asyncio.sleep(1)
 
