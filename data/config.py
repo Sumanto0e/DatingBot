@@ -42,8 +42,6 @@ class TgBot:
     ip: str
     I18N_DOMAIN: str
     moderate_chat: int
-    use_redis: bool
-
 
 @dataclass(frozen=True, slots=True)
 class Miscellaneous:
