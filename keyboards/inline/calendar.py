@@ -20,7 +20,7 @@ from aiogram.utils.exceptions import (
     MessageNotModified,
 )
 
-locale.setlocale(locale.LC_TIME, "ru_RU.UTF-8")
+locale.setlocale(locale.LC_TIME, "en_US.UTF-8")
 
 search_cb = CallbackData("search", "action")
 # setting callback_data prefix and parts
