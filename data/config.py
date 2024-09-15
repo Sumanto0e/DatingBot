@@ -48,10 +48,6 @@ class TgBot:
 class Miscellaneous:
     secret_key: str
     yandex_api_key: str
-    client_id: str
-    redirect_url: URL
-    yoomoney_key: str
-    production: bool
 
 
 @dataclass(frozen=True, slots=True)
