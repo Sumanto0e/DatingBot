@@ -241,7 +241,7 @@ async def fill_form(message: types.Message) -> None:
     # Cek apakah address valid
     if not address:
         # Jika address kosong atau None, beri tahu pengguna
-        await message.answer("Maaf, alamat tidak ditemukan berdasarkan lokasi Anda.")
+        await message.answer(f"Maaf, alamat tidak {address} ditemukan berdasarkan lokasi Anda.")
         return  # Keluar dari fungsi jika tidak ada alamat
     
     # Debugging: Cek alamat yang didapatkan (log untuk verifikasi)
