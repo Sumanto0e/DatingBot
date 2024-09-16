@@ -19,7 +19,7 @@ async def get_statistics(message: Message):
     text = (
         "<b>📊 Statistik: </b>\n\n"
         "└Sekarang di bot kita <b>{count_users} pengguna</b>\n"
-        "└Из них:\n"
+        "└Dari jumlah tersebut:\n"
         "        ├<b>{users_gender_m} pengguna pria</b>\n"
         "        ├<b>{users_gender_f} pengguna wanita</b>\n"
         "        ├<b>{users_city} pengguna dari kota {user_city}</b>\n"
