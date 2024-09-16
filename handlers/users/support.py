@@ -30,7 +30,7 @@ from loader import (
 
 @dp.callback_query_handler(text="support")
 async def ask_support_call(call: types.CallbackQuery) -> None:
-    text = _("Хотите связаться с тех поддержкой? Нажмите на кнопку ниже!")
+    text = ("Ingin menghubungi dukungan teknis? Klik tombol di bawah!")
     keyboard = await support_keyboard(messages="many")
     try:
         if not keyboard:
