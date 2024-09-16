@@ -12,7 +12,6 @@ from keyboards.inline.menu_profile_inline import (
     get_profile_keyboard,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.db_api import (
