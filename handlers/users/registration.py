@@ -48,7 +48,6 @@ from keyboards.inline.registration_inline import (
     second_registration_keyboard,
 )
 from loader import (
-    _,
     client,
     dp,
     logger,
