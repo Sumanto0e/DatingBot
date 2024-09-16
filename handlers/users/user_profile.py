@@ -32,4 +32,4 @@ async def my_profile_menu(call: CallbackQuery) -> None:
 async def disable_profile(call: CallbackQuery) -> None:
     await db_commands.update_user_data(telegram_id=call.from_user.id, status=False)
     await delete_message(call.message)
-    await call.message.answer(_("Ваша анкета удалена!\nЯ надеюсь вы кого-нибудь нашли"))
+    await call.message.answer("Profil Anda telah dihapus!\nSaya harap Anda menemukan seseorang")
