@@ -6,10 +6,6 @@ from yarl import (
     URL,
 )
 
-from loader import (
-    _,
-)
-
 
 async def payment_menu_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
