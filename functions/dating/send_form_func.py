@@ -34,10 +34,10 @@ async def send_questionnaire(
         report_system: bool = False,
 ) -> None:
     user = await db_commands.select_user(owner_id)
-    text_template = _("{}, {} лет, {} {verification}\n\n")
+    text_template = ("{}, {} Tahun, {} {verification}\n\n")
     user_verification = "✅" if user.verification else ""
 
-    text_without_inst = _(text_template + "{commentary}").format(
+    text_without_inst = (text_template + "{commentary}").format(
         user.varname,
         user.age,
         user.city,
@@ -45,8 +45,8 @@ async def send_questionnaire(
         verification=user_verification,
     )
 
-    text_with_inst_template = text_template + _(
-        "<b>Инстаграм</b> - <code>{instagram}</code>\n"
+    text_with_inst_template = text_template + (
+        "<b>Instagram</b> - <code>{instagram}</code>\n"
     )
     text_with_inst = _(text_with_inst_template).format(
         user.varname,
@@ -57,7 +57,7 @@ async def send_questionnaire(
         instagram=user.instagram,
     )
 
-    caption_with_add_text = _("{}\n\n" + text_template + "{}").format(
+    caption_with_add_text = ("{}\n\n" + text_template + "{}").format(
         add_text,
         user.varname,
         user.age,
@@ -66,8 +66,8 @@ async def send_questionnaire(
         verification=user_verification,
     )
 
-    add_text_with_inst = _(
-        "{}\n\n" + text_template + "<b>Инстаграм</b> - <code>{instagram}</code>\n"
+    add_text_with_inst = (
+        "{}\n\n" + text_template + "<b>Instagram</b> - <code>{instagram}</code>\n"
     ).format(
         add_text,
         user.varname,
