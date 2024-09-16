@@ -2,9 +2,6 @@ from aiogram.types import (
     Message,
 )
 
-from loader import (
-    _,
-)
 from utils.db_api import (
     db_commands,
 )
