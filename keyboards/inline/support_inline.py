@@ -16,7 +16,6 @@ from data.config import (
     load_config,
 )
 from loader import (
-    _,
     dp,
 )
 
