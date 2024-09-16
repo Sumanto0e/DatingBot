@@ -15,7 +15,6 @@ from keyboards.inline.poster_inline import (
     poster_keyboard,
 )
 from loader import (
-    _,
     bot,
     dp,
 )
