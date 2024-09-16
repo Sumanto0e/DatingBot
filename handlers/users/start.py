@@ -70,7 +70,7 @@ async def change_language(call: CallbackQuery, language: str) -> None:
         await db_commands.update_user_data(telegram_id=telegram_id, language=language)
 
         await call.message.edit_text(
-            text=("Bahasa telah berhasil diubah. Masukkan perintah")
+            text=("Bahasa telah berhasil diubah. Masukkan perintah /start"))
     except aiogram.utils.exceptions.MessageToDeleteNotFound:
         await call.message.edit_text(
             text=(
