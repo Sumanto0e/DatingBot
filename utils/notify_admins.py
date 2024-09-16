@@ -35,8 +35,7 @@ class AdminNotification(BaseNotification):
         logger.info("Оповещение администрации...")
         for admin in load_config().tg_bot.admin_ids:
             try:
-                admin = await db_commands.search_users(user.language)
-                if admin.language == 'ru':
+                if admin.language == "{ru}":
                     await bot.send_message(
                         admin, ("Бот был успешно запущен"), disable_notification=True
                     )
