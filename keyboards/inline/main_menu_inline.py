@@ -39,7 +39,7 @@ async def start_keyboard(
     meetings = InlineKeyboardButton(text=("🗓️ Poster"), callback_data="meetings")
     support = InlineKeyboardButton(text=("🆘 Mendukung"), callback_data="support")
     information = InlineKeyboardButton(
-        text=_("ℹ️ Информация"), callback_data="information"
+        text=("ℹ️ Informasi"), callback_data="information"
     )
     if not status:
         markup.row(registration)
