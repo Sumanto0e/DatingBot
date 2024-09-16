@@ -47,13 +47,13 @@ from utils.db_api import (
 async def get_filters(call: CallbackQuery) -> None:
     try:
         await call.message.edit_text(
-            text=_("Вы перешли в раздел с фильтрами"),
+            text=("Anda telah pindah ke bagian filter"),
             reply_markup=await filters_keyboard(),
         )
     except BadRequest:
         await delete_message(message=call.message)
         await call.message.answer(
-            text=_("Вы перешли в раздел с фильтрами"),
+            text=("Anda telah pindah ke bagian filter"),
             reply_markup=await filters_keyboard(),
         )
 
@@ -65,7 +65,7 @@ async def get_dating_filters(call: CallbackQuery) -> None:
 
 @dp.callback_query_handler(text="user_age_period")
 async def desired_age(call: CallbackQuery, state: FSMContext) -> None:
-    await call.message.edit_text(text=_("Напишите минимальный возраст"))
+    await call.message.edit_text(text=("Tulis usia minimum"))
     await state.set_state("age_period")
 
 
@@ -77,7 +77,7 @@ async def desired_min_age_state(message: types.Message, state: FSMContext) -> No
     await db_commands.update_user_data(
         telegram_id=message.from_user.id, need_partner_age_min=int_messages
     )
-    await message.answer(_("Теперь введите максимальный возраст"))
+    await message.answer("Sekarang masukkan usia maksimal"))
     await state.reset_state()
     await state.set_state("max_age_period")
 
@@ -94,29 +94,9 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
     await show_dating_filters(obj=message)
 
 
-@dp.callback_query_handler(text="user_need_gender")
-async def desired_max_range(call: CallbackQuery, state: FSMContext) -> None:
-    markup = await gender_keyboard(
-        m_gender=_("👱🏻‍♂️ Парня"), f_gender=_("👱🏻‍♀️ Девушку")
-    )
-    await call.message.edit_text(
-        _("Выберите, кого вы хотите найти:"), reply_markup=markup
-    )
-    await state.set_state("gender")
-
-
-@dp.callback_query_handler(state="gender")
-async def desired_gender(call: CallbackQuery, state: FSMContext) -> None:
-    await choice_gender(call)
-    await call.message.edit_text(_("Данные сохранены"))
-    await asyncio.sleep(1)
-    await show_dating_filters(obj=call)
-    await state.finish()
-
-
 @dp.callback_query_handler(text="needs_city")
 async def user_city_filter(call: CallbackQuery, state: FSMContext) -> None:
-    await call.message.edit_text(_("Напишите город вашего будущего партнера"))
+    await call.message.edit_text("Tulis kota calon pasangan Anda")
     await state.set_state("city")
 
 
@@ -124,7 +104,7 @@ async def user_city_filter(call: CallbackQuery, state: FSMContext) -> None:
 @dp.callback_query_handler(text="yes_all_good", state="city")
 async def get_hobbies(call: CallbackQuery, state: FSMContext) -> None:
     await asyncio.sleep(1)
-    await call.message.edit_text(_("Данные сохранены"))
+    await call.message.edit_text("Data disimpan"))
     await asyncio.sleep(2)
     if await state.get_state() == "city":
         await show_dating_filters(obj=call)
@@ -137,7 +117,7 @@ async def get_hobbies(call: CallbackQuery, state: FSMContext) -> None:
 @dp.callback_query_handler(text="event_filters")
 async def get_event_filters(call: CallbackQuery) -> None:
     await call.message.edit_text(
-        _("Вы перешли в меню настроек фильтров для мероприятий"),
+        ("Anda telah masuk ke menu pengaturan filter untuk acara"),
         reply_markup=await event_filters_keyboard(),
     )
 
@@ -145,7 +125,7 @@ async def get_event_filters(call: CallbackQuery) -> None:
 @dp.callback_query_handler(text="city_event")
 async def set_city_by_filter(call: CallbackQuery, state: FSMContext) -> None:
     await call.message.edit_text(
-        _("Напишите город, в котором бы хотели сходить куда-нибудь")
+        ("Tulis kota tempat Anda ingin pergi ke suatu tempat")
     )
     await state.set_state("set_city_event")
 
@@ -157,5 +137,5 @@ async def user_city_filter_state(message: types.Message) -> None:
         await loc.det_loc()
 
     except NothingFound:
-        await message.answer(_("Произошла ошибка, попробуйте еще раз"))
+        await message.answer("Terjadi kesalahan, silakan coba lagi")
         return
