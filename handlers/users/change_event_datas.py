@@ -15,7 +15,6 @@ from keyboards.inline.poster_inline import (
     change_datas_keyboard,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.db_api import (
