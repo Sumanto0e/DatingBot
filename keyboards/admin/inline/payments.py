@@ -7,8 +7,8 @@ from aiogram.types import (
 async def payments_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     settings = InlineKeyboardButton(
-        _("⚙️ Настройки"), callback_data="payments:settings"
+        ("⚙️ Pengaturan"), callback_data="payments:settings"
     )
-    statistics = InlineKeyboardButton(_("📝 Статистика"), callback_data="payments:stats")
+    statistics = InlineKeyboardButton(("📝 Statistik"), callback_data="payments:stats")
     markup.add(statistics, settings)
     return markup
