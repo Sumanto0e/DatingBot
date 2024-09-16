@@ -26,7 +26,7 @@ from utils.db_api import (
 async def get_change_data_menu(call: CallbackQuery) -> None:
     await delete_message(call.message)
     await call.message.answer(
-        text=_("Вы перешли в меню изменения данных мероприятия"),
+        text=("Anda telah berpindah ke menu untuk mengubah data acara"),
         reply_markup=await change_datas_keyboard(),
     )
 
