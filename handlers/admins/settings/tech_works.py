@@ -16,7 +16,6 @@ from keyboards.inline.admin_inline import (
     tech_works_keyboard,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.db_api import (
