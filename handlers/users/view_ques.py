@@ -87,7 +87,7 @@ async def handle_report(
     await strategy.execute(call, state, callback_data)
 
     if action != "cancel_report":
-        await call.message.answer(text=_("Жалоба успешно отправлена"))
+        await call.message.answer(text=("Pengaduan berhasil dikirim"))
         strategy = GoBackToViewing()
         await strategy.execute(call, state, callback_data)
 
@@ -126,10 +126,11 @@ async def handle_action(
     elif user.limit_of_views == 0:
         await delete_message(message=call.message)
         await call.message.answer(
-            text=_(
-                "Слишком много ❤️ за сегодня.\n\n"
-                "Пригласи друзей и получи больше ❤️\n\n"
-                "https://t.me/{}?start={}"
+            text=(
+                "Terlalu banyak ❤️ untuk hari ini.\n\n"
+                "Undang teman dan dapatkan lebih banyak ❤️\n\n"
+                "https://t.me/{}?start={}\n\n"
+                "Atau temukan lebih banyak teman di @fwarandombot"
             ).format(info.username, call.from_user.id)
         )
         await state.reset_state()
