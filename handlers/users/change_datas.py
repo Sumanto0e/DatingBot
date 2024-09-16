@@ -155,7 +155,7 @@ async def update_city(message: types.Message) -> None:
     except NothingFound as ex:
         logger.error(f"Error in change_city. {ex}")
         await message.answer(
-            text=(“Kami tidak dapat menemukan kota itu {city}. Coba lagi").format(
+            text=(("Kami tidak dapat menemukan kota itu {city}. Coba lagi").format(
                 city=message.text
             )
         )
