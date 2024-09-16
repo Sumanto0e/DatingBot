@@ -71,7 +71,7 @@ async def start_change_data(call: CallbackQuery) -> None:
 
 @dp.callback_query_handler(text="name")
 async def change_name_request(call: CallbackQuery) -> None:
-    await call.message.edit_text(text=("Masukkan nama baru"))
+    await call.message.edit_text(text=("Siapa nama anda?"))
     await NewData.name.set()
 
 
