@@ -3,11 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
-
 async def admin_cancel_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     cancel_button = InlineKeyboardButton(
