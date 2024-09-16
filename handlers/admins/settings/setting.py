@@ -14,8 +14,8 @@ from loader import (
 
 
 @dp.message_handler(IsAdmin(), commands="settings", state="*")
-@dp.message_handler(IsAdmin(), text="⚙️ Настройки", state="*")
+@dp.message_handler(IsAdmin(), text="⚙️ Pengaturan", state="*")
 async def command_start(message: Message):
     await message.answer(
-        text="<u>⚙️ Настройки</u>", reply_markup=await settings_keyboard()
+        text="<u>⚙️ Pengaturan</u>", reply_markup=await settings_keyboard()
     )
