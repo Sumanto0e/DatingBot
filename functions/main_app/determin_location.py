@@ -43,10 +43,10 @@ class Location(AsyncObj):
         self.markup = await confirm_keyboard()
         self.x, self.y = await client.coordinates(message.text)
         self.city = await client.address(f"{self.x}", f"{self.y}")
-        self.text = _(
-            "Я нашел такой адрес:\n"
+        self.text = (
+            "Saya menemukan alamat ini:\n"
             "<b>{city}</b>\n"
-            "Если все правильно, то подтвердите"
+            "Jika semuanya benar, lalu konfirmasi"
         ).format(city=self.city)
         self.strategy = strategy
         self.message = message
