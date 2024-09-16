@@ -18,7 +18,6 @@ from keyboards.inline.payments_inline import (
     yoomoney_keyboard,
 )
 from loader import (
-    _,
     dp,
     wallet,
 )
