@@ -184,7 +184,7 @@ async def change_sex(call: CallbackQuery) -> None:
 async def update_sex(call: CallbackQuery, state: FSMContext) -> None:
     markup = await change_info_keyboard()
     gender = "male" if call.data == "male" else "female"
-    need_gender = "male" if call.data == "female" 
+    need_gender = "male" if call.data == "female" else "female"
     await db_commands.update_user_data(sex=gender, telegram_id=call.from_user.id)
     await db_commands.update_user_data(sex=need_gender, telegram_id=call.from_user.id)
     await call.message.edit_text(
