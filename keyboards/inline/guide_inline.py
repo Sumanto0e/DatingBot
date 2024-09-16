@@ -6,10 +6,6 @@ from aiogram.utils.callback_data import (
     CallbackData,
 )
 
-from loader import (
-    _,
-)
-
 guide_callback = CallbackData("guide_callback", "action", "value")
 
 
