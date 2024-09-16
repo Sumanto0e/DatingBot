@@ -14,7 +14,6 @@ from keyboards.inline.guide_inline import (
     guide_callback,
 )
 from loader import (
-    _,
     dp,
 )
 
