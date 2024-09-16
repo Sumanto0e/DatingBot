@@ -3,10 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
 
 async def only_back_keyboard(menu: str = "start_menu") -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
