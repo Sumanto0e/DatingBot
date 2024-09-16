@@ -6,10 +6,10 @@ from aiogram.types import (
 async def filters_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     event_filters = InlineKeyboardButton(
-        text=_("🎉 Мероприятия"), callback_data="event_filters"
+        text=_("🎉 Acara"), callback_data="event_filters"
     )
     dating_filters = InlineKeyboardButton(
-        text=_("❤️ Знакомства"), callback_data="dating_filters"
+        text=_("❤️ Kenalan"), callback_data="dating_filters"
     )
     back = InlineKeyboardButton(text=_("⏪️ Назад"), callback_data="back_with_delete")
     markup.row(event_filters, dating_filters)
@@ -20,15 +20,15 @@ async def filters_keyboard() -> InlineKeyboardMarkup:
 async def dating_filters_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     user_need_city = InlineKeyboardButton(
-        text=_("🏙️ Город партнера"), callback_data="needs_city"
+        text=("🏙️ kota pasangan anda"), callback_data="needs_city"
     )
     user_age_period = InlineKeyboardButton(
-        text=_("🔞 Возр.диапазон"), callback_data="user_age_period"
+        text=("🔞Rentang usia"), callback_data="user_age_period"
     )
     user_need_gender = InlineKeyboardButton(
-        text=_("🚻 Пол партнера"), callback_data="user_need_gender"
+        text=("🚻 jenis kelamin pasangan"), callback_data="user_need_gender"
     )
-    back = InlineKeyboardButton(text=_("⏪️ Назад"), callback_data="back_to_filter_menu")
+    back = InlineKeyboardButton(text=("⏪️ Kembali"), callback_data="back_to_filter_menu")
     markup.add(user_need_city)
     markup.row(user_need_gender, user_age_period)
     markup.add(back)
@@ -37,9 +37,9 @@ async def dating_filters_keyboard() -> InlineKeyboardMarkup:
 
 async def event_filters_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
-    city_event = InlineKeyboardButton(text=_("🏙️ Город"), callback_data="city_event")
+    city_event = InlineKeyboardButton(text=("🏙️ Kota"), callback_data="city_event")
     back = InlineKeyboardButton(
-        text=_("⏪️ Вернуться в меню"), callback_data="back_to_filter_menu"
+        text=("⏪️ Kembali ke menu"), callback_data="back_to_filter_menu"
     )
     markup.add(city_event)
     markup.add(back)
