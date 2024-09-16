@@ -33,7 +33,6 @@ from keyboards.inline.filters_inline import (
     filters_keyboard,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.YandexMap.exceptions import (
