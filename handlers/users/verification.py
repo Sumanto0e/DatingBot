@@ -18,7 +18,6 @@ from keyboards.inline.main_menu_inline import (
     start_keyboard,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.db_api import (
