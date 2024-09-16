@@ -46,7 +46,7 @@ async def support_keyboard(messages, user_id=None) -> Union[bool, InlineKeyboard
     if user_id:
         contact_id = int(user_id)
         as_user = "no"
-        text = _("Ответить пользователю")
+        text = ("Ответить пользователю")
 
     else:
         contact_id = await get_support_manager()
@@ -54,7 +54,7 @@ async def support_keyboard(messages, user_id=None) -> Union[bool, InlineKeyboard
         if messages == "many" and contact_id is None:
             return False
 
-        text = _("Написать оператору")
+        text = ("Написать оператору")
 
     keyboard = InlineKeyboardMarkup()
     keyboard.add(
@@ -69,7 +69,7 @@ async def support_keyboard(messages, user_id=None) -> Union[bool, InlineKeyboard
     if messages == "many":
         keyboard.add(
             InlineKeyboardButton(
-                text=_("Завершить сеанс"),
+                text=("Завершить сеанс"),
                 callback_data=cancel_support_callback.new(user_id=contact_id),
             )
         )
@@ -81,7 +81,7 @@ def cancel_support(user_id) -> InlineKeyboardMarkup:
         inline_keyboard=[
             [
                 InlineKeyboardButton(
-                    text=_("Завершить сеанс"),
+                    text=("Завершить сеанс"),
                     callback_data=cancel_support_callback.new(user_id=user_id),
                 )
             ]
