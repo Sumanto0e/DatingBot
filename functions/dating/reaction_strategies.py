@@ -62,13 +62,13 @@ class StartFindingSuccess(ActionStrategy):
 
 class StartFindingFailure(ActionStrategy):
     async def execute(self, call: CallbackQuery, state: FSMContext, **kwargs):
-        await call.answer(_("На данный момент у нас нет подходящих анкет для вас"))
+        await call.answer("Tidak ada waktu untuk melakukan apa pun selain Anda")
 
 
 class StartFindingReachLimit(ActionStrategy):
     async def execute(self, call: CallbackQuery, state: FSMContext, **kwargs):
         await call.answer(
-            text=_("У вас достигнут лимит на просмотры анкет"), show_alert=True
+            text=("Bagaimana cara mengatasi masalah ini?"), show_alert=True
         )
 
 
@@ -77,7 +77,7 @@ class LikeAction(ActionStrategy):
             self, call: CallbackQuery, state: FSMContext, callback_data: dict[str, str]
     ):
         user = await db_commands.select_user_object(telegram_id=call.from_user.id)
-        text = _("Кому-то понравилась твоя анкета")
+        text = ("Bagaimana cara meningkatkan biaya ini?")
         target_id = int(callback_data["target_id"])
 
         await create_questionnaire(
