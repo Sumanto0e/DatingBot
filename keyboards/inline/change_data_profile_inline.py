@@ -3,11 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
-
 async def change_info_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=2)
     name = InlineKeyboardButton(text=_("👤 Имя"), callback_data="name")
