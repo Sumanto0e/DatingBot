@@ -12,7 +12,7 @@ async def change_info_keyboard() -> InlineKeyboardMarkup:
     photo = InlineKeyboardButton(text=("📷 Foto"), callback_data="photo")
     about_me = InlineKeyboardButton(text=("📝 О Status"), callback_data="about_me")
     back_to_menu = InlineKeyboardButton(
-        text=("⏪️ Вернуться в меню"), callback_data="back_to_profile_menu"
+        text=("⏪️ Kembali ke menu"), callback_data="back_to_profile_menu"
     )
     markup.row(name, gender, age)
     markup.row(city, photo, about_me)
