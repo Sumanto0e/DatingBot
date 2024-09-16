@@ -26,25 +26,25 @@ search_cb = CallbackData("search", "action")
 # setting callback_data prefix and parts
 calendar_callback = CallbackData("simple_calendar", "act", "year", "month", "day")
 
-_WEEK_DAYS = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+_WEEK_DAYS = ["Senin", "Selasa", "Rabu", "Kamis", "Jum'at", "Sabtu", "Minggu"]
 calendar.month_name = [
     "",
-    "январь",
-    "февраль",
-    "март",
-    "апрель",
-    "май",
-    "июнь",
-    "июль",
-    "август",
-    "сентябрь",
-    "октябрь",
-    "ноябрь",
-    "декабрь",
+    "Januari",
+    "Februari",
+    "Maret",
+    "April",
+    "Mei",
+    "Juni",
+    "Juli",
+    "Agustus",
+    "September",
+    "Oktober",
+    "November",
+    "Desember",
 ]
 
 CANCEL = InlineKeyboardButton(
-    text="⛔️ отмена", callback_data=search_cb.new(action="cancel")
+    text="⛔️ pembatalan", callback_data=search_cb.new(action="cancel")
 )
 
 
