@@ -77,19 +77,19 @@ async def registration(call: CallbackQuery) -> None:
     user_status = user.status
     if not user_status:
         markup = await second_registration_keyboard()
-        text = _("Пройдите опрос, чтобы зарегистрироваться")
+        text = ("Ikuti survei untuk mendaftar")
         await call.message.edit_text(text, reply_markup=markup)
     else:
         markup = InlineKeyboardMarkup()
         markup.add(
             InlineKeyboardButton(
-                text="⬆️ Изменить анкету", callback_data="change_profile"
+                text="⬆️ Ubah profil", callback_data="change_profile"
             )
         )
         await call.message.edit_text(
-            text=_(
-                "Вы уже зарегистрированы, если вам нужно изменить анкету,"
-                " то нажмите на кнопку ниже"
+            text=(
+                "Anda sudah terdaftar, jika Anda perlu mengubah profil Anda,"
+                "lalu klik tombol di bawah ini"
             ),
             reply_markup=markup,
         )
@@ -98,10 +98,10 @@ async def registration(call: CallbackQuery) -> None:
 @dp.callback_query_handler(text_contains="survey")
 async def survey(call: CallbackQuery) -> None:
     markup = await gender_keyboard(
-        m_gender=_("👱🏻‍♂️ Мужской"), f_gender=_("👱🏻‍♀️ Женский")
+        m_gender=("👱🏻‍♂️ male"), f_gender=("👱🏻‍♀️ female")
     )
 
-    await call.message.edit_text(_("Выберите пол"), reply_markup=markup)
+    await call.message.edit_text(("Pilih jenis kelamin"), reply_markup=markup)
     await RegData.sex.set()
 
 
@@ -117,13 +117,13 @@ async def sex_reg(call: CallbackQuery) -> None:
     elif call.data == "female":
         try:
             await db_commands.update_user_data(
-                telegram_id=call.from_user.id, sex="Женский"
+                telegram_id=call.from_user.id, sex="female"
             )
         except UniqueViolationError:
             pass
 
     await call.message.edit_text(
-        text=_("Теперь расскажите о себе:\n"),
+        text=("Sekarang ceritakan tentang dirimu:\n"),
         reply_markup=await cancel_registration_keyboard(),
     )
     await RegData.commentary.set()
@@ -132,7 +132,7 @@ async def sex_reg(call: CallbackQuery) -> None:
 @dp.message_handler(content_types=[ContentType.TEXT], state=RegData.commentary)
 async def commentary_reg(message: types.Message) -> None:
     markup = await gender_keyboard(
-        m_gender=_("👱🏻‍♂️ Парня"), f_gender=_("👱🏻‍♀️ Девушку")
+        m_gender=_("👱🏻‍♂️ male"), f_gender=_("👱🏻‍♀️ female")
     )
     try:
         censored = censored_message(message.text)
@@ -140,32 +140,20 @@ async def commentary_reg(message: types.Message) -> None:
             commentary=quote_html(censored), telegram_id=message.from_user.id
         )
         await message.answer(
-            text=_("Комментарий принят! Выберите, кого вы хотите найти: "),
+            text=_("Komentar diterima! Masukan nama anda: "),
             reply_markup=markup,
         )
 
     except DataError:
         await message.answer(
             text=_(
-                "Произошла неизвестная ошибка! Попробуйте изменить комментарий позже в разделе "
-                '"Меню"\n\n'
-                "Выберите, кого вы хотите найти: "
+                "Telah terjadi kesalahan yang tidak diketahui! Coba ubah komentar nanti di bagian tersebut"
+                '"Menu"\n\n'
+                "Masukan nama anda: "
             ),
             reply_markup=markup,
         )
     await RegData.need_partner_sex.set()
-
-
-@dp.callback_query_handler(state=RegData.need_partner_sex)
-async def handle_gender_choice(call: CallbackQuery) -> None:
-    await choice_gender(call)
-    await call.message.edit_text(
-        text=_(
-            "Отлично! Теперь напишите мне ваше имя, которое будут все видеть в анкете"
-        ),
-        reply_markup=await cancel_registration_keyboard(),
-    )
-    await RegData.name.set()
 
 
 @dp.message_handler(state=RegData.name)
@@ -180,7 +168,7 @@ async def get_name(message: types.Message, state: FSMContext) -> None:
     except UniqueViolationError:
         pass
     await message.answer(
-        text=_("Введите сколько вам лет:"),
+        text=("Berapa umur Anda?"),
         reply_markup=await cancel_registration_keyboard(),
     )
     await RegData.age.set()
@@ -198,19 +186,19 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
             )
         else:
             await message.answer(
-                text=_("Вы ввели недопустимое число, попробуйте еще раз"),
+                text=("Angka yang Anda masukkan tidak valid, silakan coba lagi"),
                 reply_markup=await cancel_registration_keyboard(),
             )
             return
     except ValueError as ex:
         logger.error(ex)
         await message.answer(
-            text=_("Вы ввели не число"),
+            text=("Anda tidak memasukkan angka"),
             reply_markup=await cancel_registration_keyboard(),
         )
         return
     await message.answer(
-        text=_("Нажмите на кнопку ниже, чтобы определить ваш местоположение!"),
+        text=("Klik tombol di bawah untuk menemukan lokasi Anda!"),
         reply_markup=markup,
     )
     await RegData.town.set()
@@ -223,7 +211,7 @@ async def get_city(message: types.Message) -> None:
         await loc.det_loc()
     except NothingFound:
         await message.answer(
-            text=_("Мы не смогли найти такой город, попробуйте еще раз"),
+            text=("Kami tidak dapat menemukan kota seperti itu, coba lagi"),
             reply_markup=await cancel_registration_keyboard(),
         )
 
@@ -240,7 +228,7 @@ async def fill_form(message: types.Message) -> None:
     # Cek apakah address valid
     if not address:
         # Jika address kosong atau None, beri tahu pengguna
-        await message.answer(f"Maaf, alamat tidak {address} ditemukan berdasarkan lokasi Anda.")
+        await message.answer(f"Maaf, alamat tidak ditemukan berdasarkan lokasi Anda. ketik kota anda")
         return  # Keluar dari fungsi jika tidak ada alamat
     
     # Debugging: Cek alamat yang didapatkan (log untuk verifikasi)
@@ -263,8 +251,8 @@ async def fill_form(message: types.Message) -> None:
 
     await message.answer(
         text=_(
-            "И напоследок, Пришлите мне вашу фотографию"
-            " (отправлять надо сжатое изображение, а не как документ)"
+            "Dan terakhir, kirimkan saya foto Anda"
+            " (Anda perlu mengirim gambar terkompresi, bukan dengan bentuk dokumen)"
         ),
         reply_markup=await get_photo_from_profile(),
     )
@@ -275,9 +263,9 @@ async def fill_form(message: types.Message) -> None:
 async def get_hobbies(call: CallbackQuery) -> None:
     await call.message.delete()
     await call.message.answer(
-        text=_(
-            "И напоследок, Пришлите мне вашу фотографию"
-            " (отправлять надо сжатое изображение, а не как документ)"
+        text=(
+            "Dan terakhir, kirimkan saya foto Anda"
+            " (Anda perlu mengirim gambar terkompresi, bukan dengan bentuk dokumen)"
         ),
         reply_markup=await get_photo_from_profile(),
     )
@@ -295,7 +283,7 @@ async def get_photo_profile(message: types.Message, state: FSMContext) -> None:
         )
     except IndexError:
         await message.answer(
-            text=_("Произошла ошибка, проверьте настройки конфиденциальности"),
+            text=("Terjadi kesalahan, silakan periksa pengaturan privasi Anda"),
             reply_markup=await cancel_registration_keyboard(),
         )
 
