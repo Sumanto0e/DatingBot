@@ -19,13 +19,9 @@ from keyboards.inline.payments_inline import (
 )
 from loader import (
     dp,
-    wallet,
 )
 from utils.db_api import (
     db_commands,
-)
-from utils.yoomoney.types import (
-    PaymentSource,
 )
 
 
