@@ -3,11 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
-
 async def get_profile_keyboard(verification) -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=2)
     if not verification:
