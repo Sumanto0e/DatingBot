@@ -41,7 +41,7 @@ def create_users(num_users):
             "longitude": random.uniform(-180, 180),
             "latitude": random.uniform(-90, 90),
             "verification": random.choice([True, False]),
-            "language": "en" if random.random() < 0.5 else "es",
+            "language": "english" if random.random() < 0.5 else "es",
             "varname": "Var" + str(random.randint(1, 100)),
             "lifestyle": None,
             "is_banned": random.choice([True, False]),
