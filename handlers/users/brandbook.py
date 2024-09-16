@@ -28,7 +28,7 @@ async def get_guide(call: CallbackQuery) -> None:
     await send_photo_with_caption(
         call=call,
         photo=r"brandbook/1_page.png",
-        caption=_("Руководство по боту: \n<b>Страница №1</b>"),
+        caption=("Panduan Bot: \n<b>Halaman No. 1</b>"),
         step=1,
         total_steps=4,
     )
@@ -43,8 +43,12 @@ async def get_forward(call: CallbackQuery, callback_data: dict) -> None:
 async def contacts_menu(call: CallbackQuery):
     await call.message.edit_text(
         text=(
-            "📧 Добро пожаловать в наш раздел контактной информации платформы:\n\n"
-            "Наш сайт: В разработке"
+            "📧 Selamat datang di bagian informasi kontak platform kami:\n\n"
+            "Situs web kami: Sedang dibangun\n"
+            "Channel komunitas kami: @fwabase\n"
+            "Grub komunitas kami: @kasihsayanggg\n"
+            "Tiktok komunitas kami: <a href='https://www.tiktok.com/@fwabase?_t=8mVXqBUwzWk&_r=1'>tiktok</a>\n"
+            "instagram komunitas kami: <a href='https://www.instagram.com/fwabase?igsh=NGd4emp5NndhOWRw'>instagram</a>\n"
         ),
         reply_markup=await only_back_keyboard(menu="information"),
     )
