@@ -6,9 +6,6 @@ from aiogram.utils.callback_data import (
     CallbackData,
 )
 
-from loader import (
-    _,
-)
 
 action_keyboard = CallbackData("questionnaire", "action", "target_id")
 action_keyboard_monitoring = CallbackData(
