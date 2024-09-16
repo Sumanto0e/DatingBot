@@ -6,11 +6,11 @@ from aiogram.types import (
 
 async def information_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=2)
-    guide = InlineKeyboardButton(text=_("📚 Брендбук"), callback_data="guide")
-    contacts = InlineKeyboardButton(text=_("📞 Контакты"), callback_data="contacts")
-    language = InlineKeyboardButton(text=_("🌐 Язык"), callback_data="language_info")
+    guide = InlineKeyboardButton(text=("📚 Tutorial"), callback_data="guide")
+    contacts = InlineKeyboardButton(text=("📞 Kontak"), callback_data="contacts")
+    language = InlineKeyboardButton(text=("🌐 language"), callback_data="language_info")
     back_to_menu = InlineKeyboardButton(
-        text = ("⏪️ Вернуться в меню"), callback_data="start_menu"
+        text = ("⏪️ Kembali ke menu"), callback_data="start_menu"
     )
     markup.add(language)
     markup.row(guide, contacts)
