@@ -36,7 +36,7 @@ async def order_answer(call: CallbackQuery) -> None:
     markup = await start_keyboard(obj=int(telegram_id))
     if call_data[0] == "moderate_accept":
         await call.message.delete()
-        await call.message.answer(_("Принято!"))
+        await call.message.answer("Diterima!")
         await db_commands.update_user_meetings_data(
             telegram_id=telegram_id,
             verification_status=True,
@@ -45,18 +45,18 @@ async def order_answer(call: CallbackQuery) -> None:
         )
         await bot.send_message(
             chat_id=telegram_id,
-            text=_("Ваше мероприятие прошло модерацию"),
+            text=("Acara Anda telah dimoderasi"),
             reply_markup=markup,
         )
         await asyncio.sleep(1)
 
     elif call_data[0] == "moderate_decline":
         await call.message.delete()
-        await call.message.answer(_("Отклонено!"))
+        await call.message.answer("Ditolak!")
         await db_commands.delete_user_meetings(telegram_id=telegram_id)
         await bot.send_message(
             chat_id=telegram_id,
-            text=_("К сожалению ваше мероприятие не прошло модерацию"),
+            text=("Maaf, acara Anda tidak dimoderatori."),
             reply_markup=await poster_keyboard(obj=call),
         )
     await db_commands.update_user_meetings_data(
