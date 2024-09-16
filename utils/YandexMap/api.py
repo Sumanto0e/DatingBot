@@ -23,7 +23,7 @@ class Client:
         async with aiohttp.ClientSession() as session:
             async with session.get(
                 url="https://api-maps.yandex.ru/2.1/",
-                params=dict(format="json", apikey=self.api_key, key&lang=en_US, geocode=address),
+                params=dict(format="json", apikey=self.api_key, lang=en_US, geocode=address),
             ) as response:
                 if response.status == 200:
                     a = await response.json()
