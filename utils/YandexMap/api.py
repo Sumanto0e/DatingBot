@@ -22,7 +22,7 @@ class Client:
     async def _request(self, address: str) -> Any:
         async with aiohttp.ClientSession() as session:
             async with session.get(
-                url="https://api-maps.yandex.ru/2.1/",
+                url="https://geocode-maps.yandex.ru/1.x/",
                 params=dict(format="json", apikey=self.api_key, geocode=address),
             ) as response:
                 if response.status == 200:
