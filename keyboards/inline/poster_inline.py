@@ -21,7 +21,7 @@ async def poster_keyboard(obj: Union[Message, CallbackQuery]) -> InlineKeyboardM
     moderation_process = user.moderation_process
     markup = InlineKeyboardMarkup(row_width=1)
     create_poster = InlineKeyboardButton(
-        text=_("✍️Создать афишу"), callback_data="create_poster"
+        text=("✍️Buat poster"), callback_data="create_poster"
     )
     view_poster = InlineKeyboardButton(
         text=("🎭 Lihat poster"), callback_data="view_poster"
