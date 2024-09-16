@@ -6,11 +6,11 @@ from aiogram.types import (
 
 async def admin_keyboard() -> ReplyKeyboardMarkup:
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
-    mailing = KeyboardButton(text=_("Рассылка"))
-    message_by_id = KeyboardButton(text=_("Сообщение по id"))
-    count_people_and_chat = KeyboardButton(text=_("Посчитать людей и чаты"))
-    monitoring = KeyboardButton(text=_("Мониторинг"))
-    set_up_technical_works = KeyboardButton(text=_("Тех.Работа"))
+    mailing = KeyboardButton(text=("broadcast"))
+    message_by_id = KeyboardButton(text=("Pesan oleh id"))
+    count_people_and_chat = KeyboardButton(text=("Hitung orang dan obrolan"))
+    monitoring = KeyboardButton(text=("Pemantauan"))
+    set_up_technical_works = KeyboardButton(text=("Pekerja teknis"))
     markup.row(mailing, message_by_id)
     markup.row(count_people_and_chat, monitoring)
     markup.add(set_up_technical_works)
