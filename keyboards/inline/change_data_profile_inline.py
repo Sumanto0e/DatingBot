@@ -5,12 +5,12 @@ from aiogram.types import (
 
 async def change_info_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=2)
-    name = InlineKeyboardButton(text=_("👤 Имя"), callback_data="name")
-    gender = InlineKeyboardButton(text=_("⚧ Пол"), callback_data="gender")
-    age = InlineKeyboardButton(text=_("📅 Возраст"), callback_data="age")
-    city = InlineKeyboardButton(text=_("🏙 Город"), callback_data="city")
-    photo = InlineKeyboardButton(text=_("📷 Фото"), callback_data="photo")
-    about_me = InlineKeyboardButton(text=_("📝 О себе"), callback_data="about_me")
+    name = InlineKeyboardButton(text=("👤 Nama"), callback_data="name")
+    gender = InlineKeyboardButton(text=("⚧ Gender"), callback_data="gender")
+    age = InlineKeyboardButton(text=("📅 Usia"), callback_data="age")
+    city = InlineKeyboardButton(text=("🏙 Kota"), callback_data="city")
+    photo = InlineKeyboardButton(text=("📷 Foto"), callback_data="photo")
+    about_me = InlineKeyboardButton(text=("📝 О Status"), callback_data="about_me")
     back_to_menu = InlineKeyboardButton(
         text=_("⏪️ Вернуться в меню"), callback_data="back_to_profile_menu"
     )
@@ -25,7 +25,7 @@ async def gender_keyboard(m_gender: str, f_gender: str) -> InlineKeyboardMarkup:
     male = InlineKeyboardButton(text=m_gender, callback_data="male")
     female = InlineKeyboardButton(text=f_gender, callback_data="female")
     stopped = InlineKeyboardButton(
-        text=_("❌ Остановить"), callback_data="registration:stopped"
+        text=("❌ Berhenti"), callback_data="registration:stopped"
     )
     markup.row(male, female)
     markup.add(stopped)
