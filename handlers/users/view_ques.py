@@ -36,7 +36,6 @@ from keyboards.inline.questionnaires_inline import (
     action_report_keyboard,
 )
 from loader import (
-    _,
     bot,
     dp,
     logger,
