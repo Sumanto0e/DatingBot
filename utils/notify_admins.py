@@ -39,9 +39,9 @@ class AdminNotification(BaseNotification):
                     await bot.send_message(
                         admin, ("Бот был успешно запущен"), disable_notification=True
                     )
-                if admin.language == ind:
+                if admin.language == {in}:
                     await bot.send_message(
-                        admin, ("Бот был успешно запущен"), disable_notification=True
+                        admin, ("Bot berhasil diluncurkan"), disable_notification=True
                     )
                 if admin.language == en:
                     await bot.send_message(
