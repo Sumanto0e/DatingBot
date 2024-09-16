@@ -15,16 +15,16 @@ async def create_pagination_keyboard(
     markup = InlineKeyboardMarkup()
     if step > 1:
         backward = InlineKeyboardButton(
-            text=_("⏪️ Назад"),
+            text=("⏪️ Kembali"),
             callback_data=guide_callback.new(action="backward", value=step - 1),
         )
         markup.insert(backward)
     if step < total_steps:
         forward = InlineKeyboardButton(
-            text=_("Вперед ➡️"),
+            text=("Geser ➡️"),
             callback_data=guide_callback.new(action="forward", value=step + 1),
         )
         markup.insert(forward)
-    back = InlineKeyboardButton(text=_("❌ Закрыть"), callback_data="back_to_info_menu")
+    back = InlineKeyboardButton(text=("❌ Menutup"), callback_data="back_to_info_menu")
     markup.add(back)
     return markup
