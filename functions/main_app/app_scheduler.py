@@ -6,7 +6,6 @@ from keyboards.inline.questionnaires_inline import (
     viewing_ques_keyboard,
 )
 from loader import (
-    _,
     bot,
 )
 from utils.db_api import (
