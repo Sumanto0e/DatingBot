@@ -66,7 +66,7 @@ from utils.misc.profanityFilter import (
 async def start_change_data(call: CallbackQuery) -> None:
     markup = await change_info_keyboard()
     await delete_message(call.message)
-    await call.message.answer(text=_("<u>Data Anda: </u>\n"), reply_markup=markup)
+    await call.message.answer(text=("<u>Data Anda: </u>\n"), reply_markup=markup)
 
 
 @dp.callback_query_handler(text="name")
