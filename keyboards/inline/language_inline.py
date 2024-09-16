@@ -3,10 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
 
 async def language_keyboard(menu: str) -> InlineKeyboardMarkup:
     menu_back_buttons = {
