@@ -55,7 +55,6 @@ from keyboards.inline.settings_menu import (
     information_keyboard,
 )
 from loader import (
-    _,
     bot,
     logger,
     scheduler,
