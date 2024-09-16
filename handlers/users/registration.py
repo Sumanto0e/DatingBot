@@ -138,7 +138,7 @@ async def sex_reg(call: CallbackQuery) -> None:
 @dp.message_handler(content_types=[ContentType.TEXT], state=RegData.commentary)
 async def commentary_reg(message: types.Message) -> None:
     markup = await gender_keyboard(
-        m_gender=_("👱🏻‍♂️ male"), f_gender=_("👱🏻‍♀️ female")
+        m_gender=("👱🏻‍♂️ male"), f_gender=("👱🏻‍♀️ female")
     )
     try:
         censored = censored_message(message.text)
