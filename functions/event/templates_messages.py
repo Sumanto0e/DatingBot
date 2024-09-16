@@ -16,9 +16,6 @@ from keyboards.inline.poster_inline import (
     event_settings_keyboard,
     view_event_keyboard,
 )
-from loader import (
-    _,
-)
 
 
 class TemplateEvent:
