@@ -35,7 +35,6 @@ from keyboards.inline.questionnaires_inline import (
     user_link_keyboard,
 )
 from loader import (
-    _,
     bot,
 )
 from utils.db_api import (
