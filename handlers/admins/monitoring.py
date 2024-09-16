@@ -23,10 +23,10 @@ from utils.db_api import (
 )
 
 
-@dp.message_handler(IsAdmin(), text="👀 Мониторинг")
+@dp.message_handler(IsAdmin(), text="👀 Pemantauan")
 async def admin_monitoring(message: types.Message) -> None:
     await message.answer(
-        text=_("Чтобы начать мониторинг нажмите на кнопку ниже"),
+        text=("Untuk mulai memantau, klik tombol di bawah"),
         reply_markup=await start_monitoring_keyboard(),
     )
 
@@ -44,7 +44,7 @@ async def confirm_send_monitoring(call: types.CallbackQuery, state: FSMContext) 
 async def ban_form_owner(call: types.CallbackQuery, state: FSMContext) -> None:
     target_id = call.data.split(":")[2]
     await db_commands.update_user_data(telegram_id=target_id, is_banned=True)
-    await call.answer(_("Анкета пользователя была заблокирована"))
+    await call.answer("Profil pengguna telah diblokir")
     await monitoring_questionnaire(call, state)
 
 
