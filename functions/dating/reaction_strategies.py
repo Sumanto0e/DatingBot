@@ -119,8 +119,8 @@ class StoppedAction(ActionStrategy):
     async def execute(
             self, call: CallbackQuery, state: FSMContext, callback_data: dict[str, str]
     ):
-        text = _(
-            "Рад был помочь, {fullname}!\nНадеюсь, ты нашел кого-то благодаря мне"
+        text = (
+            "Senang bisa membantu, {fullname}!\nSaya harap Anda menemukan seseorang berkat saya"
         ).format(fullname=call.from_user.full_name)
         await call.answer(text, show_alert=True)
         await bot.edit_message_reply_markup(
@@ -142,7 +142,7 @@ class LikeReciprocity(ActionStrategy):
             reply_markup=None,
         )
         await call.message.answer(
-            text=_("Отлично! Надеюсь вы хорошо проведете время ;) Начинай общаться 👉"),
+            text=("Besar! Semoga Anda bersenang-senang;) Mulailah mengobrol 👉"),
             reply_markup=await user_link_keyboard(telegram_id=user_for_like),
         )
         await create_questionnaire_reciprocity(
@@ -150,7 +150,7 @@ class LikeReciprocity(ActionStrategy):
         )
         await bot.send_message(
             chat_id=user_for_like,
-            text="Есть взаимная симпатия! Начиная общаться 👉",
+            text="Ada rasa saling simpati! Mulai berkomunikasi👉",
             reply_markup=await user_link_keyboard(telegram_id=call.from_user.id),
         )
         await state.reset_state()
@@ -187,7 +187,7 @@ class GoBackToViewing(ActionStrategy):
             )
             await state.reset_data()
         except IndexError:
-            await call.answer(_("На данный момент у нас нет подходящих анкет для вас"))
+            await call.answer("Saat ini kami tidak memiliki profil yang cocok untuk Anda, silahkan undang teman anda agar kami lebih banyak pilihan untuk anda")
             await state.reset_data()
 
 
@@ -203,7 +203,7 @@ class ChooseReportReason(ActionStrategy):
         )
         target_id = int(callback_data["target_id"])
         await call.message.answer(
-            text=_("<u>Выберите причину жалобы:</u>"),
+            text=("<u>Pilih alasan keluhan:</u>"),
             reply_markup=await report_menu_keyboard(telegram_id=target_id),
         )
 
@@ -220,11 +220,11 @@ class SendReport(ActionStrategy):
         user_id = call.from_user.id
         report_reason = await get_report_reason(call)
 
-        text = _(
-            "Жалоба от пользователя: <code>[@{username}</code> | <code>{tg_id}</code>]\n\n"
-            "На пользователя: <code>[{owner_id}]</code>\n"
-            "Причина жалобы: <code>{reason}</code>\n"
-            "Количество жалоб на пользователя: <code>{counter_of_report}</code>"
+        text = (
+            "Keluhan dari pengguna: <code>[@{username}</code> | <code>{tg_id}</code>]\n\n"
+            "Kepada: <code>[{owner_id}]</code>\n"
+            "Alasan keluhan: <code>{reason}</code>\n"
+            "Jumlah keluhan dari pengguna: <code>{counter_of_report}</code>"
         ).format(
             username=username,
             tg_id=user_id,
