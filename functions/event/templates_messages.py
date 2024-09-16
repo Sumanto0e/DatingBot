@@ -20,7 +20,7 @@ from keyboards.inline.poster_inline import (
 
 class TemplateEvent:
     def __init__(self) -> None:
-        self.message_for_event = _(
+        self.message_for_event = (
             "<b>{}</b> \n" + "Когда: {} \n" + "Где: {} \n\n" + "{}"
         )
 
