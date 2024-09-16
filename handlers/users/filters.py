@@ -77,7 +77,7 @@ async def desired_min_age_state(message: types.Message, state: FSMContext) -> No
     await db_commands.update_user_data(
         telegram_id=message.from_user.id, need_partner_age_min=int_messages
     )
-    await message.answer("Sekarang masukkan usia maksimal"))
+    await message.answer("Sekarang masukkan usia maksimal")
     await state.reset_state()
     await state.set_state("max_age_period")
 
