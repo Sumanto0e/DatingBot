@@ -35,7 +35,7 @@ class IsMaintenance(BaseMiddleware):
     async def check_tech_works(
             obj: Union[types.CallbackQuery, types.Message]
     ) -> NoReturn:
-        text = _("Ведутся технические работы")
+        text = ("Ведутся технические работы")
         try:
             setting = await db_commands.select_setting_tech_work()
             tech_works = setting.get("technical_works", False)
