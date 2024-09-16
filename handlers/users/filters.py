@@ -104,7 +104,7 @@ async def user_city_filter(call: CallbackQuery, state: FSMContext) -> None:
 @dp.callback_query_handler(text="yes_all_good", state="city")
 async def get_hobbies(call: CallbackQuery, state: FSMContext) -> None:
     await asyncio.sleep(1)
-    await call.message.edit_text("Data disimpan"))
+    await call.message.edit_text("Data disimpan")
     await asyncio.sleep(2)
     if await state.get_state() == "city":
         await show_dating_filters(obj=call)
