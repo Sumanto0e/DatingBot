@@ -200,7 +200,7 @@ async def update_sex(call: CallbackQuery, state: FSMContext) -> None:
 async def new_photo(call: CallbackQuery) -> None:
     await delete_message(call.message)
     await call.message.answer(
-        text=_("Отправьте мне новую фотографию"),
+        text=("Kirim foto anda"),
         reply_markup=await get_photo_from_profile(),
     )
     await NewData.photo.set()
