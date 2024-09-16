@@ -60,14 +60,14 @@ class BackToProfileMenuCommand(Command):
 class UnbanMenuCommand(Command):
     async def execute(self, call: CallbackQuery, **kwargs) -> None:
         await call.message.edit_text(
-            _("Вы забанены!"), reply_markup=await unban_user_keyboard()
+            ("Anda di banned!"), reply_markup=await unban_user_keyboard()
         )
 
 
 class BackToFiltersMenuCommand(Command):
     async def execute(self, call: CallbackQuery, **kwargs) -> None:
         await call.message.edit_text(
-            text=_("Вы вернулись в меню фильтров"),
+            text=("Anda kembali ke menu filter"),
             reply_markup=await filters_keyboard(),
         )
 
