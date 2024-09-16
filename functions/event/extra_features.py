@@ -18,7 +18,6 @@ from functions.event.templates_messages import (
     ME,
 )
 from loader import (
-    _,
     bot,
 )
 from utils.db_api import (
