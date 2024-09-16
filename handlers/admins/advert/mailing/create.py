@@ -24,7 +24,6 @@ from keyboards.admin.inline.mailing import (
     confirm_with_button_keyboard,
 )
 from loader import (
-    _,
     bot,
     dp,
     logger,
