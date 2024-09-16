@@ -16,7 +16,7 @@ from utils.db_api import (
 async def send_message_week(message: Message) -> None:
     user = await db_commands.select_user(telegram_id=message.from_user.id)
 
-    user_gender = "girl" if user.need_partner_sex == "boy"
+    user_gender = "female" if user.need_partner_sex == "male"
     text = (
         "Beberapa {} dari kota {} ingin bertemu denganmu sekarang"
     ).format(user_gender, user.need_city)
