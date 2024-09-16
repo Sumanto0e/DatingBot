@@ -49,7 +49,7 @@ async def get_text_for_confirm(message: types.Message, state: FSMContext) -> Non
 
 @dp.callback_query_handler(state="broadcast_confirming")
 async def broadcast_confirming(call: CallbackQuery, state: FSMContext) -> None:
-    await call.message.edit_text(text=_("Начинаю рассылку!"))
+    await call.message.edit_text(text=("Saya memulai broadcast!"))
     chats = await db_commands.select_all_users()
     count = 0
     async with state.proxy() as data:
@@ -64,19 +64,19 @@ async def broadcast_confirming(call: CallbackQuery, state: FSMContext) -> None:
                     await asyncio.sleep(1)
                 except Exception as err:
                     logger.error(
-                        _("Сообщение не дошло в чат {chat} Причина: \n{err}").format(
+                        ("Pesannya tidak sampai ke obrolan {chat} Menyebabkan: \n{err}").format(
                             err=err, chat=(i.get("telegram_id"))
                         )
                     )
 
             await call.message.edit_text(
-                text=_(
-                    "Рассылка проведена успешно! Ее получили: {count} чатов!\n"
+                text=(
+                    "Pengiriman surat berhasil! Diterima: {count} obrolan!\n"
                 ).format(count=count)
             )
             await state.reset_state(with_data=True)
         elif call.data == "add_buttons":
-            await call.message.edit_text(text=_("Пришлите мне название кнопки!"))
+            await call.message.edit_text(text=("Kirimi saya nama tombolnya!"))
             await state.set_state("get_button_name")
 
 
@@ -85,8 +85,8 @@ async def get_button_name(message: types.Message, state: FSMContext) -> None:
     button_name = message.text
     await state.update_data(button_name=button_name)
     await message.reply(
-        text=_(
-            "Название кнопки принято!" " Теперь отправьте мне ссылку для этой кнопки!"
+        text=(
+            "Nama tombol diterima!" "Sekarang kirimkan saya tautan untuk tombol ini!"
         )
     )
     await state.set_state("get_button_url")
