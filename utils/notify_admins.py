@@ -32,13 +32,12 @@ class AdminNotification(BaseNotification):
         self.dp = dp
 
     async def send(self) -> None:
-        logger.info("Оповещение администрации...")
+        logger.info("Peringatan Administrasi...")
         for admin in load_config().tg_bot.admin_ids:
             try:
-                user = await bot.get_me()
                 await bot.send_message(
-                        admin, ("Бот был успешно запущен {}"), disable_notification=True
-                    ).format(user.langauage)
+                        admin, ("Bot berhasil diluncurkan"), disable_notification=True
+                    )
             except ChatNotFound:
                 logger.debug("Чат с админом не найден")
 
