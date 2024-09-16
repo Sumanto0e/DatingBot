@@ -35,9 +35,22 @@ class AdminNotification(BaseNotification):
         logger.info("Оповещение администрации...")
         for admin in load_config().tg_bot.admin_ids:
             try:
-                await bot.send_message(
-                    admin, ("Бот был успешно запущен"), disable_notification=True
-                )
+                if admin.language == {ru}:
+                    await bot.send_message(
+                        admin, ("Бот был успешно запущен"), disable_notification=True
+                    )
+                if admin.language == ind:
+                    await bot.send_message(
+                        admin, ("Бот был успешно запущен"), disable_notification=True
+                    )
+                if admin.language == en:
+                    await bot.send_message(
+                        admin, ("Бот был успешно запущен"), disable_notification=True
+                    )
+                if admin.language == de:
+                    await bot.send_message(
+                        admin, ("Бот был успешно запущен"), disable_notification=True
+                    )
             except ChatNotFound:
                 logger.debug("Чат с админом не найден")
 
