@@ -34,10 +34,6 @@ async def get_payment_menu(call: CallbackQuery) -> None:
     await call.message.edit_text(
         text=(
             "<b>💳 hubungi @nazhak untuk unban</b>\n\n"
-            "├Стоимость разблокировки - <b>99₽</b>\n"
-            "├Оплата обычно приходить в течение 1-3 минут\n"
-            "├Если у вас нет Yoomoney или нет возможности\n"
-            "├оплатить, напишите агенту поддержки"
         ),
         reply_markup=await payment_menu_keyboard(),
     )
