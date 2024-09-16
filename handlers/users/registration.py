@@ -146,13 +146,13 @@ async def commentary_reg(message: types.Message) -> None:
             commentary=quote_html(censored), telegram_id=message.from_user.id
         )
         await message.answer(
-            text=_("Komentar diterima! Masukan nama anda: "),
+            text=("Komentar diterima! Masukan nama anda: "),
             reply_markup=markup,
         )
 
     except DataError:
         await message.answer(
-            text=_(
+            text=(
                 "Telah terjadi kesalahan yang tidak diketahui! Coba ubah komentar nanti di bagian tersebut"
                 '"Menu"\n\n'
                 "Masukan nama anda: "
