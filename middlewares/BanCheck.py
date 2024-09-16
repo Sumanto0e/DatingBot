@@ -16,9 +16,6 @@ from aiogram.dispatcher.middlewares import (
 from keyboards.inline.admin_inline import (
     unban_user_keyboard,
 )
-from loader import (
-    _,
-)
 from utils.db_api import (
     db_commands,
 )
