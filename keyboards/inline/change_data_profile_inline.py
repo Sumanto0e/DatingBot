@@ -9,8 +9,8 @@ async def change_info_keyboard() -> InlineKeyboardMarkup:
     gender = InlineKeyboardButton(text=("⚧ Gender"), callback_data="gender")
     age = InlineKeyboardButton(text=("📅 Usia"), callback_data="age")
     city = InlineKeyboardButton(text=("🏙 Kota"), callback_data="city")
-    photo = InlineKeyboardButton(text=("📷 Foto"), callback_data="photo")
-    about_me = InlineKeyboardButton(text=("📝 О Status"), callback_data="about_me")
+    photo = InlineKeyboardButton(text=("📷 Photo profile"), callback_data="photo")
+    about_me = InlineKeyboardButton(text=("📝 status"), callback_data="about_me")
     back_to_menu = InlineKeyboardButton(
         text=("⏪️ Kembali ke menu"), callback_data="back_to_profile_menu"
     )
