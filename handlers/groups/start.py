@@ -20,6 +20,6 @@ from loader import (
 async def start_group_handler(message: Message) -> None:
     await message.answer(
         text=(
-            "<b>Hai, saya bot dari proyek FWA Group, untuk memverifikasi profil kencan</b>\n\n"
+            "<b>Hai, saya bot dari proyek Nazhak Group, untuk memverifikasi profil kencan</b>\n\n"
         )
     )
