@@ -33,7 +33,7 @@ async def view_poster_handler(call: CallbackQuery, state: FSMContext) -> None:
             chat_id=telegram_id, message_id=call.message.message_id, reply_markup=None
         )
         await call.message.answer(
-            _("На данный момент вы просмотрели все существующие анкеты"),
+            ("Saat ini Anda telah melihat semua profil yang ada"),
             reply_markup=await poster_keyboard(obj=call),
         )
         await state.reset_state()
@@ -57,8 +57,8 @@ async def list_poster_reaction(call: CallbackQuery, state: FSMContext) -> None:
             message_id=call.message.message_id,
             reply_markup=await poster_keyboard(obj=call),
         )
-        text = _(
-            "Рад был помочь, {fullname}!\n" "Надеюсь, ты нашел кого-то благодаря мне"
+        text = (
+            "Senang bisa membantu, {fullname}!\n" "Saya harap Anda menemukan seseorang berkat saya"
         ).format(fullname=call.from_user.full_name)
         await call.answer(text)
         await state.reset_state(with_data=False)
