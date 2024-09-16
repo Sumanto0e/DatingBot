@@ -35,8 +35,8 @@ async def ask_support_call(call: types.CallbackQuery) -> None:
     try:
         if not keyboard:
             await call.message.edit_text(
-                text=_(
-                    "К сожалению, сейчас нет свободных операторов. Попробуйте позже."
+                text=(
+                    "Sayangnya, saat ini tidak ada operator yang tersedia. Coba lagi nanti."
                 )
             )
             return
@@ -51,7 +51,7 @@ async def send_to_support_call(
         call: types.CallbackQuery, state: FSMContext, callback_data: dict
 ) -> None:
     await call.message.edit_text(
-        text=_("Вы обратились в техническую поддержку. Ждем ответа от оператора!")
+        text=("Anda telah menghubungi dukungan teknis. Kami menunggu tanggapan dari operator!")
     )
 
     user_id = int(callback_data.get("user_id"))
@@ -62,7 +62,7 @@ async def send_to_support_call(
 
     if not support_id:
         await call.message.edit_text(
-            text=_("К сожалению, сейчас нет свободных операторов. Попробуйте позже.")
+            text=("Seorang pengguna ingin menghubungi Anda.")
         )
         await state.reset_state()
         return
@@ -74,7 +74,7 @@ async def send_to_support_call(
 
     await bot.send_message(
         chat_id=support_id,
-        text=_("С вами хочет связаться пользователь {full_name}").format(
+        text=("Seorang pengguna ingin menghubungi Anda {full_name}").format(
             full_name=call.from_user.full_name
         ),
         reply_markup=keyboard,
@@ -89,7 +89,7 @@ async def answer_support_call(
     user_state = dp.current_state(user=second_id, chat=second_id)
 
     if str(await user_state.get_state()) != "wait_in_support":
-        await call.message.edit_text(_("К сожалению, пользователь уже передумал."))
+        await call.message.edit_text("Sayangnya, pengguna sudah berubah pikiran."))
         return
 
     await state.set_state("in_support")
@@ -101,18 +101,18 @@ async def answer_support_call(
     keyboard_second_user = cancel_support(call.from_user.id)
 
     await call.message.edit_text(
-        text=_(
-            "Вы на связи с пользователем!\n"
-            "Чтобы завершить общение нажмите на кнопку."
+        text=(
+            "Anda berhubungan dengan pengguna!\n"
+            "Untuk mengakhiri percakapan, klik tombol."
         ),
         reply_markup=keyboard,
     )
 
     await bot.send_message(
         chat_id=second_id,
-        text=_(
-            "Техподдержка на связи! Можете писать сюда свое сообщение. \n"
-            "Чтобы завершить общение нажмите на кнопку."
+        text=(
+            "Dukungan teknis menghubungi! Anda dapat menulis pesan Anda di sini. \n"
+            "Untuk mengakhiri percakapan, klik tombol."
         ),
         reply_markup=keyboard_second_user,
     )
@@ -125,7 +125,7 @@ async def not_supported(message: types.Message, state: FSMContext) -> None:
 
     keyboard = cancel_support(second_id)
     await message.answer(
-        text=_("Дождитесь ответа оператора или отмените сеанс"), reply_markup=keyboard
+        text=("Tunggu hingga operator merespons atau membatalkan sesi"), reply_markup=keyboard
     )
 
 
@@ -141,11 +141,11 @@ async def exit_support(
     if await second_state.get_state() is not None:
         await second_state.reset_state()
         await bot.send_message(
-            chat_id=user_id, text=_("Пользователь завершил сеанс техподдержки")
+            chat_id=user_id, text=("Pengguna telah menyelesaikan sesi dukungan teknis")
         )
 
     await call.message.edit_text(
-        text=_("Вы завершили сеанс и были возвращены в главное меню"),
+        text=("Anda telah mengakhiri sesi Anda dan telah kembali ke menu utama"),
         reply_markup=markup,
     )
     await state.reset_state()
