@@ -17,7 +17,6 @@ from keyboards.inline.questionnaires_inline import (
     reciprocity_keyboard,
 )
 from loader import (
-    _,
     bot,
     logger,
 )
