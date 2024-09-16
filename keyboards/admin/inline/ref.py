@@ -3,11 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
-
 async def referral_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     statistics = InlineKeyboardButton(_("📈 Статистика"), callback_data="ref_urls:stats")
