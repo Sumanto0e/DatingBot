@@ -107,7 +107,7 @@ async def update_name(message: types.Message, state: FSMContext) -> None:
 
 @dp.callback_query_handler(text="age")
 async def change_age(call: CallbackQuery) -> None:
-    await call.message.edit_text(text=("Masuki zaman baru"))
+    await call.message.edit_text(text=("Masukan usia anda"))
     await NewData.age.set()
 
 
