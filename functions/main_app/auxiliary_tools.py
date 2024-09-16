@@ -74,7 +74,7 @@ async def delete_message(message: Message) -> None:
 
 async def choice_gender(call: CallbackQuery) -> None:
     """Function that saves to the database the gender that the user has selected."""
-    sex_mapping = {"male": "Мужской", "female": "Женский"}
+    sex_mapping = {"male": "male", "female": "female"}
 
     selected_sex = sex_mapping.get(call.data)
 
@@ -95,9 +95,9 @@ async def display_profile(call: CallbackQuery, markup: InlineKeyboardMarkup) -> 
     )
     user_verification = "✅" if user.verification else ""
 
-    user_info_template = _(
+    user_info_template = (
         "{name}, {age} лет, {city}, {verification}\n\n{commentary}\n\n"
-        "<u>Партнерка:</u>\nКоличество приглашенных друзей: {reff}\nРеферальная ссылка:\n {link}"
+        "<u>Afiliasi:</u>\nJumlah teman yang diundang: {reff}\nTautan rujukan:\n {link}"
     )
     info = await bot.get_me()
     user_info = user_info_template.format(
@@ -120,11 +120,11 @@ async def show_dating_filters(obj: Union[CallbackQuery, Message]) -> None:
     user = await db_commands.select_user(telegram_id=user_id)
     markup = await dating_filters_keyboard()
 
-    text = _(
-        "Фильтр по подбору партнеров:\n\n"
-        "🚻 Необходимы пол партнера: {}\n"
-        "🔞 Возрастной диапазон: {}-{} лет\n\n"
-        "🏙️ Город партнера: {}"
+    text = (
+        "Filter berdasarkan pilihan anda:\n\n"
+        "🚻 lawan jenis anda: {}\n"
+        "🔞 Rentang usia: {}-{} tahun\n\n"
+        "🏙️ kota: {}"
     ).format(
         user.need_partner_sex,
         user.need_partner_age_min,
@@ -145,13 +145,11 @@ async def registration_menu(
     )
     markup = await start_keyboard(obj)
     heart = random.choice(["💙", "💚", "💛", "🧡", "💜", "🖤", "❤", "🤍", "💖", "💝"])
-    text = _(
-        "Приветствую вас, {fullname}!!\n\n"
-        "{heart} <b> Querendo </b> - платформа для поиска новых знакомств.\n\n"
-        "🪧 Новости о проекте вы можете прочитать в нашем канале - "
-        "https://t.me/que_group \n\n"
-        "<b>🤝 Сотрудничество: </b>\n"
-        "Если у вас есть предложение о сотрудничестве, пишите агенту поддержки - "
+    text = (
+        "Salam, {fullname}!!\n\n"
+        "{heart} <b> Querendo </b> - Platform untuk mencari kenalan baru.\n\n"
+        "🪧 Anda dapat bergabung dikomunitas kami - "
+        "https://t.me/fwabasee \n\n"
         "@{supports}\n\n"
     ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username)
     try:
@@ -192,9 +190,9 @@ async def check_user_in_db(telegram_id: int, message: Message, username: str) ->
             )
             await bot.send_message(
                 chat_id=referrer_id,
-                text=_(
-                    "По вашей ссылке зарегистрировался пользователь {}!\n"
-                    "Вы получаете дополнительных 15 ❤️"
+                text=(
+                    "Seorang pengguna mendaftar menggunakan tautan Anda{}!\n"
+                    "Anda mendapat tambahan 15 ❤️"
                 ).format(message.from_user.username),
             )
         else:
@@ -219,11 +217,11 @@ async def finished_registration(
     markup = await start_keyboard(obj=message)
 
     text = _(
-        "Регистрация успешно завершена! \n\n "
+        "Pendaftaran berhasil diselesaikan! \n\n "
         "{}, "
-        "{} лет, "
+        "{} tahun, "
         "{}\n\n"
-        "<b>О себе</b> - {}"
+        "<b>О status</b> - {}"
     ).format(user.varname, user.age, user.city, user.commentary)
 
     await message.answer_photo(caption=text, photo=user.photo_id, reply_markup=markup)
@@ -232,19 +230,19 @@ async def finished_registration(
 async def saving_normal_photo(
     message: Message, telegram_id: int, file_id: str, state: FSMContext
 ) -> None:
-    """Функция, сохраняющая фотографию пользователя без цензуры."""
+    """Fungsi yang menyimpan foto pengguna tanpa sensor."""
     try:
         await db_commands.update_user_data(telegram_id=telegram_id, photo_id=file_id)
 
         await message.answer(
-            text=_("Фото принято!"), reply_markup=ReplyKeyboardRemove()
+            text=("Foto diambil!"), reply_markup=ReplyKeyboardRemove()
         )
     except Exception as err:
-        logger.info(f"Ошибка в saving_normal_photo | err: {err}")
+        logger.info(f"Kesalahan dalam saving_normal_photo | err: {err}")
         await message.answer(
-            text=_(
-                "Произошла ошибка! Попробуйте еще раз либо отправьте другую фотографию. \n"
-                "Если ошибка осталась, напишите агенту поддержки."
+            text=(
+                "Telah terjadi kesalahan! Coba lagi atau kirim foto lain. \n"
+                "Jika kesalahan terus berlanjut, lapor ke @nazhak."
             )
         )
     await finished_registration(state=state, telegram_id=telegram_id, message=message)
@@ -258,14 +256,14 @@ async def saving_censored_photo(
         flag: Optional[str] = "registration",
         markup: Union[InlineKeyboardMarkup, None] = None,
 ) -> None:
-    """.Функция, сохраняющая фотографию пользователя с цензурой."""
+    """.Fungsi yang menyimpan foto pengguna dengan sensor."""
     photo = InputFile(out_path)
     id_photo = await bot.send_photo(
         chat_id=telegram_id,
         photo=photo,
-        caption=_(
-            "Во время проверки вашего фото мы обнаружили подозрительный контент!\n"
-            "Поэтому мы чуть-чуть подкорректировали вашу фотографию"
+        caption=(
+            "Saat memeriksa foto Anda, kami menemukan konten yang mencurigakan!\n"
+            "Itu sebabnya kami sedikit menyesuaikan foto Anda"
         ),
     )
     file_id = id_photo["photo"][0]["file_id"]
@@ -274,17 +272,17 @@ async def saving_censored_photo(
         await db_commands.update_user_data(telegram_id=telegram_id, photo_id=file_id)
 
     except Exception as err:
-        logger.info(f"Ошибка в saving_censored_photo | err: {err}")
+        logger.info(f"Kesalahan dalam saving_censored_photo | err: {err}")
         await message.answer(
-            text=_(
-                "Произошла ошибка!"
-                " Попробуйте еще раз либо отправьте другую фотографию. \n"
-                "Если ошибка осталась, напишите агенту поддержки."
+            text=(
+                "Telah terjadi kesalahan!"
+                "Coba lagi atau kirim foto lain. \n"
+                "Jika kesalahan terus berlanjut, lapor ke @nazhak."
             )
         )
     if flag == "change_datas":
         await message.answer(
-            text=_("<u>Фото принято!</u>\n" "Выберите, что вы хотите изменить: "),
+            text=("<u>Foto diterima!</u>\n" "Pilih apa yang ingin Anda ubah: "),
             reply_markup=markup,
         )
         await state.reset_state()
@@ -301,23 +299,23 @@ async def update_normal_photo(
         state: FSMContext,
         markup
 ) -> None:
-    """Функция, которая обновляет фотографию пользователя."""
+    """Fungsi yang memperbarui foto pengguna."""
     try:
         await db_commands.update_user_data(telegram_id=telegram_id, photo_id=file_id)
         await message.answer(
-            text=_("Фото принято!"), reply_markup=ReplyKeyboardRemove()
+            text=("Foto diambil!"), reply_markup=ReplyKeyboardRemove()
         )
         await asyncio.sleep(3)
         await message.answer(
-            text=_("Выберите, что вы хотите изменить: "), reply_markup=markup
+            text=("Pilih apa yang ingin Anda ubah: "), reply_markup=markup
         )
         await state.reset_state()
     except Exception as err:
-        logger.info(f"Ошибка в update_normal_photo | err: {err}")
+        logger.info(f"Kesalahan dalam update_normal_photo | err: {err}")
         await message.answer(
-            text=_(
-                "Произошла ошибка! Попробуйте еще раз либо отправьте другую фотографию. \n"
-                "Если ошибка осталась, напишите агенту поддержки."
+            text=(
+                "Telah terjadi kesalahan! Coba lagi atau kirim foto lain. \n"
+                "Jika kesalahan terus berlanjut, lapor ke @nazhak."
             )
         )
 
@@ -361,7 +359,7 @@ async def handle_guide_callback(
     step = int(callback_data.get("value"))
 
     photo_path = f"brandbook/{step}_page.png"
-    caption = _("Руководство по боту: \n<b>Страница №{}</b>").format(step)
+    caption = ("Panduan Bot: \n<b>Nomor Halaman.{}</b>").format(step)
     await send_photo_with_caption(
         call=call,
         photo=photo_path,
@@ -378,10 +376,10 @@ async def information_menu(call: CallbackQuery) -> None:
     count_users = await db_commands.count_users()
     markup = await information_keyboard()
     txt = _(
-        "Вы попали в раздел <b>Информации</b> бота, здесь вы можете посмотреть: статистику,"
-        "изменить язык, а также посмотреть наш брендбук.\n\n"
-        "🌐 Дней работаем: <b>{}</b>\n"
-        "👤 Всего пользователей: <b>{}</b>\n"
+        "Anda berada di bagian <b>Informasi</b> pada bot, di sini Anda dapat melihat: statistik,"
+        "mengubah bahasa, dan juga melihat buku merek kami.\n\n"
+        "🌐 Kami bekerja selama: <b>{}</b>\n"
+        "👤 Jumlah pengguna: <b>{}</b>\n"
     ).format(delta.days, count_users)
     try:
         await call.message.edit_text(text=txt, reply_markup=markup)
@@ -394,9 +392,9 @@ async def get_report_reason(call: CallbackQuery) -> str:
     match = re.search(r"report:(.*?):", call.data)
     reason_key = match.group(1)
     reason_mapping = {
-        "adults_only": "🔞 Развратный контент",
-        "drugs": "💊 Продажа наркотиков",
-        "scam": "💰 Мошенничество",
-        "another": "🦨 Другая причина",
+        "adults_only": "🔞 Konten dewasa",
+        "drugs": "💊 Pengedar narkoba",
+        "scam": "💰 Penipuan",
+        "another": "🦨 Lainnya",
     }
     return reason_mapping.get(reason_key, "Неизвестная причина")
