@@ -6,10 +6,6 @@ from aiogram.utils.callback_data import (
     CallbackData,
 )
 
-from loader import (
-    _,
-)
-
 manipulation_callback = CallbackData("user_callback", "action", "value")
 
 
