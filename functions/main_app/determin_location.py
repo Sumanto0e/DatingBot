@@ -14,7 +14,6 @@ from keyboards.inline.registration_inline import (
     confirm_keyboard,
 )
 from loader import (
-    _,
     client,
     logger,
 )
