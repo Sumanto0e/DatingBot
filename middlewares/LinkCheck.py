@@ -52,9 +52,9 @@ class LinkCheckMiddleware(BaseMiddleware):
         for link in links_db:
             if await check_subscription(link["telegram_link_id"]):
                 subscribed_links.add(link["telegram_link_id"])
-        text, markup = _(
-            "Вы подписались не на все каналы! Чтобы продолжить пользоваться ботом, "
-            "подпишитесь! Ссылки ниже: "
+        text, markup = (
+            "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
+            "berlangganan! Tautan di bawah: "
         ), await necessary_links_keyboard(
             telegram_id=user_id,
             links_db=links_db,
