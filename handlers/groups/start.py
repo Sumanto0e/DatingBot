@@ -12,7 +12,6 @@ from filters.IsAdminFilter import (
     IsAdmin,
 )
 from loader import (
-    _,
     dp,
 )
 
