@@ -3,10 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
 
 async def payments_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
