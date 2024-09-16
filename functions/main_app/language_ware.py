@@ -31,7 +31,7 @@ class ACLMiddleware(I18nMiddleware):
         return await get_lang(user_id) or (await super().get_user_locale(action, args))
 
 
-def setup_middleware(dp) -> ACLMiddleware:
-    i18n = ACLMiddleware(load_config().tg_bot.I18N_DOMAIN, LOCALES_DIR)
+def setup_middleware(dp):
+    i18n = (load_config().tg_bot.I18N_DOMAIN)
     dp.middleware.setup(i18n)
     return i18n
