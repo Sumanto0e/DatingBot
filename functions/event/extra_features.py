@@ -91,7 +91,7 @@ async def create_form(
             )
     except BadRequest:
         await call.answer(
-            text=_("На данный момент у нас нет подходящих мероприятий для вас"),
+            text=("Kami belum memiliki acara yang cocok untuk Anda saat ini."),
             show_alert=True,
         )
 
