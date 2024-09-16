@@ -62,7 +62,7 @@ async def view_meetings_handler(call: CallbackQuery) -> None:
         await check_event_date(call.from_user.id)
     except TypeError:
         pass
-    text = _("Вы перешли в меню афиш")
+    text = ("Anda telah masuk ke menu poster")
     try:
         await call.message.edit_text(text, reply_markup=markup)
     except MessageToEditNotFound:
@@ -86,17 +86,17 @@ async def registrate_poster_name(call: CallbackQuery, state: FSMContext) -> None
     else:
         try:
             await call.message.edit_text(
-                text=_(
-                    "Вы уже создали мероприятие, которое проходит модерацию."
-                    " Дождитесь проверки, пожалуйста"
+                text=(
+                    "Anda telah membuat acara yang sedang dimoderasi."
+                    "Harap tunggu verifikasi"
                 ),
                 reply_markup=markup,
             )
         except MessageNotModified:
             await call.answer(
-                text=_(
-                    "Прочитайте сообщение и не нажимайте на кнопку,"
-                    " пока ваше мероприятие не пройдет модерацию"
+                text=(
+                    "Baca pesannya dan jangan klik tombolnya,"
+                    "sampai acara Anda dimoderasi"
                 ),
                 show_alert=True,
             )
@@ -109,13 +109,13 @@ async def simple_calendar(message: Message) -> None:
             telegram_id=message.from_user.id, event_name=message.text
         )
         await message.answer(
-            text=_("Пожалуйста, выберите дату: "),
+            text=("Silakan pilih tanggal: "),
             reply_markup=await SimpleCalendar().start_calendar(),
         )
     except DataError:
         await message.answer(
             text=_(
-                "Длинна вашего сообщение превышает допустимую.\n" "Попробуйте ещё раз"
+                "Pesan Anda terlalu panjang.\n" "Coba lagi"
             )
         )
 
@@ -130,7 +130,7 @@ async def process_simple_calendar(
 
         if now >= date:
             await call.message.edit_text(
-                text=_("Вы не можете проводить мероприятие в прошлом")
+                text=("Anda tidak dapat menyelenggarakan acara tersebut di masa lalu.")
             )
             await simple_calendar(call.message)
             return
@@ -157,15 +157,15 @@ async def send_city(message: types.Message) -> None:
             await loc.det_loc()
         else:
             await message.answer(
-                text=_("Вы ввели слишком длинное название города" "Попробуйте ещё раз.")
+                text=("Nama kota yang Anda masukkan terlalu panjang" "Coba lagi.")
             )
             return
     except NothingFound as ex:
         logger.error(f"Error in send_city. {ex}")
         await message.answer(
-            text=_(
-                "Произошла неизвестная ошибка! Попробуйте еще раз.\n"
-                "Вероятнее всего вы ввели город неправильно"
+            text=(
+                "Telah terjadi kesalahan yang tidak diketahui! coba lagi.\n"
+                "Kemungkinan besar Anda salah memasukkan kota"
             )
         )
 
@@ -173,8 +173,8 @@ async def send_city(message: types.Message) -> None:
 @dp.callback_query_handler(text="yes_all_good", state="register_handler_place")
 async def registrate_poster_commentary(call: CallbackQuery, state: FSMContext) -> None:
     await call.message.edit_text(
-        text=_(
-            "Хорошо, теперь напишите короткое или длинное описание вашего мероприятия"
+        text=(
+            "Oke, sekarang tulis deskripsi singkat atau panjang tentang acara Anda"
         ),
         reply_markup=await cancel_registration_keyboard(),
     )
@@ -189,13 +189,13 @@ async def registrate_poster(message: Message, state: FSMContext) -> None:
             telegram_id=message.from_user.id, commentary=message.text
         )
         await message.answer(
-            text=_("И напоследок, пришлите постер вашего мероприятия"),
+            text=_("Dan terakhir, kirimkan poster acara Anda kepada kami."),
             reply_markup=await cancel_registration_keyboard(),
         )
     except DataError as ex:
         logger.error(f"Error in registrate_poster_commentary {ex}")
         await message.answer(
-            text=_("Ваше сообщение слишком длинное." "Попробуйте написать короче")
+            text=("Pesan Anda terlalu panjang." "Cobalah menulis lebih pendek")
         )
 
     await state.set_state("register_handler_poster")
@@ -231,7 +231,7 @@ async def finish_registration(message: Message, state: FSMContext) -> None:
         moderate=True,
     )
     await message.answer(
-        text=_("Ваше мероприятие отправлено на модерацию"), reply_markup=markup
+        text=("Acara Anda telah dikirim untuk dimoderasi"), reply_markup=markup
     )
 
 
