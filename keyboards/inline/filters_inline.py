@@ -3,11 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
-
 async def filters_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     event_filters = InlineKeyboardButton(
