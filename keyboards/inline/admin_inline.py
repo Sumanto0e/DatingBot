@@ -3,9 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
 
 
 async def start_monitoring_keyboard() -> InlineKeyboardMarkup:
