@@ -24,7 +24,6 @@ from keyboards.inline.language_inline import (
     language_keyboard,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.db_api import (
