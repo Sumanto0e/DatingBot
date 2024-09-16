@@ -12,9 +12,6 @@ from aiogram.types import (
 from data.config import (
     load_config,
 )
-from loader import (
-    _,
-)
 from utils.db_api import (
     db_commands,
 )
