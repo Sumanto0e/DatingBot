@@ -89,7 +89,7 @@ async def answer_support_call(
     user_state = dp.current_state(user=second_id, chat=second_id)
 
     if str(await user_state.get_state()) != "wait_in_support":
-        await call.message.edit_text("Sayangnya, pengguna sudah berubah pikiran."))
+        await call.message.edit_text("Sayangnya, pengguna sudah berubah pikiran.")
         return
 
     await state.set_state("in_support")
