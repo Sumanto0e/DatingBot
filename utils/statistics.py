@@ -16,17 +16,17 @@ async def get_statistics(message: Message):
     users_status = await db_commands.count_all_users_kwarg(status=True)
     users_verified = await db_commands.count_all_users_kwarg(verification=True)
     count_users = await db_commands.count_users()
-    text = _(
-        "<b>📊 Статистика: </b>\n\n"
-        "└Сейчас в нашем боте <b>{count_users} пользователей</b>\n"
+    text = (
+        "<b>📊 Statistik: </b>\n\n"
+        "└Sekarang di bot kita <b>{count_users} pengguna</b>\n"
         "└Из них:\n"
-        "        ├<b>{users_gender_m} пользователей мужского пола</b>\n"
-        "        ├<b>{users_gender_f} пользователей женского пола</b>\n"
-        "        ├<b>{users_city} пользователей из города {user_city}</b>\n"
-        "        ├<b>{cs_uy} пользователей из других городов</b>\n"
-        "        ├<b>{users_verified} верифицированных пользователей</b>\n"
-        "        ├<b>{users_status} пользователей, создавшие анкету</b>\n"
-        "└Дата создания бота - <b>10.08.2021</b>"
+        "        ├<b>{users_gender_m} pengguna pria</b>\n"
+        "        ├<b>{users_gender_f} pengguna wanita</b>\n"
+        "        ├<b>{users_city} pengguna dari kota {user_city}</b>\n"
+        "        ├<b>{cs_uy} pengguna dari kota lain</b>\n"
+        "        ├<b>{users_verified} pengguna terverifikasi</b>\n"
+        "        ├<b>{users_status} pengguna yang membuat profil</b>\n"
+        "└Tanggal pembuatan bot - <b>16.09.2024</b>"
     ).format(
         count_users=count_users,
         users_gender_m=users_gender_m,
