@@ -31,7 +31,7 @@ async def get_event_list(call: CallbackQuery, state: FSMContext) -> None:
         await state.set_state("cancel_record")
     except IndexError:
         await call.answer(
-            _("На данный момент вы никуда не записались"), show_alert=True
+            ("Anda belum mendaftar untuk apa pun saat ini."), show_alert=True
         )
 
 
