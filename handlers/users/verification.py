@@ -29,7 +29,7 @@ from utils.db_api import (
 async def get_verification_status(call: CallbackQuery) -> None:
     await delete_message(call.message)
     await call.message.answer(
-        _("Чтобы пройти верификацию вам нужно отправить свой контакт"),
+        ("Untuk lulus verifikasi, Anda perlu mengirimkan kontak Anda"),
         reply_markup=await contact_keyboard(),
     )
 
@@ -45,7 +45,7 @@ async def get_contact(message: types.Message) -> None:
         )
         await asyncio.sleep(2)
         await message.answer(
-            text=_(
+            text=(
                 "Terima kasih, {contact_full_name}.\n"
                 "Nomor Anda {contact_phone_number} telah diterima."
             ).format(
