@@ -16,7 +16,6 @@ from keyboards.inline.questionnaires_inline import (
     action_keyboard_monitoring,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.db_api import (
