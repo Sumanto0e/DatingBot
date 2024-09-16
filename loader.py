@@ -43,7 +43,4 @@ scheduler = AsyncIOScheduler(
 wallet = YooMoneyWallet(access_token=load_config().misc.yoomoney_key)
 detector = NudeDetector()
 
-i18n = setup_middleware(dp)
-_: Any = i18n.gettext
-
 logger = logging.getLogger(__name__)
