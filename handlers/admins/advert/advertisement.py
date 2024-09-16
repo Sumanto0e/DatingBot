@@ -21,10 +21,10 @@ from loader import (
 
 
 @dp.message_handler(IsAdmin(), commands="ad", state="*")
-@dp.message_handler(IsAdmin(), text="📊 Реклама", state="*")
+@dp.message_handler(IsAdmin(), text="📊 Periklanan", state="*")
 async def adv_handler(message: Message):
     await message.answer(
-        text="<u><b>📊 Реклама</b></u>", reply_markup=await mailing_menu()
+        text="<u><b>📊 Periklanan</b></u>", reply_markup=await mailing_menu()
     )
 
 
@@ -32,9 +32,9 @@ async def adv_handler(message: Message):
 async def broadcast_get_text(call: CallbackQuery, state: FSMContext) -> None:
     await call.message.edit_text(
         text=_(
-            "<u><b>📧 Рассылка</b></u>\n"
-            "Пришлите текст для рассылки либо фото с текстом для рассылки! Чтобы отредактировать, "
-            "используйте встроенный редактор телеграма!\n"
+            "<u><b>📧 Broadcasr</b></u>\n"
+            "Kirim teks atau foto dengan teks untuk broadcast! Untuk mengedit, "
+            "gunakan editor telegram bawaan!\n"
         ),
         reply_markup=await cancel_keyboard(),
     )
