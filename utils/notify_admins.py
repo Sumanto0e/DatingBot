@@ -41,7 +41,7 @@ class AdminNotification(BaseNotification):
                     )
                 else:
                     await bot.send_message(
-                        admin, ("Bot berhasil diluncurkan"), disable_notification=True
+                        admin, ("Bot berhasil diluncurkan"), disable_notification=True)
             except ChatNotFound:
                 logger.debug("Чат с админом не найден")
 
