@@ -31,15 +31,15 @@ async def questionnaires_keyboard(
         callback_data=action_keyboard.new(action="report", target_id=target_id),
     )
     go_back = InlineKeyboardButton(
-        text=_("💤 Остановить"),
+        text=("💤 Berhenti"),
         callback_data=action_keyboard.new(action="stopped", target_id=target_id),
     )
     ban = InlineKeyboardButton(
-        text=_("🚫 Забанить"),
+        text=("🚫 Ban"),
         callback_data=action_keyboard_monitoring.new(action="ban", target_id=target_id),
     )
     next_btn = InlineKeyboardButton(
-        text=_("Следующий"),
+        text=("Berikutnya"),
         callback_data=action_keyboard_monitoring.new(
             action="next", target_id=target_id
         ),
@@ -75,7 +75,7 @@ async def reciprocity_keyboard(user_for_like: int) -> InlineKeyboardMarkup:
 
 async def viewing_ques_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
-    view_ques = InlineKeyboardButton(text=_("🚀 Смотреть"), callback_data="find_ques")
+    view_ques = InlineKeyboardButton(text=("🚀 Lihat"), callback_data="find_ques")
     markup.row(view_ques)
     return markup
 
@@ -83,14 +83,14 @@ async def viewing_ques_keyboard() -> InlineKeyboardMarkup:
 async def user_link_keyboard(telegram_id: int) -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     open_chat = InlineKeyboardButton(
-        text=_("👉 Перейти в чат"), url=f"tg://user?id={telegram_id}"
+        text=("👉 Pergi ke obrolan"), url=f"tg://user?id={telegram_id}"
     )
     report = InlineKeyboardButton(
-        text="🔞 Пожаловаться",
+        text="🔞 Report",
         callback_data=action_keyboard.new(action="report", target_id=telegram_id),
     )
     back = InlineKeyboardButton(
-        text=_("⏪️ Вернуться к просмотру анкет"),
+        text=("⏪️ Kembali ke melihat profil"),
         callback_data="go_back_to_viewing_ques",
     )
     markup.add(open_chat, report, back)
