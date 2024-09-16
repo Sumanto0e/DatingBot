@@ -21,7 +21,6 @@ from keyboards.inline.necessary_links_inline import (
     necessary_links_keyboard,
 )
 from loader import (
-    _,
     bot,
 )
 from utils.db_api import (
