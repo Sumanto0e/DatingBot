@@ -23,7 +23,6 @@ from keyboards.inline.support_inline import (
     support_keyboard,
 )
 from loader import (
-    _,
     bot,
     dp,
 )
