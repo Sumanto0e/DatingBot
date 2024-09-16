@@ -60,7 +60,7 @@ async def choice_language(call: CallbackQuery, menu: str) -> None:
     except BadRequest:
         await delete_message(call.message)
         await call.message.answer(
-            text=_("Выберите язык"), reply_markup=await language_keyboard(menu)
+            text=("Select language"), reply_markup=await language_keyboard(menu)
         )
 
 
@@ -74,8 +74,8 @@ async def change_language(call: CallbackQuery, language: str) -> None:
         )
     except aiogram.utils.exceptions.MessageToDeleteNotFound:
         await call.message.edit_text(
-            text=_(
-                "Произошла какая-то ошибка. Введите команду /start и попробуйте еще раз"
+            text=(
+                "Beberapa kesalahan telah terjadi. Ketik /start dan coba lagi"
             )
         )
 
