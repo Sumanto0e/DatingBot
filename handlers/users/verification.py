@@ -62,4 +62,4 @@ async def get_contact(message: types.Message) -> None:
         )
     else:
         await db_commands.update_user_data(verification=False, telegram_id=telegram_id)
-        await message.answer("Nomor Anda tidak valid, silakan coba lagi."))
+        await message.answer("Nomor Anda tidak valid, silakan coba lagi.")
