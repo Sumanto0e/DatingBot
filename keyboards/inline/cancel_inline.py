@@ -14,7 +14,7 @@ async def cancel_keyboard() -> InlineKeyboardMarkup:
 async def cancel_registration_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     stopped = InlineKeyboardButton(
-        text=_("❌ Остановить"), callback_data="registration:stopped"
+        text= ("❌ Остановить"), callback_data="registration:stopped"
     )
     markup.add(stopped)
     return markup
