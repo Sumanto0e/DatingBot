@@ -46,8 +46,8 @@ async def get_contact(message: types.Message) -> None:
         await asyncio.sleep(2)
         await message.answer(
             text=_(
-                "Спасибо, {contact_full_name}.\n"
-                "Ваш номер {contact_phone_number} был получен."
+                "Terima kasih, {contact_full_name}.\n"
+                "Nomor Anda {contact_phone_number} telah diterima."
             ).format(
                 contact_full_name=contact.full_name,
                 contact_phone_number=contact.phone_number,
@@ -57,9 +57,9 @@ async def get_contact(message: types.Message) -> None:
         await asyncio.sleep(4)
         await delete_message(message)
         await message.answer(
-            _("Вы были возвращены в меню"),
+            ("Anda telah dikembalikan ke menu"),
             reply_markup=await start_keyboard(obj=message),
         )
     else:
         await db_commands.update_user_data(verification=False, telegram_id=telegram_id)
-        await message.answer(_("Ваш номер недействителен, попробуйте еще раз."))
+        await message.answer("Nomor Anda tidak valid, silakan coba lagi."))
