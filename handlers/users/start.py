@@ -40,7 +40,7 @@ async def register_user(message: types.Message) -> None:
         await registration_menu(message)
     except TypeError:
         await message.answer(
-            text=_("Вам необходимо зарегистрировать агента(ов) тех поддержки")
+            text=_("Anda perlu mendaftarkan")
         )
 
 
@@ -49,13 +49,13 @@ async def start_menu(call: CallbackQuery) -> None:
     try:
         await registration_menu(call)
     except TypeError:
-        await call.message.answer(_("Вас нет в базе данной"))
+        await call.message.answer("Anda tidak ada dalam database")
 
 
 async def choice_language(call: CallbackQuery, menu: str) -> None:
     try:
         await call.message.edit_text(
-            text=_("Выберите язык"), reply_markup=await language_keyboard(menu)
+            text=("select language"), reply_markup=await language_keyboard(menu)
         )
     except BadRequest:
         await delete_message(call.message)
@@ -70,7 +70,7 @@ async def change_language(call: CallbackQuery, language: str) -> None:
         await db_commands.update_user_data(telegram_id=telegram_id, language=language)
 
         await call.message.edit_text(
-            text=_("Язык был успешно изменен. Введите команду /start", locale=language)
+            text=("Bahasa telah berhasil diubah. Masukkan perintah /start", locale=language)
         )
     except aiogram.utils.exceptions.MessageToDeleteNotFound:
         await call.message.edit_text(
