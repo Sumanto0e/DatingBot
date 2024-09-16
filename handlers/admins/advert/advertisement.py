@@ -16,7 +16,6 @@ from keyboards.inline.cancel_inline import (
     cancel_keyboard,
 )
 from loader import (
-    _,
     dp,
 )
 
