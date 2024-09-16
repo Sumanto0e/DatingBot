@@ -3,11 +3,6 @@ from aiogram.types import (
     ReplyKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
-
 async def contact_keyboard() -> ReplyKeyboardMarkup:
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     first_button = KeyboardButton(text=_("📱 Отправить"), request_contact=True)
