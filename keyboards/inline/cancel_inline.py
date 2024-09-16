@@ -3,10 +3,6 @@ from aiogram.types import (
     InlineKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
 
 async def cancel_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
