@@ -12,7 +12,6 @@ from functions.event.extra_features import (
     get_next_registration,
 )
 from loader import (
-    _,
     dp,
 )
 from utils.db_api import (
