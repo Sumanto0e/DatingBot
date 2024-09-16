@@ -24,9 +24,6 @@ from nudenet import (
 from data.config import (
     load_config,
 )
-from functions.main_app.language_ware import (
-    setup_middleware,
-)
 from utils.YandexMap.api import (
     Client,
 )
