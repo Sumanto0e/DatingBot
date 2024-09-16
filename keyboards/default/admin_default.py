@@ -3,10 +3,6 @@ from aiogram.types import (
     ReplyKeyboardMarkup,
 )
 
-from loader import (
-    _,
-)
-
 
 async def admin_keyboard() -> ReplyKeyboardMarkup:
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
