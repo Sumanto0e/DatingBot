@@ -71,6 +71,7 @@ async def change_language(call: CallbackQuery, language: str) -> None:
 
         await call.message.edit_text(
             text=("Bahasa telah berhasil diubah. Masukkan perintah /start", locale=language)
+        )
     except aiogram.utils.exceptions.MessageToDeleteNotFound:
         await call.message.edit_text(
             text=(
