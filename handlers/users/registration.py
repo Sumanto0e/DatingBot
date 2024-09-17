@@ -37,9 +37,6 @@ from keyboards.default.get_photo import (
 from keyboards.inline.cancel_inline import (
     cancel_registration_keyboard,
 )
-from keyboards.inline.registration_inline import (
-    second_registration_keyboard,
-)
 from loader import (
     client,
     dp,
