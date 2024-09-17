@@ -6,10 +6,10 @@ from aiogram.types import (
 async def filters_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     event_filters = InlineKeyboardButton(
-        text=_("🎉 Acara"), callback_data="event_filters"
+        text=("🎉 Acara"), callback_data="event_filters"
     )
     dating_filters = InlineKeyboardButton(
-        text=_("❤️ Kenalan"), callback_data="dating_filters"
+        text=("❤️ Kenalan"), callback_data="dating_filters"
     )
     back = InlineKeyboardButton(text=_("⏪️ Назад"), callback_data="back_with_delete")
     markup.row(event_filters, dating_filters)
