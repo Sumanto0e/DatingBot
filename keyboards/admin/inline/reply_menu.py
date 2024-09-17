@@ -14,7 +14,7 @@ async def admin_cancel_keyboard() -> InlineKeyboardMarkup:
 
 async def settings_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
-    admins = InlineKeyboardButton(_("👮‍♂️ Komposisi Admin"), callback_data="admin:admins")
+    admins = InlineKeyboardButton(("👮‍♂️ Komposisi Admin"), callback_data="admin:admins")
     change_contact = InlineKeyboardButton(
         ("📞 Ganti kontak"), callback_data="admin:change_contacts"
     )
