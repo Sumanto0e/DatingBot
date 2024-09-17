@@ -14,7 +14,7 @@ async def mailing_menu():
 async def add_buttons_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     confirm_sending = InlineKeyboardButton(
-        text=_("Konfirmasikan pengiriman"), callback_data="confirm_send"
+        text=("Konfirmasikan pengiriman"), callback_data="confirm_send"
     )
     add_button = InlineKeyboardButton(
         text=("Tambahkan tombol"), callback_data="add_buttons"
