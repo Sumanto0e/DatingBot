@@ -11,7 +11,7 @@ async def get_profile_keyboard(verification) -> InlineKeyboardMarkup:
         )
         markup.row(verification_btn)
     edit_profile = InlineKeyboardButton(
-        text=("🖊 Pengaturan akun"), callback_data="registration"
+        text=("🖊 Pengaturan akun"), callback_data="change_profile"
     )
     dating_filters = InlineKeyboardButton(text=("❤️ Pengaturan kenalan"), callback_data="dating_filters")
     turn_off = InlineKeyboardButton(text=("🗑️ Menghapus"), callback_data="disable")
