@@ -246,3 +246,9 @@ async def get_photo(message: types.Message, state: FSMContext) -> None:
             message=message, telegram_id=telegram_id, file_id=file_id, state=state
         )
         os.remove(path)
+
+@dp.callback_query_handler(text="change_profile")
+async def start_change_data(call: CallbackQuery) -> None:
+    markup = await change_info_keyboard()
+    await delete_message(call.message)
+    await call.message.answer(text=("<u>Itu saja: </u>\n")
