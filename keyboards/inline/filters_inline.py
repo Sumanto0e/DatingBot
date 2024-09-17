@@ -11,7 +11,7 @@ async def filters_keyboard() -> InlineKeyboardMarkup:
     dating_filters = InlineKeyboardButton(
         text=("❤️ Kenalan"), callback_data="dating_filters"
     )
-    back = InlineKeyboardButton(text=_("⏪️ Назад"), callback_data="back_with_delete")
+    back = InlineKeyboardButton(text=("⏪️ Kembali"), callback_data="back_with_delete")
     markup.row(event_filters, dating_filters)
     markup.add(back)
     return markup
