@@ -278,11 +278,12 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
         telegram_id=message.from_user.id, need_partner_age_min=int_messages
     )
     await message.answer(
-        text=("Kota pasangan anda"),
+        text=("Usia maksimal pasangan anda"),
     )
     await message.answer(text=("usia minimal calon pasangan anda terlalu rendah, coba lagi dengan usia yang lebih tua!"                
         )
     )
+    await state.set_state("town")
 @dp.message_handler(state="town")
 async def get_city(message: types.Message, state: FSMContext) -> None:
     messages = message.text
