@@ -31,7 +31,7 @@ async def adv_handler(message: Message):
 @dp.callback_query_handler(IsAdmin(), text="adv:mailing")
 async def broadcast_get_text(call: CallbackQuery, state: FSMContext) -> None:
     await call.message.edit_text(
-        text=_(
+        text=(
             "<u><b>📧 Broadcasr</b></u>\n"
             "Kirim teks atau foto dengan teks untuk broadcast! Untuk mengedit, "
             "gunakan editor telegram bawaan!\n"
