@@ -42,22 +42,6 @@ from utils.db_api import (
     db_commands,
 )
 
-
-@dp.callback_query_handler(text="filters")
-async def get_filters(call: CallbackQuery) -> None:
-    try:
-        await call.message.edit_text(
-            text=("Anda telah pindah ke bagian filter"),
-            reply_markup=await filters_keyboard(),
-        )
-    except BadRequest:
-        await delete_message(message=call.message)
-        await call.message.answer(
-            text=("Anda telah pindah ke bagian filter"),
-            reply_markup=await filters_keyboard(),
-        )
-
-
 @dp.callback_query_handler(text="dating_filters")
 async def get_dating_filters(call: CallbackQuery) -> None:
     await show_dating_filters(obj=call)
