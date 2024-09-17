@@ -18,10 +18,6 @@ from functions.main_app.auxiliary_tools import (
     choice_gender,
     show_dating_filters,
 )
-from functions.main_app.determin_location import (
-    FiltersStrategy,
-    Location,
-)
 from handlers.users.back import (
     delete_message,
 )
