@@ -266,7 +266,7 @@ async def get_filters(call: CallbackQuery, state: FSMContext) -> None:
     await call.message.answer(
         text=("Usia minimal pasangan anda"),
     )
-    await state.set_state("age_period")
+    await state.set_state("max_age_period")
 
 @dp.message_handler(state="max_age_period")
 async def desired_max_age_state(message: types.Message, state: FSMContext) -> None:
