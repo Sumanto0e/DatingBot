@@ -17,7 +17,7 @@ async def get_profile_keyboard(verification) -> InlineKeyboardMarkup:
     turn_off = InlineKeyboardButton(text=("🗑️ Menghapus"), callback_data="disable")
     back = InlineKeyboardButton(text=("⏪ Kembali"), callback_data="back_with_delete")
     markup.row(edit_profile)
-    markup.row(turn_off, date_filters)
+    markup.row(turn_off, dating_filters)
     markup.add(back)
     return markup
 
