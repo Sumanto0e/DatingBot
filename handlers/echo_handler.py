@@ -47,5 +47,5 @@ async def cq_echo(call: CallbackQuery) -> None:
 
 @dp.message_handler(state="finding")
 async def echo_message_finding(message: types.Message, state: FSMContext) -> None:
-    await message.answer("Menu: "), reply_markup=await start_keyboard(message))
+    await message.answer("Меню: "), reply_markup=await start_keyboard(message))
     await state.reset_state()
