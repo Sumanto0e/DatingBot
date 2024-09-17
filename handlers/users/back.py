@@ -19,9 +19,6 @@ from functions.main_app.auxiliary_tools import (
 from keyboards.inline.admin_inline import (
     unban_user_keyboard,
 )
-from keyboards.inline.filters_inline import (
-    filters_keyboard,
-)
 from keyboards.inline.menu_profile_inline import (
     get_profile_keyboard,
 )
@@ -59,24 +56,9 @@ class UnbanMenuCommand(Command):
             ("Anda di banned!"), reply_markup=await unban_user_keyboard()
         )
 
-
-class BackToFiltersMenuCommand(Command):
-    async def execute(self, call: CallbackQuery, **kwargs) -> None:
-        await call.message.edit_text(
-            text=("Anda kembali ke menu filter"),
-            reply_markup=await filters_keyboard(),
-        )
-
-
 class BackToGuideMenuCommand(Command):
     async def execute(self, call: CallbackQuery, **kwargs) -> None:
         await information_menu(call)
-
-
-class BackToEventProfileCommand(Command):
-    async def execute(self, call: CallbackQuery, **kwargs) -> None:
-        await view_own_event(call)
-
 
 class EventProfileBackCommand(Command):
     async def execute(self, call: CallbackQuery, state: FSMContext) -> None:
