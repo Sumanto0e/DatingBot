@@ -28,9 +28,6 @@ from keyboards.inline.menu_profile_inline import (
 from loader import (
     dp,
 )
-from utils.YandexMap.exceptions import (
-    NothingFound,
-)
 from utils.db_api import (
     db_commands,
 )
