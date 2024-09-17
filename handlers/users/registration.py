@@ -65,15 +65,6 @@ async def survey(call: CallbackQuery) -> None:
     await call.message.edit_text(("Pilih jenis kelamin"), reply_markup=markup)
     await RegData.sex.set()
 
-@dp.callback_query_handler(text="change_profile")
-async def start_change_data(call: CallbackQuery) -> None:
-    markup = await gender_keyboard(
-        m_gender=("👱🏻‍♂️ male"), f_gender=("👱🏻‍♀️ female")
-    )
-
-    await call.message.edit_text(("Pilih jenis kelamin"), reply_markup=markup)
-    await RegData.sex.set()
-
 
 @dp.callback_query_handler(state=RegData.sex)
 async def sex_reg(call: CallbackQuery) -> None:
@@ -255,3 +246,12 @@ async def get_photo(message: types.Message, state: FSMContext) -> None:
             message=message, telegram_id=telegram_id, file_id=file_id, state=state
         )
         os.remove(path)
+
+@dp.callback_query_handler(text="change_profile")
+async def start_change_data(call: CallbackQuery) -> None:
+    markup = await gender_keyboard(
+        m_gender=("👱🏻‍♂️ male"), f_gender=("👱🏻‍♀️ female")
+    )
+
+    await call.message.edit_text(("Pilih jenis kelamin"), reply_markup=markup)
+    await RegData.sex.set()
