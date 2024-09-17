@@ -48,9 +48,6 @@ from utils.NudeNet.predictor import (
     classification_image,
     generate_censored_image,
 )
-from utils.YandexMap.exceptions import (
-    NothingFound,
-)
 from utils.db_api import (
     db_commands,
 )
