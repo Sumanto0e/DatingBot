@@ -205,15 +205,30 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=RegData.town)
 async def get_city(message: types.Message) -> None:
-    try:
+     try:
         censored = censored_message(message.text)
         await db_commands.update_user_data(
-            telegram_id=message.from_user.id, varname=quote_html(censored)
+            city=quote_html(censored), telegram_id=message.from_user.id
         )
-
-    except NothingFound:
+         await db_commands.update_user_data(
+            need_city=quote_html(censored), telegram_id=message.from_user.id
+        )
         await message.answer(
-            text=("Kirim kota anda lagi"),
+        text=(
+            "Dan terakhir, kirimkan saya foto Anda"
+            " (Anda perlu mengirim gambar terkompresi, bukan dengan bentuk dokumen)"
+        ),
+        reply_markup=await get_photo_from_profile(),
+        )
+        await RegData.photo.set()
+    except DataError:
+        await message.answer(
+            text=(
+                "Telah terjadi kesalahan yang tidak diketahui! Coba ubah komentar nanti di bagian tersebut"
+                '"Menu"\n\n'
+                "Masukan nama anda: "
+            ),
+            reply_markup=markup,
         )
 
 @dp.message_handler(content_types=["location"], state=RegData.town)
