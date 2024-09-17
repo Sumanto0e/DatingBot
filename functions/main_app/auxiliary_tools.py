@@ -98,9 +98,9 @@ async def display_profile(call: CallbackQuery, markup: InlineKeyboardMarkup) -> 
     user_info_template = (
         "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
         "Filter pasangan anda:\n\n"
-        "🚻 lawan jenis anda: {}\n"
-        "🔞 Rentang usia: {}-{} tahun\n\n"
-        "🏙️ kota: {}"
+        "🚻 lawan jenis anda: {need_partnersex}\n"
+        "🔞 Rentang usia: {min}-{max} tahun\n\n"
+        "🏙️ kota: {need_city}"
     )
     info = await bot.get_me()
     user_info = user_info_template.format(
@@ -109,10 +109,10 @@ async def display_profile(call: CallbackQuery, markup: InlineKeyboardMarkup) -> 
         city=user.city,
         verification=user_verification,
         commentary=user.commentary,
-        user.need_partner_sex,
-        user.need_partner_age_min,
-        user.need_partner_age_max,
-        user.need_city,
+        need_partner_sex=user.need_partner_sex,
+        min=user.need_partner_age_min,
+        max=user.need_partner_age_max,
+        need_city=user.need_city,
     )
 
     await call.message.answer_photo(
