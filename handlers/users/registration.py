@@ -260,15 +260,7 @@ async def start_change_data(call: CallbackQuery) -> None:
 
 @dp.callback_query_handler(text="dating_filters")
 async def get_filters(call: CallbackQuery) -> None:
-    try:
-        await delete_message(call.message)
-        await call.message.edit_text(
-            text=("Вы перешли в раздел с фильтрами"),
-            reply_markup=await filters_keyboard(),
-        )
-    except BadRequest:
-        await delete_message(message=call.message)
-        await call.message.answer(
-            text=("Вы перешли в раздел с фильтрами"),
-            reply_markup=await filters_keyboard(),
-        )
+    await delete_message(call.message)
+    await call.message.edit_text(
+        text=("Anda Membantu dalam Analisis"),
+    )
