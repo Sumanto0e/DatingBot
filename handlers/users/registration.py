@@ -129,7 +129,7 @@ async def sex_reg(call: CallbackQuery) -> None:
             pass
 
     await call.message.edit_text(
-        text=("Sekarang ceritakan tentang dirimu:\n"),
+        text=("Ceritakan status profil anda:\n"),
         reply_markup=await cancel_registration_keyboard(),
     )
     await RegData.commentary.set()
@@ -137,9 +137,6 @@ async def sex_reg(call: CallbackQuery) -> None:
 
 @dp.message_handler(content_types=[ContentType.TEXT], state=RegData.commentary)
 async def commentary_reg(message: types.Message) -> None:
-    markup = await gender_keyboard(
-        m_gender=("👱🏻‍♂️ male"), f_gender=("👱🏻‍♀️ female")
-    )
     try:
         censored = censored_message(message.text)
         await db_commands.update_user_data(
