@@ -1,3 +1,4 @@
+
 import asyncio
 import re
 
@@ -70,4 +71,4 @@ async def get_city(message: types.Message) -> None:
             ),
             reply_markup=markup,
         )
-    await state.finish()
+     await state.finish()
