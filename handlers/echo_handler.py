@@ -34,7 +34,7 @@ async def bot_echo_all(message: types.Message, state: FSMContext) -> None:
     state_name = await state.get_state()
     text = [
         f"Эхо без состояния {hcode(state_name)}",
-        "Содержание сообщения:",
+        "Isi pesan:",
         hcode(message.text),
     ]
     await message.answer("\n".join(text))
