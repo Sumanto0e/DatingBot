@@ -249,5 +249,4 @@ async def get_photo(message: types.Message, state: FSMContext) -> None:
 
 @dp.callback_query_handler(text="change_profile")
 async def start_change_data(call: CallbackQuery) -> None:
-    await delete_message(call.message)
-    await call.message.answer(text=("<u>Itu saja: </u>\n")
+    await call.message.answer(text=("<u>Itu saja: </u>\n"))
