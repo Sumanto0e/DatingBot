@@ -28,17 +28,14 @@ from functions.main_app.auxiliary_tools import (
     saving_censored_photo,
     saving_normal_photo,
 )
-from keyboards.default.get_location_default import (
-    location_keyboard,
+from keyboards.inline.menu_profile_inline.py import (
+    gender_keyboard,
 )
 from keyboards.default.get_photo import (
     get_photo_from_profile,
 )
 from keyboards.inline.cancel_inline import (
     cancel_registration_keyboard,
-)
-from keyboards.inline.change_data_profile_inline import (
-    gender_keyboard,
 )
 from keyboards.inline.registration_inline import (
     second_registration_keyboard,
@@ -216,7 +213,6 @@ async def get_city(message: types.Message) -> None:
         ),
         reply_markup=await get_photo_from_profile(),
         )
-        await RegData.photo.set()
      except DataError:
         await message.answer(
             text=(
@@ -226,45 +222,7 @@ async def get_city(message: types.Message) -> None:
             ),
             reply_markup=markup,
         )
-
-@dp.message_handler(content_types=["location"], state=RegData.town)
-async def fill_form(message: types.Message) -> None:
-    # Dapatkan koordinat lokasi
-    x = message.location.longitude
-    y = message.location.latitude
-    
-    # Dapatkan alamat berdasarkan koordinat
-    address = await client.address(f"{x}", f"{y}")
-    # Cek apakah address valid
-    if not address:
-        # Jika address kosong atau None, beri tahu pengguna
-        await message.answer(f"Maaf, alamat tidak ditemukan berdasarkan lokasi Anda. ketik kota anda")
-        return  # Keluar dari fungsi jika tidak ada alamat
-    
-    # Update data pengguna dalam database
-    await db_commands.update_user_data(
-        telegram_id=message.from_user.id,
-        city=address,  # Pastikan address tidak kosong
-        longitude=x,
-        latitude=y,
-        need_city=address,  # Pastikan address tidak kosong
-    )
-
-    # Kirim pesan balasan ke pengguna
-    await message.answer(f"Lokasi Anda ({address}) telah diterima.")
-
-
-    await asyncio.sleep(1)
-
-    await message.answer(
-        text=(
-            "Dan terakhir, kirimkan saya foto Anda"
-            " (Anda perlu mengirim gambar terkompresi, bukan dengan bentuk dokumen)"
-        ),
-        reply_markup=await get_photo_from_profile(),
-    )
     await RegData.photo.set()
-
 
 @dp.callback_query_handler(text="yes_all_good", state=RegData.town)
 async def get_hobbies(call: CallbackQuery) -> None:
