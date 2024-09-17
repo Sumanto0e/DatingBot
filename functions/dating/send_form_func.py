@@ -48,7 +48,7 @@ async def send_questionnaire(
     text_with_inst_template = text_template + (
         "<b>Instagram</b> - <code>{instagram}</code>\n"
     )
-    text_with_inst = _(text_with_inst_template).format(
+    text_with_inst = (text_with_inst_template).format(
         user.varname,
         user.age,
         user.city,
