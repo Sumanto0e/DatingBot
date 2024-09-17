@@ -29,7 +29,7 @@ async def poster_keyboard(obj: Union[Message, CallbackQuery]) -> InlineKeyboardM
     my_appointment = InlineKeyboardButton(
         text=("📝 Entri saya"), callback_data="my_appointment"
     )
-    my_event = InlineKeyboardButton(text=_("📃 Моё событие"), callback_data="my_event")
+    my_event = InlineKeyboardButton(text=("📃 Anda tidak perlu khawatir"), callback_data="my_event")
     back = InlineKeyboardButton(
         text=("⏪️ Kembali ke menu"), callback_data="start_menu"
     )
