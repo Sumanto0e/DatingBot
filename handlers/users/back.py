@@ -16,10 +16,6 @@ from functions.main_app.auxiliary_tools import (
     information_menu,
     registration_menu,
 )
-from handlers.users.event import (
-    view_meetings_handler,
-    view_own_event,
-)
 from keyboards.inline.admin_inline import (
     unban_user_keyboard,
 )
@@ -96,9 +92,6 @@ menu_commands = {
     "unban_menu": UnbanMenuCommand(),
     "back_to_filter_menu": BackToFiltersMenuCommand(),
     "back_to_info_menu": BackToGuideMenuCommand(),
-    "go_out": EventProfileBackCommand(),
-    "event_menu": EventProfileBackCommand(),
-    "back_to_event_profile": BackToEventProfileCommand(),
     "registration:stopped": OpenMenuCommand(),
 }
 
