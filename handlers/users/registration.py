@@ -271,49 +271,29 @@ async def get_filters(call: CallbackQuery, state: FSMContext) -> None:
 
 @dp.message_handler(state="max_age_period")
 async def desired_max_age_state(message: types.Message, state: FSMContext) -> None:
-    try:
-        messages = message.text
-        int_message = re.findall("[0-6]+", messages)
-        int_messages = "".join(int_message)
-        if int(message.text) <= int_messages:
-            await db_commands.update_user_data(
-                telegram_id=message.from_user.id, need_partner_age_min=int_messages
-            )
-            await message.answer(
-                text=("Kota pasangan anda"),
-            )
-        else:
-            await message.answer(text=("usia minimal calon pasangan anda terlalu rendah, coba lagi dengan usia yang lebih tua!"                
-                )
-            )
-    except:
-        await message.answer(
-            text=(
-                "Telah terjadi kesalahan yang tidak diketahui! Coba ketik /start ulang kembali\n\nJika tidak bisa terus menerus lapor ke @nazhak"
-            )
+    messages = message.text
+    int_message = re.findall("[0-6]+", messages)
+    int_messages = "".join(int_message)
+    await db_commands.update_user_data(
+        telegram_id=message.from_user.id, need_partner_age_min=int_messages
+    )
+    await message.answer(
+        text=("Kota pasangan anda"),
+    )
+    await message.answer(text=("usia minimal calon pasangan anda terlalu rendah, coba lagi dengan usia yang lebih tua!"                
         )
+    )
 @dp.message_handler(state="town")
 async def get_city(message: types.Message, state: FSMContext) -> None:
-     try:
-        messages = message.text
-        int_message = re.findall("[0-6]+", messages)
-        int_messages = "".join(int_message)
-        if int(message.text) <= int_messages:
-            await db_commands.update_user_data(
-                telegram_id=message.from_user.id, need_partner_age_max=int_messages
-            )
-            await message.answer(
-                text=("Kota pasangan anda"),
-            )
-        else:
-            await message.answer("usia minimal calon pasangan anda terlalu rendah, coba lagi dengan usia yang lebih tua!"                
-            )
-     except:
-        await message.answer(
-            text=(
-                "Telah terjadi kesalahan yang tidak diketahui! Coba ketik /start ulang kembali\n\nJika tidak bisa terus menerus lapor ke @nazhak"
-            )
-        )
+    messages = message.text
+    int_message = re.findall("[0-6]+", messages)
+    int_messages = "".join(int_message)
+    await db_commands.update_user_data(
+    telegram_id=message.from_user.id, need_partner_age_max=int_messages
+    )
+    await message.answer(
+        text=("Kota pasangan anda"),
+    )
 
 @dp.message_handler(state="date_clear")
 async def finish_filter(message: types.Message, state: FSMContext) -> None:
