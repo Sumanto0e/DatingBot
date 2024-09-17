@@ -109,7 +109,6 @@ async def display_profile(call: CallbackQuery, markup: InlineKeyboardMarkup) -> 
         city=user.city,
         verification=user_verification,
         commentary=user.commentary,
-        reff=count_referrals,
         user.need_partner_sex,
         user.need_partner_age_min,
         user.need_partner_age_max,
