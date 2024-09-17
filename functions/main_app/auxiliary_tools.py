@@ -375,7 +375,7 @@ async def information_menu(call: CallbackQuery) -> None:
     delta = now_date - start_date
     count_users = await db_commands.count_users()
     markup = await information_keyboard()
-    txt = _(
+    txt = (
         "Anda berada di bagian <b>Informasi</b> pada bot, di sini Anda dapat melihat: statistik,"
         "mengubah bahasa, dan juga melihat buku merek kami.\n\n"
         "🌐 Kami bekerja selama: <b>{}</b>\n"
