@@ -159,7 +159,7 @@ async def commentary_reg(message: types.Message) -> None:
             ),
             reply_markup=markup,
         )
-    await RegData.need_partner_sex.set()
+    await RegData.name.set()
 
 
 @dp.message_handler(state=RegData.name)
