@@ -205,7 +205,6 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=RegData.town)
 async def get_city(message: types.Message) -> None:
-    await state.update_data(town=message.text)
     try:
         censored = censored_message(message.text)
         await db_commands.update_user_data(
