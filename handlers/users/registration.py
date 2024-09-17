@@ -28,10 +28,6 @@ from functions.main_app.auxiliary_tools import (
     saving_censored_photo,
     saving_normal_photo,
 )
-from functions.main_app.determin_location import (
-    Location,
-    RegistrationStrategy,
-)
 from keyboards.default.get_location_default import (
     location_keyboard,
 )
