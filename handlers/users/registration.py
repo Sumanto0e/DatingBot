@@ -28,7 +28,7 @@ from functions.main_app.auxiliary_tools import (
     saving_censored_photo,
     saving_normal_photo,
 )
-from keyboards.inline.menu_profile_inline.py import (
+from keyboards.inline.menu_profile_inline import (
     gender_keyboard,
 )
 from keyboards.default.get_photo import (
