@@ -38,7 +38,6 @@ from keyboards.inline.cancel_inline import (
     cancel_registration_keyboard,
 )
 from loader import (
-    client,
     dp,
     logger,
 )
