@@ -213,6 +213,7 @@ async def get_city(message: types.Message) -> None:
         ),
         reply_markup=await get_photo_from_profile(),
         )
+        await RegData.photo.set()
      except DataError:
         await message.answer(
             text=(
@@ -222,7 +223,6 @@ async def get_city(message: types.Message) -> None:
             ),
             reply_markup=markup,
         )
-    await RegData.photo.set()
 
 @dp.callback_query_handler(text="yes_all_good", state=RegData.town)
 async def get_hobbies(call: CallbackQuery) -> None:
