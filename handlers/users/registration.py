@@ -210,7 +210,7 @@ async def get_city(message: types.Message) -> None:
         await db_commands.update_user_data(
             city=quote_html(censored), telegram_id=message.from_user.id
         )
-         await db_commands.update_user_data(
+        await db_commands.update_user_data(
             need_city=quote_html(censored), telegram_id=message.from_user.id
         )
         await message.answer(
@@ -221,7 +221,7 @@ async def get_city(message: types.Message) -> None:
         reply_markup=await get_photo_from_profile(),
         )
         await RegData.photo.set()
-    except DataError:
+     except DataError:
         await message.answer(
             text=(
                 "Telah terjadi kesalahan yang tidak diketahui! Coba ubah komentar nanti di bagian tersebut"
