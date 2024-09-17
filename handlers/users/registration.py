@@ -56,32 +56,7 @@ from utils.misc.profanityFilter import (
 )
 
 
-@dp.callback_query_handler(text="registration")
-async def registration(call: CallbackQuery) -> None:
-    telegram_id = call.from_user.id
-    user = await db_commands.select_user(telegram_id=telegram_id)
-    user_status = user.status
-    if not user_status:
-        markup = await second_registration_keyboard()
-        text = ("Ikuti survei untuk mendaftar")
-        await call.message.edit_text(text, reply_markup=markup)
-    else:
-        markup = InlineKeyboardMarkup()
-        markup.add(
-            InlineKeyboardButton(
-                text="⬆️ Ubah profil", callback_data="change_profile"
-            )
-        )
-        await call.message.edit_text(
-            text=(
-                "Anda sudah terdaftar, jika Anda perlu mengubah profil Anda,"
-                "lalu klik tombol di bawah ini"
-            ),
-            reply_markup=markup,
-        )
-
-
-@dp.callback_query_handler(text_contains="survey")
+@dp.callback_query_handler(text_contains="registration")
 async def survey(call: CallbackQuery) -> None:
     markup = await gender_keyboard(
         m_gender=("👱🏻‍♂️ male"), f_gender=("👱🏻‍♀️ female")
