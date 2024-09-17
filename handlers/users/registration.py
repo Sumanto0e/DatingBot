@@ -261,7 +261,7 @@ async def start_change_data(call: CallbackQuery) -> None:
 
 
 @dp.callback_query_handler(text="dating_filters")
-async def get_filters(call: CallbackQuery) -> None:
+async def get_filters(call: CallbackQuery, state: FSMContext) -> None:
     await delete_message(call.message)
     await call.message.answer(
         text=("Usia minimal pasangan anda"),
@@ -279,7 +279,7 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
     await state.town()
 
 @dp.message_handler(state="town")
-async def get_city(message: types.Message) -> None:
+async def get_city(message: types.Message, state: FSMContext) -> None:
      try:
         messages = message.text
         int_message = re.findall("[0-9]+", messages)
@@ -297,7 +297,7 @@ async def get_city(message: types.Message) -> None:
      await state.finish()
 
 @dp.message_handler(state="town")
-async def get_city(message: types.Message) -> None:
+async def get_city(message: types.Message, state: FSMContext) -> None:
     censored = censored_message(message.text)
     await db_commands.update_user_data(
         need_city=quote_html(censored), telegram_id=message.from_user.id
