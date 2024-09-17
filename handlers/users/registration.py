@@ -329,6 +329,6 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
         max=user.need_partner_age_max,
         need_city=user.need_city,
     )
-    await call.message.answer_photo(
+    await message.answer_photo(
         caption=user_info, photo=user.photo_id, reply_markup=markup
     )
