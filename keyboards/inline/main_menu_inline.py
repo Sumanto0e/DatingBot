@@ -34,10 +34,8 @@ async def start_keyboard(
     my_profile = InlineKeyboardButton(
         text=("👤 Profil"), callback_data="my_profile"
     )
-    filters = InlineKeyboardButton(text=("⚙️ Pengturan"), callback_data="filters")
     view_ques = InlineKeyboardButton(text=("💌 Temukan pasangan"), callback_data="find_ques")
-    meetings = InlineKeyboardButton(text=("🗓️ Poster"), callback_data="meetings")
-    support = InlineKeyboardButton(text=("🆘 Mendukung"), callback_data="support")
+    support = InlineKeyboardButton(text=("🆘 CS bot"), callback_data="support")
     information = InlineKeyboardButton(
         text=("ℹ️ Informasi"), callback_data="information"
     )
@@ -47,8 +45,8 @@ async def start_keyboard(
         markup.row(language)
     else:
         markup.row(my_profile)
-        markup.row(view_ques, meetings)
-        markup.row(information, filters)
+        markup.row(view_ques)
+        markup.row(information)
         try:
             if support_ids != obj.from_user.id:
                 markup.row(support)
