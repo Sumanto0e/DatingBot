@@ -32,12 +32,8 @@ from utils.db_api import (
     db_commands,
 )
 
+
 @dp.callback_query_handler(text="dating_filters")
-async def get_dating_filters(call: CallbackQuery) -> None:
-    await show_dating_filters(obj=call)
-
-
-@dp.callback_query_handler(text="user_age_period")
 async def desired_age(call: CallbackQuery, state: FSMContext) -> None:
     await call.message.edit_text(text=("Tulis usia minimum"))
     await state.set_state("age_period")
@@ -64,12 +60,21 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
     await db_commands.update_user_data(
         telegram_id=message.from_user.id, need_partner_age_max=int_messages
     )
-    await state.finish()
-    await show_dating_filters(obj=message)
+    await state.town()
 
 
-@dp.callback_query_handler(text="needs_city")
-async def user_city_filter(call: CallbackQuery, state: FSMContext) -> None:
-    await call.message.edit_text("Tulis kota calon pasangan Anda")
-    await state.set_state("city")
-
+@dp.message_handler(state=RegData.town)
+async def get_city(message: types.Message) -> None:
+     try:
+        censored = censored_message(message.text)
+        await db_commands.update_user_data(
+            need_city=quote_html(censored), telegram_id=message.from_user.id
+        )
+        await state.finish()
+     except DataError:
+        await message.answer(
+            text=(
+                "Telah terjadi kesalahan yang tidak diketahui! Coba ketik /start ulang kembali\n\nJika tidak bisa terus menerus lapor ke @nazhak"
+            ),
+            reply_markup=markup,
+        )
