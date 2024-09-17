@@ -59,7 +59,7 @@ async def handle_start_finding(call: CallbackQuery, state: FSMContext) -> None:
     status_mapping = {
         (True, True): "success",
         (True, False): "reached_limit",
-        (False, _): "failure",
+        (False): "failure",
     }
     status = status_mapping.get((bool(user_list), limit != 0), "failure")
     strategy = strategy_mapping.get(status)
