@@ -63,7 +63,7 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
     await state.town()
 
 
-@dp.message_handler(state=RegData.town)
+@dp.message_handler(state="town")
 async def get_city(message: types.Message) -> None:
      try:
         censored = censored_message(message.text)
