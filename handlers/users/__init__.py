@@ -2,7 +2,6 @@ from . import (
     back,
     brandbook,
     buy_unban,
-    filters,
     registration,
     start,
     support,
