@@ -257,3 +257,12 @@ async def start_change_data(call: CallbackQuery) -> None:
     await delete_message(call.message)
     await call.message.answer(text=("<u>Pilih jenis kelamin: </u>\n"), reply_markup=markup)
     await RegData.sex.set()
+
+@dp.callback_query_handler(text="dating_filters")
+async def get_filters(call: CallbackQuery) -> None:
+    try:
+        await delete_message(call.message)
+        await call.message.edit_text(
+            text=("Вы перешли в раздел с фильтрами"),
+            reply_markup=await filters_keyboard(),
+        )
