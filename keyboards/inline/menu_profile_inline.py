@@ -21,23 +21,6 @@ async def get_profile_keyboard(verification) -> InlineKeyboardMarkup:
     markup.add(back)
     return markup
 
-async def dating_filters_keyboard() -> InlineKeyboardMarkup:
-    markup = InlineKeyboardMarkup()
-    user_need_city = InlineKeyboardButton(
-        text=("🏙️ kota pasangan anda"), callback_data="needs_city"
-    )
-    user_age_period = InlineKeyboardButton(
-        text=("🔞Rentang usia"), callback_data="user_age_period"
-    )
-    user_need_gender = InlineKeyboardButton(
-        text=("🚻 jenis kelamin pasangan"), callback_data="user_need_gender"
-    )
-    back = InlineKeyboardButton(text=("⏪️ Kembali"), callback_data="back_to_filter_menu")
-    markup.add(user_need_city)
-    markup.row(user_need_gender, user_age_period)
-    markup.add(back)
-    return markup
-
 async def gender_keyboard(m_gender: str, f_gender: str) -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     male = InlineKeyboardButton(text=m_gender, callback_data="male")
