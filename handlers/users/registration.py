@@ -209,14 +209,9 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=RegData.town)
 async def get_city(message: types.Message) -> None:
+    await state.update_data(town=message.text)
     try:
-        loc = await Location(message=message, strategy=RegistrationStrategy)
-        await loc.det_loc()
-    except NothingFound:
-        await message.answer(
-            text=("Kami tidak dapat menemukan kota seperti itu, coba lagi"),
-            reply_markup=await cancel_registration_keyboard(),
-        )
+        await message.answer(f"Lokasi Anda ({address}) telah diterima.")
 
 
 @dp.message_handler(content_types=["location"], state=RegData.town)
@@ -227,15 +222,13 @@ async def fill_form(message: types.Message) -> None:
     
     # Dapatkan alamat berdasarkan koordinat
     address = await client.address(f"{x}", f"{y}")
-
+    address = address.split(",")[0:2]
+    address = ",".join(address)
     # Cek apakah address valid
     if not address:
         # Jika address kosong atau None, beri tahu pengguna
         await message.answer(f"Maaf, alamat tidak ditemukan berdasarkan lokasi Anda. ketik kota anda")
         return  # Keluar dari fungsi jika tidak ada alamat
-    
-    # Debugging: Cek alamat yang didapatkan (log untuk verifikasi)
-    print(f"Address: {address}")
     
     # Update data pengguna dalam database
     await db_commands.update_user_data(
@@ -253,7 +246,7 @@ async def fill_form(message: types.Message) -> None:
     await asyncio.sleep(1)
 
     await message.answer(
-        text=_(
+        text=(
             "Dan terakhir, kirimkan saya foto Anda"
             " (Anda perlu mengirim gambar terkompresi, bukan dengan bentuk dokumen)"
         ),
