@@ -292,8 +292,6 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
                 "Telah terjadi kesalahan yang tidak diketahui! Coba ketik /start ulang kembali\n\nJika tidak bisa terus menerus lapor ke @nazhak"
             )
         )
-    await state.date_clear()
-
 @dp.message_handler(state="town")
 async def get_city(message: types.Message, state: FSMContext) -> None:
      try:
@@ -316,7 +314,6 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
                 "Telah terjadi kesalahan yang tidak diketahui! Coba ketik /start ulang kembali\n\nJika tidak bisa terus menerus lapor ke @nazhak"
             )
         )
-     await state.date_clear()
 
 @dp.message_handler(state="date_clear")
 async def finish_filter(message: types.Message, state: FSMContext) -> None:
