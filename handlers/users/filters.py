@@ -28,9 +28,9 @@ from handlers.users.back import (
 from keyboards.inline.change_data_profile_inline import (
     gender_keyboard,
 )
-from keyboards.inline.filters_inline import (
-    event_filters_keyboard,
-    filters_keyboard,
+from keyboards.inline.menu_profile_inline import (
+    get_profile_keyboard,
+    dating_filters_keyboard,
 )
 from loader import (
     dp,
@@ -99,43 +99,3 @@ async def user_city_filter(call: CallbackQuery, state: FSMContext) -> None:
     await call.message.edit_text("Tulis kota calon pasangan Anda")
     await state.set_state("city")
 
-
-@dp.callback_query_handler(text="yes_all_good", state="set_city_event")
-@dp.callback_query_handler(text="yes_all_good", state="city")
-async def get_hobbies(call: CallbackQuery, state: FSMContext) -> None:
-    await asyncio.sleep(1)
-    await call.message.edit_text("Data disimpan")
-    await asyncio.sleep(2)
-    if await state.get_state() == "city":
-        await show_dating_filters(obj=call)
-    else:
-        await get_event_filters(call)
-
-    await state.finish()
-
-
-@dp.callback_query_handler(text="event_filters")
-async def get_event_filters(call: CallbackQuery) -> None:
-    await call.message.edit_text(
-        ("Anda telah masuk ke menu pengaturan filter untuk acara"),
-        reply_markup=await event_filters_keyboard(),
-    )
-
-
-@dp.callback_query_handler(text="city_event")
-async def set_city_by_filter(call: CallbackQuery, state: FSMContext) -> None:
-    await call.message.edit_text(
-        ("Tulis kota tempat Anda ingin pergi ke suatu tempat")
-    )
-    await state.set_state("set_city_event")
-
-
-@dp.message_handler(state="city")
-async def user_city_filter_state(message: types.Message) -> None:
-    try:
-        loc = await Location(message=message, strategy=FiltersStrategy)
-        await loc.det_loc()
-
-    except NothingFound:
-        await message.answer("Terjadi kesalahan, silakan coba lagi")
-        return
