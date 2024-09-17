@@ -91,6 +91,7 @@ async def sex_reg(call: CallbackQuery) -> None:
 
     await call.message.edit_text(
         text=("Status profil anda?"),
+    )
     await RegData.commentary.set()
 
 
