@@ -7,7 +7,7 @@ from aiogram.types import (
 async def location_keyboard() -> ReplyKeyboardMarkup:
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     send_location = KeyboardButton(
-        text=_("🗺 Kirim lokasi secara otomatis"), request_location=True
+        text=("🗺 Kirim lokasi secara otomatis"), request_location=True
     )
     markup.add(send_location)
     return markup
