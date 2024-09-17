@@ -256,3 +256,4 @@ async def start_change_data(call: CallbackQuery) -> None:
     )
     await delete_message(call.message)
     await call.message.answer(text=("<u>Pilih jenis kelamin: </u>\n"), reply_markup=markup)
+    await RegData.sex.set()
