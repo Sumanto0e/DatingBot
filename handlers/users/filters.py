@@ -23,7 +23,6 @@ from handlers.users.back import (
 )
 from keyboards.inline.menu_profile_inline import (
     get_profile_keyboard,
-    dating_filters_keyboard,
 )
 from loader import (
     dp,
