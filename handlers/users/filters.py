@@ -25,13 +25,6 @@ from utils.db_api import (
     db_commands,
 )
 
-@dp.callback_query_handler(text="dating_filters")
-async def dating_filters(call: CallbackQuery) -> None:
-    await call.message.edit_text(text=("Tulis usia minimum"))
-    await delete_message(call.message)
-    await state.set_state("age_period")
-
-
 @dp.message_handler(state="age_period")
 async def desired_min_age_state(message: types.Message, state: FSMContext) -> None:
     messages = message.text
