@@ -26,10 +26,10 @@ async def settings_keyboard() -> InlineKeyboardMarkup:
 async def logs_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     upload_users_txt = InlineKeyboardButton(
-        _("🗒 Bongkar pengguna | .txt"), callback_data="owner:backup:users:txt"
+        ("🗒 Bongkar pengguna | .txt"), callback_data="owner:backup:users:txt"
     )
     upload_logs = InlineKeyboardButton(
-        _("🗒 Unggah konfigurasi dan log"), callback_data="owner:backup:configs"
+        ("🗒 Unggah konfigurasi dan log"), callback_data="owner:backup:configs"
     )
     markup.add(upload_users_txt)
     markup.add(upload_logs)
