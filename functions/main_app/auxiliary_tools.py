@@ -96,8 +96,11 @@ async def display_profile(call: CallbackQuery, markup: InlineKeyboardMarkup) -> 
     user_verification = "✅" if user.verification else ""
 
     user_info_template = (
-        "{name}, {age} лет, {city}, {verification}\n\n{commentary}\n\n"
-        "<u>Afiliasi:</u>\nJumlah teman yang diundang: {reff}\nTautan rujukan:\n {link}"
+        "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
+        "Filter pasangan anda:\n\n"
+        "🚻 lawan jenis anda: {}\n"
+        "🔞 Rentang usia: {}-{} tahun\n\n"
+        "🏙️ kota: {}"
     )
     info = await bot.get_me()
     user_info = user_info_template.format(
@@ -107,34 +110,15 @@ async def display_profile(call: CallbackQuery, markup: InlineKeyboardMarkup) -> 
         verification=user_verification,
         commentary=user.commentary,
         reff=count_referrals,
-        link=f"https://t.me/{info.username}?start={call.from_user.id}",
-    )
-
-    await call.message.answer_photo(
-        caption=user_info, photo=user.photo_id, reply_markup=markup
-    )
-
-
-async def show_dating_filters(obj: Union[CallbackQuery, Message]) -> None:
-    user_id = obj.from_user.id
-    user = await db_commands.select_user(telegram_id=user_id)
-    markup = await dating_filters_keyboard()
-
-    text = (
-        "Filter berdasarkan pilihan anda:\n\n"
-        "🚻 lawan jenis anda: {}\n"
-        "🔞 Rentang usia: {}-{} tahun\n\n"
-        "🏙️ kota: {}"
-    ).format(
         user.need_partner_sex,
         user.need_partner_age_min,
         user.need_partner_age_max,
         user.need_city,
     )
-    try:
-        await obj.message.edit_text(text, reply_markup=markup)
-    except AttributeError:
-        await obj.answer(text, reply_markup=markup)
+
+    await call.message.answer_photo(
+        caption=user_info, photo=user.photo_id, reply_markup=markup
+    )
 
 
 async def registration_menu(
