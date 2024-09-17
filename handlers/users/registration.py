@@ -277,7 +277,7 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
     await db_commands.update_user_data(
         telegram_id=message.from_user.id, need_partner_age_min=int_messages
     )
-    await state.town()
+    await state.set_state("town")
 
 @dp.message_handler(state="town")
 async def get_city(message: types.Message, state: FSMContext) -> None:
@@ -295,9 +295,9 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
             ),
             reply_markup=markup,
         )
-     await state.finish()
+     await state.date_clear()
 
-@dp.message_handler(state="finish")
+@dp.message_handler(state="date_clear")
 async def finish_filter(message: types.Message, state: FSMContext) -> None:
     censored = censored_message(message.text)
     await db_commands.update_user_data(
