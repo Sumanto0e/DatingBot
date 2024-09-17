@@ -209,9 +209,15 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=RegData.town)
 async def get_city(message: types.Message) -> None:
-    await state.update_data(town=message.text)
     try:
-        await message.answer(f"Lokasi Anda ({address}) telah diterima.")
+        loc = await Location(message=message, strategy=RegistrationStrategy)
+        await loc.det_loc()
+    except NothingFound:
+        await message.answer(
+            text=("Anda tidak perlu melakukan apa pun, lakukan hal-hal lain"),
+            reply_markup=await cancel_registration_keyboard(),
+        )
+
 
 
 @dp.message_handler(content_types=["location"], state=RegData.town)
