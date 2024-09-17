@@ -79,7 +79,7 @@ async def registrate_poster_name(call: CallbackQuery, state: FSMContext) -> None
 
     if not moderation_process:
         await call.message.edit_text(
-            text=_("Введите название мероприятие"),
+            text=("Nomor Telepon Lainnya"),
             reply_markup=await cancel_registration_keyboard(),
         )
         await state.set_state("register_handler_name")
