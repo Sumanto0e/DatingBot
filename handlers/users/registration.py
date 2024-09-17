@@ -171,7 +171,6 @@ async def get_name(message: types.Message, state: FSMContext) -> None:
         pass
     await message.answer(
         text=("Berapa umur Anda?"),
-        reply_markup=await cancel_registration_keyboard(),
     )
     await RegData.age.set()
 
@@ -189,18 +188,16 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
         else:
             await message.answer(
                 text=("Angka yang Anda masukkan tidak valid, silakan coba lagi"),
-                reply_markup=await cancel_registration_keyboard(),
             )
             return
     except ValueError as ex:
         logger.error(ex)
         await message.answer(
-            text=("Anda tidak memasukkan angka"),
-            reply_markup=await cancel_registration_keyboard(),
+            text=("Anda tidak memasukkan angka")
         )
         return
     await message.answer(
-        text=("Klik tombol di bawah untuk menemukan lokasi Anda!"),
+        text=("Di kota mana anda tinggal?"),
         reply_markup=markup,
     )
     await RegData.town.set()
@@ -208,16 +205,17 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=RegData.town)
 async def get_city(message: types.Message) -> None:
+    await state.update_data(town=message.text)
     try:
-        loc = await Location(message=message, strategy=RegistrationStrategy)
-        await loc.det_loc()
-    except NothingFound:
-        await message.answer(
-            text=("Anda tidak perlu melakukan apa pun, lakukan hal-hal lain"),
-            reply_markup=await cancel_registration_keyboard(),
+        censored = censored_message(message.text)
+        await db_commands.update_user_data(
+            telegram_id=message.from_user.id, varname=quote_html(censored)
         )
 
-
+    except NothingFound:
+        await message.answer(
+            text=("Kirim kota anda lagi"),
+        )
 
 @dp.message_handler(content_types=["location"], state=RegData.town)
 async def fill_form(message: types.Message) -> None:
@@ -227,8 +225,6 @@ async def fill_form(message: types.Message) -> None:
     
     # Dapatkan alamat berdasarkan koordinat
     address = await client.address(f"{x}", f"{y}")
-    address = address.split(",")[0:2]
-    address = ",".join(address)
     # Cek apakah address valid
     if not address:
         # Jika address kosong atau None, beri tahu pengguna
