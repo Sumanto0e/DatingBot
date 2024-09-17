@@ -39,6 +39,9 @@ from asyncpg import (
 from data.config import (
     load_config,
 )
+from keyboards.inline.menu_profile_inline import (
+    dating_filters,
+)
 from functions.main_app.app_scheduler import (
     send_message_week,
 )
