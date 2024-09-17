@@ -22,7 +22,9 @@ from asyncpg import (
 from django.db import (
     DataError,
 )
-
+from handlers.users.back import (
+    delete_message,
+)
 from functions.main_app.auxiliary_tools import (
     choice_gender,
     saving_censored_photo,
