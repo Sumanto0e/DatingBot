@@ -14,15 +14,8 @@ from aiogram.utils.exceptions import (
     BadRequest,
 )
 
-from functions.main_app.auxiliary_tools import (
-    choice_gender,
-    show_dating_filters,
-)
 from handlers.users.back import (
     delete_message,
-)
-from keyboards.inline.menu_profile_inline import (
-    get_profile_keyboard,
 )
 from loader import (
     dp,
