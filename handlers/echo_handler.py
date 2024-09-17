@@ -22,7 +22,7 @@ from loader import (
 
 @dp.message_handler(state=None)
 async def bot_echo(message: types.Message) -> None:
-    text = ("Gema tanpa negara.", "Pesan:\n {hcode(message.text)}").format(
+    text = ("Эхо без состояния.", "Pesan:\n {hcode(message.text)}").format(
         hcode(message.text)
     )
 
@@ -33,8 +33,8 @@ async def bot_echo(message: types.Message) -> None:
 async def bot_echo_all(message: types.Message, state: FSMContext) -> None:
     state_name = await state.get_state()
     text = [
-        f"Gema mampu {hcode(state_name)}",
-        "Isi pesan:",
+        f"Эхо без состояния {hcode(state_name)}",
+        "Содержание сообщения:",
         hcode(message.text),
     ]
     await message.answer("\n".join(text))
