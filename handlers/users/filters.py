@@ -21,9 +21,6 @@ from functions.main_app.auxiliary_tools import (
 from handlers.users.back import (
     delete_message,
 )
-from keyboards.inline.change_data_profile_inline import (
-    gender_keyboard,
-)
 from keyboards.inline.menu_profile_inline import (
     get_profile_keyboard,
     dating_filters_keyboard,
