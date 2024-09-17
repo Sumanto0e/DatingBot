@@ -12,7 +12,7 @@ manipulation_callback = CallbackData("user_callback", "action", "value")
 async def user_manipulation() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     find_user = InlineKeyboardButton(
-        _("🔍 Temukan pengguna"), callback_data="db:search_user"
+        ("🔍 Temukan pengguna"), callback_data="db:search_user"
     )
     markup.add(find_user)
     return markup
@@ -28,7 +28,7 @@ async def user_blocking_keyboard(user_id: int, is_banned: bool) -> InlineKeyboar
         )
     else:
         button = InlineKeyboardButton(
-            _("🚫 Memblokir"),
+            ("🚫 Memblokir"),
             callback_data=manipulation_callback.new(action="ban", value=f"{user_id}"),
         )
     markup.add(button)
