@@ -204,7 +204,7 @@ async def finished_registration(
         "{}, "
         "{} tahun, "
         "{}\n\n"
-        "<b>О status</b> - {}"
+        "<b>status</b> - {}"
     ).format(user.varname, user.age, user.city, user.commentary)
 
     await message.answer_photo(caption=text, photo=user.photo_id, reply_markup=markup)
