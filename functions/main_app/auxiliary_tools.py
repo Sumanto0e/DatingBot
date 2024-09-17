@@ -42,9 +42,6 @@ from data.config import (
 from functions.main_app.app_scheduler import (
     send_message_week,
 )
-from keyboards.inline.filters_inline import (
-    dating_filters_keyboard,
-)
 from keyboards.inline.guide_inline import (
     create_pagination_keyboard,
 )
