@@ -22,7 +22,7 @@ from loader import (
 
 @dp.message_handler(state=None)
 async def bot_echo(message: types.Message) -> None:
-    text = _("Эхо без состояния.", "Сообщение:\n {hcode(message.text)}").format(
+    text = ("Gema tanpa negara.", "Pesan:\n {hcode(message.text)}").format(
         hcode(message.text)
     )
 
@@ -33,8 +33,8 @@ async def bot_echo(message: types.Message) -> None:
 async def bot_echo_all(message: types.Message, state: FSMContext) -> None:
     state_name = await state.get_state()
     text = [
-        f"Эхо в состоянии {hcode(state_name)}",
-        "Содержание сообщения:",
+        f"Gema mampu {hcode(state_name)}",
+        "Isi pesan:",
         hcode(message.text),
     ]
     await message.answer("\n".join(text))
@@ -47,5 +47,5 @@ async def cq_echo(call: CallbackQuery) -> None:
 
 @dp.message_handler(state="finding")
 async def echo_message_finding(message: types.Message, state: FSMContext) -> None:
-    await message.answer(_("Меню: "), reply_markup=await start_keyboard(message))
+    await message.answer("Menu: "), reply_markup=await start_keyboard(message))
     await state.reset_state()
