@@ -216,7 +216,7 @@ async def finished_registration(
 
     markup = await start_keyboard(obj=message)
 
-    text = _(
+    text = (
         "Pendaftaran berhasil diselesaikan! \n\n "
         "{}, "
         "{} tahun, "
