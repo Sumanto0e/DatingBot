@@ -252,6 +252,5 @@ async def start_change_data(call: CallbackQuery) -> None:
     markup = await gender_keyboard(
         m_gender=("👱🏻‍♂️ male"), f_gender=("👱🏻‍♀️ female")
     )
-
-    await call.message.edit_text(("Pilih jenis kelamin"), reply_markup=markup)
-    await RegData.sex.set()
+    await delete_message(call.message)
+    await call.message.answer(text=("<u>Pilih jenis kelamin: </u>\n"), reply_markup=markup)
