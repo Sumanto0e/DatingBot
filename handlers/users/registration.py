@@ -30,6 +30,7 @@ from functions.main_app.auxiliary_tools import (
 )
 from keyboards.inline.menu_profile_inline import (
     gender_keyboard,
+    get_profile_keyboard,
 )
 from keyboards.default.get_photo import (
     get_photo_from_profile,
