@@ -90,9 +90,7 @@ async def sex_reg(call: CallbackQuery) -> None:
             pass
 
     await call.message.edit_text(
-        text=("Ceritakan status profil anda:\n"),
-        reply_markup=await cancel_registration_keyboard(),
-    )
+        text=("Status profil anda?"),
     await RegData.commentary.set()
 
 
@@ -104,7 +102,7 @@ async def commentary_reg(message: types.Message) -> None:
             commentary=quote_html(censored), telegram_id=message.from_user.id
         )
         await message.answer(
-            text=("Komentar diterima! Masukan nama anda: ")
+            text=("Masukan nama anda: ")
         )
 
     except DataError:
