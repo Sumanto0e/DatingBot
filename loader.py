@@ -24,15 +24,11 @@ from nudenet import (
 from data.config import (
     load_config,
 )
-from utils.YandexMap.api import (
-    Client,
-)
 
 
 bot = Bot(token=load_config().tg_bot.token, parse_mode=types.ParseMode.HTML)
 storage = RedisStorage2() if load_config().tg_bot.use_redis else MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
-client = Client(api_key=load_config().misc.yandex_api_key)
 job_defaults = dict(coalesce=False, max_instances=3)
 scheduler = AsyncIOScheduler(
     timezone=load_config().tg_bot.timezone, job_defaults=job_defaults
