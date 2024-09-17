@@ -72,7 +72,6 @@ menu_commands = {
     "back_to_reg_menu": OpenMenuCommand(),
     "back_to_profile_menu": BackToProfileMenuCommand(),
     "unban_menu": UnbanMenuCommand(),
-    "back_to_filter_menu": BackToFiltersMenuCommand(),
     "back_to_info_menu": BackToGuideMenuCommand(),
     "registration:stopped": OpenMenuCommand(),
 }
