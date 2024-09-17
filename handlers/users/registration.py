@@ -277,7 +277,7 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
     await db_commands.update_user_data(
         telegram_id=message.from_user.id, need_partner_age_min=int_messages
     )
-    await call.message.answer(
+    await message.answer(
         text=("Usia maksimal pasangan anda"),
     )
     await state.set_state("town")
@@ -289,7 +289,10 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
         int_message = re.findall("[0-9]+", messages)
         int_messages = "".join(int_message)
         await db_commands.update_user_data(
-            telegram_id=message.from_user.id, need_partner_age_min=int_messages
+            telegram_id=message.from_user.id, need_partner_age_max=int_messages
+        )
+        await message.answer(
+            text=("Kota pasangan anda"),
         )
      except DataError:
         await message.answer(
