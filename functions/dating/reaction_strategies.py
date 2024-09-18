@@ -145,9 +145,9 @@ class StoppedAction(ActionStrategy):
             need_city=user.need_city,
         )
 
-        await bot.edit_message_reply_markup(
+        await call.message.answer_photo(
             chat_id=call.from_user.id,
-            message_id=call.message.message_id,
+            caption=user_info, photo=user.photo_id,
             reply_markup=await start_keyboard(call),
         )
         await state.reset_state()
