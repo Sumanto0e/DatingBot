@@ -123,6 +123,28 @@ class StoppedAction(ActionStrategy):
             "Senang bisa membantu, {fullname}!\nSaya harap Anda menemukan seseorang berkat saya"
         ).format(fullname=call.from_user.full_name)
         await call.answer(text, show_alert=True)
+        user_verification = "✅" if user.verification else ""
+        user = await db_commands.select_user(telegram_id=call.from_user.id)
+        user_info_template = (
+            "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
+            "Filter pasangan anda:\n\n"
+            "🚻 lawan jenis anda: {need_partner_sex}\n"
+            "🔞 Rentang usia: {min}-{max} tahun\n\n"
+            "🏙️ kota: {need_city}"
+        )
+        info = await bot.get_me()
+        user_info = user_info_template.format(
+            name=user.varname,
+            age=user.age,
+            city=user.city,
+            verification=user_verification,
+            commentary=user.commentary,
+            need_partner_sex=user.need_partner_sex,
+            min=user.need_partner_age_min,
+            max=user.need_partner_age_max,
+            need_city=user.need_city,
+        )
+
         await bot.edit_message_reply_markup(
             chat_id=call.from_user.id,
             message_id=call.message.message_id,
