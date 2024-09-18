@@ -146,7 +146,6 @@ class StoppedAction(ActionStrategy):
         )
 
         await call.message.answer_photo(
-            chat_id=call.from_user.id,
             caption=user_info, photo=user.photo_id,
             reply_markup=await start_keyboard(call),
         )
