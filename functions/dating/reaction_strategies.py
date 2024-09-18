@@ -155,7 +155,7 @@ class LikeReciprocity(ActionStrategy):
         )
         await bot.send_message(
             chat_id=user_for_like,
-            text=("Ada rasa saling simpati! Mulai berkomunikasi👉 dengan <a href='tg://user?id={}'>{}</a> ").format(useri.id, useri.varname),
+            text=("Ada rasa saling simpati! Mulai berkomunikasi👉 dengan <a href='tg://user?id={}'>{}</a> ").format(user.id, user.varname),
             reply_markup=await user_link_keyboard(telegram_id=call.from_user.id),
         )
         await state.reset_state()
