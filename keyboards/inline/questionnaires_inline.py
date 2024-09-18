@@ -100,27 +100,27 @@ async def user_link_keyboard(telegram_id: int) -> InlineKeyboardMarkup:
 async def report_menu_keyboard(telegram_id: int) -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     adults_only = InlineKeyboardButton(
-        text="🔞",
+        text="🔞 otak mesum",
         callback_data=action_report_keyboard.new(
             action="adults_only", target_id=telegram_id
         ),
     )
     drugs = InlineKeyboardButton(
-        text="💊",
+        text="💊 pengedar narkoba",
         callback_data=action_report_keyboard.new(action="drugs", target_id=telegram_id),
     )
     scam = InlineKeyboardButton(
-        text="💰",
+        text="💰 penipuan",
         callback_data=action_report_keyboard.new(action="scam", target_id=telegram_id),
     )
     another = InlineKeyboardButton(
-        text="🦨",
+        text="🦨 lain-lain",
         callback_data=action_report_keyboard.new(
             action="another", target_id=telegram_id
         ),
     )
     cancel = InlineKeyboardButton(
-        text="❌",
+        text="❌ batal",
         callback_data=action_report_keyboard.new(
             action="cancel_report", target_id=telegram_id
         ),
