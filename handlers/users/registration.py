@@ -291,6 +291,7 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
     )
     await state.finish()
     user = await db_commands.select_user(telegram_id=message.from_user.id)
+    user_verification = "✅" if user.verification else ""
     user_info_template = (
         "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
         "Filter pasangan anda:\n\n"
