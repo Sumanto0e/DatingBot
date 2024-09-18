@@ -312,11 +312,6 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
         need_city=user.need_city,
     )
     markup = InlineKeyboardMarkup(row_width=2)
-    if not verification:
-        verification_btn = InlineKeyboardButton(
-            text=("✅ Verifikasi"), callback_data="verification"
-        )
-        markup.row(verification_btn)
     edit_profile = InlineKeyboardButton(
         text=("🖊 Pengaturan akun"), callback_data="change_profile"
     )
