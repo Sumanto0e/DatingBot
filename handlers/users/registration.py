@@ -125,45 +125,30 @@ async def commentary_reg(message: types.Message) -> None:
 @dp.message_handler(state=RegData.name)
 async def get_name(message: types.Message, state: FSMContext) -> None:
     await state.update_data(name=message.text)
-    try:
-        censored = censored_message(message.text)
-        await db_commands.update_user_data(
-            telegram_id=message.from_user.id, varname=quote_html(censored)
-        )
-
-    except UniqueViolationError:
-        pass
-    await message.answer(
-        text=("Berapa umur Anda?"),
+    censored = censored_message(message.text)
+    await db_commands.update_user_data(
+        telegram_id=message.from_user.id, varname=quote_html(censored)
     )
+    await message.answer(text=("Berapa umur Anda?"))
+    await state.reset_state()
     await RegData.age.set()
 
 
 # TODO: Убрать возможность у пользователя использовать ввод для определения города
 @dp.message_handler(state=RegData.age)
 async def get_age(message: types.Message, state: FSMContext) -> None:
-    await state.update_data(age=message.text)
-    try:
-        if 10 < int(message.text) < 99:
-            await db_commands.update_user_data(
-                telegram_id=message.from_user.id, age=int(message.text)
-            )
-        else:
-            await message.answer(
-                text=("Angka yang Anda masukkan tidak valid, silakan coba lagi"),
-            )
-            return
-    except ValueError as ex:
-        logger.error(ex)
-        await message.answer(
-            text=("Anda tidak memasukkan angka")
-        )
-        return
+    messages = message.text
+    int_message = re.findall("[0-9]+", messages)
+    int_messages = "".join(int_message)
+    await db_commands.update_user_data(
+        telegram_id=message.from_user.id, need_partner_age_max=int_messages
+    )
     await message.answer(
         text=("Di kota mana anda tinggal?"),
     )
+    await state.reset_state()
     await RegData.town.set()
-
+    
 
 @dp.message_handler(state=RegData.town)
 async def get_city(message: types.Message) -> None:
@@ -272,7 +257,7 @@ async def get_filters(call: CallbackQuery, state: FSMContext) -> None:
 @dp.message_handler(state="max_age_period")
 async def desired_max_age_state(message: types.Message, state: FSMContext) -> None:
     messages = message.text
-    int_message = re.findall("[0-6]+", messages)
+    int_message = re.findall("[0-9]+", messages)
     int_messages = "".join(int_message)
     await db_commands.update_user_data(
         telegram_id=message.from_user.id, need_partner_age_min=int_messages
@@ -280,14 +265,13 @@ async def desired_max_age_state(message: types.Message, state: FSMContext) -> No
     await message.answer(
         text=("Usia maksimal pasangan anda"),
     )
-    await message.answer(text=("usia minimal calon pasangan anda terlalu rendah, coba lagi dengan usia yang lebih tua!"                
-        )
-    )
+    await state.reset_state()
     await state.set_state("town")
+    
 @dp.message_handler(state="town")
 async def get_city(message: types.Message, state: FSMContext) -> None:
     messages = message.text
-    int_message = re.findall("[0-6]+", messages)
+    int_message = re.findall("[0-9]+", messages)
     int_messages = "".join(int_message)
     await db_commands.update_user_data(
     telegram_id=message.from_user.id, need_partner_age_max=int_messages
@@ -295,6 +279,8 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
     await message.answer(
         text=("Kota pasangan anda"),
     )
+    await state.reset_state()
+    await state.set_state("data_clear")
 
 @dp.message_handler(state="date_clear")
 async def finish_filter(message: types.Message, state: FSMContext) -> None:
