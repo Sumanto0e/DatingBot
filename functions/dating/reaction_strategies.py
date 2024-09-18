@@ -147,7 +147,7 @@ class LikeReciprocity(ActionStrategy):
         textile = ("{}, {} tahun, {}\n\n{}").format(useri.varname, useri.age, useri.city, useri.commentary)
         await call.message.answer_photo(caption=textile, photo=useri.photo_id)
         await call.message.answer(
-            text=("Matching! Semoga ini jodoh anda;) Mulailah mengobrol 👉 dengan tg://user?id={} {} ").format(useri.telegram_id, useri.varname),
+            text=("Matching! Semoga ini jodoh anda;) Mulailah mengobrol 👉 dengan <a href='tg://user?id={}'>{}</a> ").format(useri.telegram_id, useri.varname),
             reply_markup=await user_link_keyboard(telegram_id=user_for_like),
         )
         await create_questionnaire_reciprocity(
