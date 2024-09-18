@@ -77,7 +77,8 @@ class LikeAction(ActionStrategy):
             self, call: CallbackQuery, state: FSMContext, callback_data: dict[str, str]
     ):
         user = await db_commands.select_user_object(telegram_id=call.from_user.id)
-        text = ("Bagaimana cara meningkatkan biaya ini?")
+        userai = await db_commands.select_user(telegram_id=user_for_like)
+        text = ("{} menyukai profil anda").format(userai.varname)
         target_id = int(callback_data["target_id"])
 
         await create_questionnaire(
@@ -141,7 +142,7 @@ class LikeReciprocity(ActionStrategy):
             message_id=call.message.message_id,
             reply_markup=None,
         )
-        user = await db_commands.select_user(telegram_id=telegram_id)
+        user = await db_commands.select_user(telegram_id=user_for_like)
         await call.message.relpy(
             text=("Matching! Semoga ini jodoh anda;) Mulailah mengobrol 👉 dengan {}").format(user.varname),
             reply_markup=await user_link_keyboard(telegram_id=user_for_like),
