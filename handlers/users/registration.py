@@ -284,7 +284,7 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
     await state.set_state("finish_data")
 
 @dp.message_handler(state="finish_data")
-async def finish_filter(message: types.Message, state: FSMContext, markup: InlineKeyboardMarkup) -> None:
+async def finish_filter(message: types.Message, state: FSMContext) -> None:
     censored = censored_message(message.text)
     await db_commands.update_user_data(
         need_city=quote_html(censored), telegram_id=message.from_user.id
@@ -311,6 +311,23 @@ async def finish_filter(message: types.Message, state: FSMContext, markup: Inlin
         max=user.need_partner_age_max,
         need_city=user.need_city,
     )
+    markup = InlineKeyboardMarkup(row_width=2)
+    if not verification:
+        verification_btn = InlineKeyboardButton(
+            text=("✅ Verifikasi"), callback_data="verification"
+        )
+        markup.row(verification_btn)
+    edit_profile = InlineKeyboardButton(
+        text=("🖊 Pengaturan akun"), callback_data="change_profile"
+    )
+    dating_filters = InlineKeyboardButton(text=("❤️ Pengaturan kenalan"), callback_data="dating_filters")
+    turn_off = InlineKeyboardButton(text=("🗑️ Menghapus"), callback_data="disable")
+    back = InlineKeyboardButton(text=("⏪ Kembali"), callback_data="back_with_delete")
+    markup.row(edit_profile)
+    markup.row(turn_off, dating_filters)
+    markup.add(back)
+    return markup
+    markup: InlineKeyboardMarkup
     await message.answer_photo(
         caption=user_info, photo=user.photo_id, reply_markup=markup
     )
