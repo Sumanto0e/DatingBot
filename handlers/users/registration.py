@@ -284,7 +284,7 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
     await state.set_state("finish_data")
 
 @dp.message_handler(state="finish_data")
-async def finish_filter(message: types.Message, state: FSMContext) -> None:
+async def finish_filter(message: types.Message, state: FSMContext, markup: InlineKeyboardMarkup) -> None:
     censored = censored_message(message.text)
     await db_commands.update_user_data(
         need_city=quote_html(censored), telegram_id=message.from_user.id
