@@ -144,6 +144,8 @@ class LikeReciprocity(ActionStrategy):
         useri = await db_commands.select_user(telegram_id=user_for_like)
         user = await db_commands.select_user(telegram_id=call.from_user.id)
         await call.message.delete()
+        text = ("{}, {} tahun, {}\n\n{}").format(useri.varname, useri.age, useri.city, usrei.comentary)
+        await call.message.aswer_photo(caption=user_info, photo=useri.photo_id)
         await call.message.answer(
             text=("Matching! Semoga ini jodoh anda;) Mulailah mengobrol 👉 dengan {}").format(useri.varname),
             reply_markup=await user_link_keyboard(telegram_id=user_for_like),
