@@ -280,15 +280,14 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
         text=("Kota pasangan anda"),
     )
     await state.reset_state()
-    await state.set_state("data_clear")
+    await state.set_state("finish_data")
 
-@dp.message_handler(state="date_clear")
+@dp.message_handler(state="finish_data")
 async def finish_filter(message: types.Message, state: FSMContext) -> None:
     censored = censored_message(message.text)
     await db_commands.update_user_data(
         need_city=quote_html(censored), telegram_id=message.from_user.id
     )
-    await state.finish()
     user_info_template = (
         "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
         "Filter pasangan anda:\n\n"
@@ -311,3 +310,4 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
     await message.answer_photo(
         caption=user_info, photo=user.photo_id, reply_markup=markup
     )
+    await state.finish()
