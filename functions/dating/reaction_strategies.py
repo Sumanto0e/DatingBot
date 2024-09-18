@@ -77,7 +77,7 @@ class LikeAction(ActionStrategy):
             self, call: CallbackQuery, state: FSMContext, callback_data: dict[str, str]
     ):
         user = await db_commands.select_user_object(telegram_id=call.from_user.id)
-        userai = await db_commands.select_user(telegram_id=user_for_like)
+        userai = await db_commands.select_user(telegram_id=call.from_user.id)
         text = ("{} menyukai profil anda").format(userai.varname)
         target_id = int(callback_data["target_id"])
 
