@@ -26,17 +26,17 @@ from utils.db_api import (
 
 
 @dp.message_handler(IsAdmin(), commands="users", state="*")
-@dp.message_handler(IsAdmin(), text="🫂 Пользователи", state="*")
+@dp.message_handler(IsAdmin(), text="🫂 Pengguna", state="*")
 async def command_start(message: Message, state: FSMContext):
     await state.reset_state()
-    text = "<u>🫂 Пользователи</u>"
+    text = "<u>🫂 Pengguna</u>"
     await message.answer(text, reply_markup=await user_manipulation())
 
 
 @dp.callback_query_handler(text="db:search_user")
 async def search_users(call: CallbackQuery, state: FSMContext):
     await call.message.edit_text(
-        "<b>🔍 Введите @username или telegram id: </b>",
+        "<b>🔍 Masukkan @username atau telegram id: </b>",
         reply_markup=await admin_cancel_keyboard(),
     )
     await state.set_state("search_user")
@@ -52,10 +52,10 @@ async def search_handler(message: Message, state: FSMContext):
 
     if user:
         text = (
-            f"<b>ℹ️ Пользователь: </b><code>{user.telegram_id}</code>\n\n"
-            f"<b>👤 Полное имя: </b><code>{user.varname}</code>\n"
-            f"<b>🚹 Юзернейм: </b><code>{user.username}</code>\n"
-            f"<b>📅 Дата регистрации в боте: </b><code>{user.created_at.date()}</code>\n"
+            f"<b>ℹ️ Penguna: </b><code>{user.telegram_id}</code>\n\n"
+            f"<b>👤 Nama lengkap: </b><code>{user.varname}</code>\n"
+            f"<b>🚹 Nama belakang: </b><code>{user.username}</code>\n"
+            f"<b>📅 Tanggal pendaftaran bot: </b><code>{user.created_at.date()}</code>\n"
         )
 
         await message.answer_photo(
@@ -68,7 +68,7 @@ async def search_handler(message: Message, state: FSMContext):
 
     else:
         await message.answer(
-            "🔍 Пользователь не найден!", reply_markup=await user_manipulation()
+            "🔍 Layanan yang Tidak Dapat Dilakukan!", reply_markup=await user_manipulation()
         )
     await state.reset_state()
 
