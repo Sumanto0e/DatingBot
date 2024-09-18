@@ -289,6 +289,8 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
     await db_commands.update_user_data(
         need_city=quote_html(censored), telegram_id=message.from_user.id
     )
+    await state.finish()
+    user = await db_commands.select_user(telegram_id=call.from_user.id)
     user_info_template = (
         "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
         "Filter pasangan anda:\n\n"
@@ -311,4 +313,3 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
     await message.answer_photo(
         caption=user_info, photo=user.photo_id, reply_markup=markup
     )
-    await state.finish()
