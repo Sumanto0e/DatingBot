@@ -141,8 +141,9 @@ class LikeReciprocity(ActionStrategy):
             message_id=call.message.message_id,
             reply_markup=None,
         )
-        await call.message.answer(
-            text=("Besar! Semoga Anda bersenang-senang;) Mulailah mengobrol 👉"),
+        user = await db_commands.select_user(telegram_id=telegram_id)
+        await call.message.relpy(
+            text=("Matching! Semoga ini jodoh anda;) Mulailah mengobrol 👉 dengan {}").format(user.varname),
             reply_markup=await user_link_keyboard(telegram_id=user_for_like),
         )
         await create_questionnaire_reciprocity(
