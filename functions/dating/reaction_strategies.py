@@ -123,8 +123,8 @@ class StoppedAction(ActionStrategy):
             "Senang bisa membantu, {fullname}!\nSaya harap Anda menemukan seseorang berkat saya"
         ).format(fullname=call.from_user.full_name)
         await call.answer(text, show_alert=True)
-        user_verification = "✅" if user.verification else ""
         user = await db_commands.select_user(telegram_id=call.from_user.id)
+        user_verification = "✅" if user.verification else ""
         user_info_template = (
             "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
             "Filter pasangan anda:\n\n"
