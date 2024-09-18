@@ -321,8 +321,6 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
     markup.row(edit_profile)
     markup.row(turn_off, dating_filters)
     markup.add(back)
-    return markup
-    markup: InlineKeyboardMarkup
     await message.answer_photo(
         caption=user_info, photo=user.photo_id, reply_markup=markup
     )
