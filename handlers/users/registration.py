@@ -290,7 +290,7 @@ async def finish_filter(message: types.Message, state: FSMContext) -> None:
         need_city=quote_html(censored), telegram_id=message.from_user.id
     )
     await state.finish()
-    user = await db_commands.select_user(telegram_id=call.from_user.id)
+    user = await db_commands.select_user(telegram_id=message.from_user.id)
     user_info_template = (
         "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
         "Filter pasangan anda:\n\n"
