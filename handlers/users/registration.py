@@ -282,6 +282,48 @@ async def get_city(message: types.Message, state: FSMContext) -> None:
     )
     await state.reset_state()
     await state.set_state("finish_data")
+
+@dp.message_handler(state="finish_data")
+async def finish_filter(message: types.Message, state: FSMContext) -> None:
+    censored = censored_message(message.text)
+    await db_commands.update_user_data(
+        need_city=quote_html(censored), telegram_id=message.from_user.id
+    )
+    await state.finish()
+    user = await db_commands.select_user(telegram_id=message.from_user.id)
+    user_verification = "✅" if user.verification else ""
+    user_info_template = (
+        "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
+        "Filter pasangan anda:\n\n"
+        "🚻 lawan jenis anda: {need_partner_sex}\n"
+        "🔞 Rentang usia: {min}-{max} tahun\n"
+        "🏙️ kota: {need_city}"
+    )
+    info = await bot.get_me()
+    user_info = user_info_template.format(
+        name=user.varname,
+        age=user.age,
+        city=user.city,
+        verification=user_verification,
+        commentary=user.commentary,
+        need_partner_sex=user.need_partner_sex,
+        min=user.need_partner_age_min,
+        max=user.need_partner_age_max,
+        need_city=user.need_city,
+    )
+    markup = InlineKeyboardMarkup(row_width=2)
+    edit_profile = InlineKeyboardButton(
+        text=("🖊 Pengaturan akun"), callback_data="change_profile"
+    )
+    dating_filters = InlineKeyboardButton(text=("❤️ Pengaturan kenalan"), callback_data="dating_filters")
+    turn_off = InlineKeyboardButton(text=("🗑️ Menghapus"), callback_data="disable")
+    back = InlineKeyboardButton(text=("⏪ Kembali"), callback_data="back_with_delete")
+    markup.row(edit_profile)
+    markup.row(turn_off, dating_filters)
+    markup.add(back)
+    await message.answer_photo(
+        caption=user_info, photo=user.photo_id, reply_markup=markup
+    )
     
 @dp.callback_query_handler(text="add_inst")
 async def add_inst(call: CallbackQuery, state: FSMContext) -> None:
@@ -309,7 +351,7 @@ async def add_inst_state(message: types.Message, state: FSMContext) -> None:
                 instagram=result[0], telegram_id=message.from_user.id
             )
             await message.answer(text=("Akun Anda telah berhasil ditambahkan"))
-            await state.set_state("finish_data")
+            await state.set_state("finish_insta")
             
         else:
             await message.answer(
@@ -323,12 +365,8 @@ async def add_inst_state(message: types.Message, state: FSMContext) -> None:
         await message.answer(text=("Telah terjadi kesalahan. coba lagi"))
         return
 
-@dp.message_handler(state="finish_data")
-async def finish_filter(message: types.Message, state: FSMContext) -> None:
-    censored = censored_message(message.text)
-    await db_commands.update_user_data(
-        need_city=quote_html(censored), telegram_id=message.from_user.id
-    )
+@dp.message_handler(state="finish_insta")
+async def finish_insta(message: types.Message, state: FSMContext) -> None:
     await state.finish()
     user = await db_commands.select_user(telegram_id=message.from_user.id)
     user_verification = "✅" if user.verification else ""
