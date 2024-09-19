@@ -13,10 +13,13 @@ async def get_profile_keyboard(verification) -> InlineKeyboardMarkup:
     edit_profile = InlineKeyboardButton(
         text=("🖊 Pengaturan akun"), callback_data="change_profile"
     )
+    add_instagram = InlineKeyboardButton(
+        text=("📸 Pengaturan Sosmed"), callback_data="add_inst"
+    )
     dating_filters = InlineKeyboardButton(text=("❤️ Pengaturan kenalan"), callback_data="dating_filters")
     turn_off = InlineKeyboardButton(text=("🗑️ Menghapus"), callback_data="disable")
     back = InlineKeyboardButton(text=("⏪ Kembali"), callback_data="back_with_delete")
-    markup.row(edit_profile)
+    markup.row(edit_profile, add_instagram)
     markup.row(turn_off, dating_filters)
     markup.add(back)
     return markup
