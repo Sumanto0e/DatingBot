@@ -309,7 +309,6 @@ async def add_inst_state(message: types.Message, state: FSMContext) -> None:
                 instagram=result[0], telegram_id=message.from_user.id
             )
             await message.answer(text=("Akun Anda telah berhasil ditambahkan"))
-            await asyncio.sleep(1)
             await state.reset_state()
             await state.set_state("finish_data")
             
