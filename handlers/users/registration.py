@@ -342,7 +342,6 @@ async def add_inst(call: CallbackQuery, state: FSMContext) -> None:
 @dp.message_handler(state="inst")
 async def add_inst_state(message: types.Message, state: FSMContext) -> None:
     try:
-        markup = await start_keyboard(obj=message)
         inst_regex = r"([A-Za-z0-9._](?:(?:[A-Za-z0-9._]|(?:\.(?!\.))){2,28}(?:[A-Za-z0-9._]))?)$"
         regex = re.search(inst_regex, message.text)
         result = regex
@@ -354,9 +353,8 @@ async def add_inst_state(message: types.Message, state: FSMContext) -> None:
             await message.answer(text=("Akun Anda telah berhasil ditambahkan"))
             await asyncio.sleep(1)
             await state.reset_state()
-            await message.answer(
-                text=("Вы были возвращены в меню"), reply_markup=markup
-            )
+            await state.set_state("finish_data")
+            
         else:
             await message.answer(
                 text=(
