@@ -397,5 +397,4 @@ async def add_inst_state(message: types.Message, state: FSMContext) -> None:
     except DataError:
         await message.answer(text=("Telah terjadi kesalahan. coba lagi"))
         return
-    )
 
