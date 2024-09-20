@@ -55,4 +55,6 @@ async def get_statistics(message: Message):
         users_verified=users_verified,
         users_status=users_status,
     )
-    return text
+    await message.answer(
+        text
+    )
