@@ -131,23 +131,36 @@ async def get_name(message: types.Message, state: FSMContext) -> None:
         telegram_id=message.from_user.id, varname=quote_html(censored)
     )
     await message.answer(text=("Berapa umur Anda?"))
-    await state.reset_state()
     await RegData.age.set()
 
 
 # TODO: Убрать возможность у пользователя использовать ввод для определения города
 @dp.message_handler(state=RegData.age)
 async def get_age(message: types.Message, state: FSMContext) -> None:
-    messages = message.text
-    int_message = re.findall("[0-9]+", messages)
-    int_messages = "".join(int_message)
-    await db_commands.update_user_data(
-        telegram_id=message.from_user.id, need_partner_age_max=int_messages
-    )
+    markup = await location_keyboard()
+    await state.update_data(age=message.text)
+    try:
+        if 17 < int(message.text) < 99:
+            await db_commands.update_user_data(
+                telegram_id=message.from_user.id, age=int(message.text)
+            )
+        else:
+            await message.answer(
+                text=("Angka yang Anda masukkan tidak valid, terlalu muda atau tua, silakan coba lagi"),
+                reply_markup=await cancel_registration_keyboard(),
+            )
+            return
+    except ValueError as ex:
+        logger.error(ex)
+        await message.answer(
+            text=("Anda tidak memasukkan angka"),
+            reply_markup=await cancel_registration_keyboard(),
+        )
+        return
     await message.answer(
-        text=("Di kota mana anda tinggal?"),
+        text=("Di kota mana anda berada? Tolong jangan singkat untuk menemukan profil yang relvan untuk anda"),
+        reply_markup=markup,
     )
-    await state.reset_state()
     await RegData.town.set()
     
 
