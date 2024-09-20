@@ -131,8 +131,8 @@ async def registration_menu(
     text = (
         "Salam, {fullname}!!\n\n"
         "{heart} <b> Querendo </b> - Platform untuk mencari kenalan baru.\n\n"
-        "🪧 Anda dapat bergabung dikomunitas kami - "
-        "https://t.me/fwabasee \n\n"
+        "🪧 Anda dapat bergabung dikomunitas kami - \n\n"
+        "https://t.me/fwabasee \n"
         "https://t.me/menfesfwabasee \n\n"
         "@{supports}\n\n"
     ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username)
