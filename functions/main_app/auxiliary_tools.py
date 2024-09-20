@@ -131,11 +131,11 @@ async def registration_menu(
     text = (
         "Salam, {fullname}!!\n\n"
         "{heart} <b> Querendo </b> - Platform untuk mencari kenalan baru.\n\n"
-        "🪧 Anda dapat bergabung dikomunitas kami - "
-        "https://t.me/menfesfwabase \n\n"
+        "🪧 Anda dapat bergabung dikomunitas kami - \n\n"
+        "https://t.me/menfesfwabase\n"
         "https://t.me/fwabasee \n\n"
         "@{supports}\n\n"
-    ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username)
+    ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username), disable_web_page_preview=True,
     try:
         await obj.message.edit_text(text=text, reply_markup=markup)
         scheduler.add_job(
