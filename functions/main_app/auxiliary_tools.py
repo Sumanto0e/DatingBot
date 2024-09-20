@@ -353,7 +353,7 @@ async def handle_guide_callback(
 
 
 async def information_menu(call: CallbackQuery) -> None:
-    start_date = datetime.datetime(2021, 8, 10, 14, 0)
+    start_date = datetime.datetime(2024, 9, 16, 14, 0)
     now_date = datetime.datetime.now()
     delta = now_date - start_date
     count_users = await db_commands.count_users()
