@@ -10,9 +10,6 @@ from aiogram.dispatcher import (
     FSMContext,
 )
 from aiogram.types import (
-    InlineKeyboardButton,
-)
-from aiogram.types import (
     CallbackQuery,
 )
 
@@ -31,7 +28,10 @@ from functions.main_app.auxiliary_tools import (
     get_report_reason,
 )
 from keyboards.inline.main_menu_inline import (
-    start_keyboard,
+    stopped_keyboard,
+)
+from keyboards.inline.questionnaires_inline import (
+    questionnaires_inline,
 )
 from keyboards.inline.questionnaires_inline import (
     report_menu_keyboard,
@@ -44,6 +44,12 @@ from utils.db_api import (
     db_commands,
 )
 
+action_keyboard = CallbackData("questionnaire", "action", "target_id")
+action_keyboard_monitoring = CallbackData(
+    "questionnaire_monitoring", "action", "target_id"
+)
+action_reciprocity_keyboard = CallbackData("questionnaire", "action", "user_for_like")
+action_report_keyboard = CallbackData("report", "action", "target_id")
 
 class ActionStrategy(ABC):
     @abstractmethod
@@ -74,17 +80,13 @@ class StartFindingReachLimit(ActionStrategy):
             text=("Akun anda telah mencapai limit per hari untuk reaction profil, kembali lagi besok"), show_alert=True
         )
         info = await bot.get_me()
-        markup = InlineKeyboardButton(
-        text=("💤 Berhenti"),
-        callback_data=action_keyboard.new(action="stopped", target_id=call.from_user.id),
-    )
         await call.message.answer(
             text=(
                 "Terlalu banyak ❤️ untuk hari ini.\n\n"
                 "Undang teman dan dapatkan lebih banyak ❤️\n\n"
                 "https://t.me/{}?start={}\n\n"
                 "Atau temukan lebih banyak teman di @fwarandombot"
-            ).format(info.username, call.from_user.id), replymarkup=markup
+            ).format(info.username, call.from_user.id), reply_markup=stopped_keyboard
         )
         await call.message.answer(
             text=(
