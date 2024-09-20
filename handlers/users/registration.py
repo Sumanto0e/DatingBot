@@ -137,7 +137,6 @@ async def get_name(message: types.Message, state: FSMContext) -> None:
 # TODO: Убрать возможность у пользователя использовать ввод для определения города
 @dp.message_handler(state=RegData.age)
 async def get_age(message: types.Message, state: FSMContext) -> None:
-    markup = await location_keyboard()
     await state.update_data(age=message.text)
     try:
         if 17 < int(message.text) < 99:
