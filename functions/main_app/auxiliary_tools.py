@@ -135,9 +135,9 @@ async def registration_menu(
         "https://t.me/menfesfwabase\n"
         "https://t.me/fwabasee \n\n"
         "@{supports}\n\n"
-    ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username), disable_web_page_preview=True,
+    ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username),
     try:
-        await obj.message.edit_text(text=text, reply_markup=markup)
+        await obj.message.edit_text(text=text, reply_markup=markup, disable_web_page_preview=True)
         scheduler.add_job(
             send_message_week,
             trigger="interval",
