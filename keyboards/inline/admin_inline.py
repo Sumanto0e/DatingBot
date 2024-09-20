@@ -8,7 +8,7 @@ from aiogram.types import (
 async def start_monitoring_keyboard() -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup(row_width=1)
     confirm_sending = InlineKeyboardButton(
-        text= ("Подтвердить отправку"), callback_data="confirm_send_monitoring"
+        text= ("Konfirmasikan pengiriman"), callback_data="confirm_send_monitoring"
     )
     markup.add(confirm_sending)
     return markup
