@@ -10,8 +10,8 @@ from utils.db_api import (
 async def get_statistics(message: Message):
     user = await db_commands.select_user(telegram_id=message.from_user.id)
     user_city = user.city
-    users_gender_m = await db_commands.count_all_users_kwarg(sex="Мужской")
-    users_gender_f = await db_commands.count_all_users_kwarg(sex="Женский")
+    users_gender_m = await db_commands.count_all_users_kwarg(sex="male")
+    users_gender_f = await db_commands.count_all_users_kwarg(sex="female")
     users_city = await db_commands.count_all_users_kwarg(city=user_city)
     users_status = await db_commands.count_all_users_kwarg(status=True)
     users_verified = await db_commands.count_all_users_kwarg(verification=True)
