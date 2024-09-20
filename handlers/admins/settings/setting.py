@@ -20,7 +20,7 @@ async def command_start(message: Message):
         text="<u>⚙️ Pengaturan</u>", reply_markup=await settings_keyboard()
     )
 
-@dp.message_handler(IsAdmin(), commands="statistics", state="*")
+@dp.message_handler(IsAdmin(), commands="statistik", state="*")
 @dp.message_handler(IsAdmin(), text="📊 statistik", state="*")
 async def get_statistics(message: Message):
     user = await db_commands.select_user(telegram_id=message.from_user.id)
