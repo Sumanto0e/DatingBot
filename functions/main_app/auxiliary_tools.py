@@ -131,11 +131,11 @@ async def registration_menu(
     text = (
         "Salam, {fullname}!!\n\n"
         "{heart} <b> Querendo </b> - Platform untuk mencari kenalan baru.\n\n"
-        "🪧 Anda dapat bergabung dikomunitas kami - \n\n"
-        "@menfesfwabase\n"
-        "@fwabasee \n\n"
+        "🪧 Anda dapat bergabung dikomunitas kami - "
+        "https://t.me/fwabasee \n\n"
+        "https://t.me/menfesfwabasee \n\n"
         "@{supports}\n\n"
-    ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username),
+    ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username)
     try:
         await obj.message.edit_text(text=text, reply_markup=markup)
         scheduler.add_job(
@@ -154,6 +154,7 @@ async def registration_menu(
         await delete_message(obj.message)
 
         await obj.message.answer(text=text, reply_markup=markup)
+
 
 
 async def check_user_in_db(telegram_id: int, message: Message, username: str) -> None:
