@@ -2,6 +2,9 @@ from aiogram.dispatcher import (
     FSMContext,
 )
 from aiogram.types import (
+    InlineKeyboardButton,
+)
+from aiogram.types import (
     CallbackQuery,
 )
 from django.db import (
@@ -120,6 +123,11 @@ async def handle_action(
     }
     strategy = strategy_mapping.get(action)
     info = await bot.get_me()
+    
+    markup = InlineKeyboardButton(
+        text=("💤 Berhenti"),
+        callback_data=action_keyboard.new(action="stopped", target_id=call.from_user.id),
+    )
 
     if strategy and user.limit_of_views != 0:
         await strategy.execute(call, state, callback_data)
@@ -131,14 +139,14 @@ async def handle_action(
                 "Undang teman dan dapatkan lebih banyak ❤️\n\n"
                 "https://t.me/{}?start={}\n\n"
                 "Atau temukan lebih banyak teman di @fwarandombot"
-            ).format(info.username, call.from_user.id)
+            ).format(info.username, call.from_user.id), replymarkup=markup
         )
         await call.message.answer(
             text=(
                 "dapatkan lebih banyak ❤️"
                 "#fwabase"
                 "📸 tiktok.com/tag/fwabase"
-            ).format(info.username, call.from_user.id)
+            ).format(info.username, call.from_user.id))
         await state.reset_state()
 
 
