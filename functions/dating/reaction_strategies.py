@@ -11,6 +11,7 @@ from aiogram.dispatcher import (
 )
 from aiogram.types import (
     CallbackQuery,
+    CallbackData,
 )
 
 from data.config import (
@@ -28,10 +29,10 @@ from functions.main_app.auxiliary_tools import (
     get_report_reason,
 )
 from keyboards.inline.main_menu_inline import (
-    stopped_keyboard,
+    start_keyboard,
 )
 from keyboards.inline.questionnaires_inline import (
-    questionnaires_inline,
+    stopped_keyboard,
 )
 from keyboards.inline.questionnaires_inline import (
     report_menu_keyboard,
