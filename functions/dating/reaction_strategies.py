@@ -79,7 +79,7 @@ class StartFindingReachLimit(ActionStrategy):
                 "Undang teman dan dapatkan lebih banyak ❤️\n\n"
                 "https://t.me/{}?start={}\n\n"
                 "Atau temukan lebih banyak teman di @fwarandombot"
-            ).format(info.username, call.from_user.id), reply_markup=await start_keyboard(call),
+            ).format(info.username, call.from_user.id), reply_markup=await start_keyboard(call), disable_web_page_preview=True,
         )
         await call.message.answer(
             text=(
