@@ -11,7 +11,6 @@ from aiogram.dispatcher import (
 )
 from aiogram.types import (
     CallbackQuery,
-    CallbackData,
 )
 
 from data.config import (
