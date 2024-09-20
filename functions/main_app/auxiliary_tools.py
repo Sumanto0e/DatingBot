@@ -361,7 +361,7 @@ async def information_menu(call: CallbackQuery) -> None:
     txt = (
         "Anda berada di bagian <b>Informasi</b> pada bot, di sini Anda dapat melihat: statistik,"
         "mengubah bahasa, dan juga melihat buku merek kami.\n\n"
-        "🌐 Kami bekerja selama: <b>{}</b>\n"
+        "🌐 Kami bekerja selama: <b>{}</b> hari\n"
         "👤 Jumlah pengguna: <b>{}</b>\n"
     ).format(delta.days, count_users)
     try:
