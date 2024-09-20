@@ -49,6 +49,6 @@ async def contacts_menu(call: CallbackQuery):
             "Grub komunitas kami: @kasihsayanggg\n"
             "Tiktok komunitas kami: <a href='https://www.tiktok.com/@fwabase?_t=8mVXqBUwzWk&_r=1'>tiktok</a>\n"
             "instagram komunitas kami: <a href='https://www.instagram.com/fwabase?igsh=NGd4emp5NndhOWRw'>instagram</a>\n"
-        ),
+        ), disable_web_page_preview=True,
         reply_markup=await only_back_keyboard(menu="information"),
     )
