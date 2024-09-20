@@ -79,14 +79,14 @@ class StartFindingReachLimit(ActionStrategy):
                 "Undang teman dan dapatkan lebih banyak ❤️\n\n"
                 "https://t.me/{}?start={}\n\n"
                 "Atau temukan lebih banyak teman di @fwarandombot"
-            ).format(info.username, call.from_user.id), reply_markup=await start_keyboard(call), disable_web_page_preview=True,
+            ).format(info.username, call.from_user.id), reply_markup=await start_keyboard(call),
         )
         await call.message.answer(
             text=(
-                "dapatkan lebih banyak ❤️"
-                "#fwabase"
+                "dapatkan lebih banyak ❤️\n"
+                "#fwabase\n"
                 "📸 tiktok.com/tag/fwabase"
-            ))
+            ), disable_web_page_preview=True)
         await state.reset_data()
 
 class LikeAction(ActionStrategy):
