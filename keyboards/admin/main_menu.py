@@ -7,6 +7,7 @@ from aiogram.types import (
 async def admin_keyboard() -> ReplyKeyboardMarkup:
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     customers = KeyboardButton("🫂 Pengguna")
+    statistik = KeyboardButton("s📊 tatistik")
     settings = KeyboardButton("⚙️ Pengaturan")
     advert = KeyboardButton("📊 Periklanan")
     logs = KeyboardButton("🗒 Log")
