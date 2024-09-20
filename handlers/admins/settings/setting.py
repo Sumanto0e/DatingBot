@@ -11,6 +11,9 @@ from keyboards.admin.inline.reply_menu import (
 from loader import (
     dp,
 )
+from utils.db_api import (
+    db_commands,
+)
 
 
 @dp.message_handler(IsAdmin(), commands="settings", state="*")
