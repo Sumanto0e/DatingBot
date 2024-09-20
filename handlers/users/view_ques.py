@@ -133,6 +133,12 @@ async def handle_action(
                 "Atau temukan lebih banyak teman di @fwarandombot"
             ).format(info.username, call.from_user.id)
         )
+        await call.message.answer(
+            text=(
+                "dapatkan lebih banyak ❤️"
+                "#fwabase"
+                "📸 tiktok.com/tag/fwabase"
+            ).format(info.username, call.from_user.id)
         await state.reset_state()
 
 
