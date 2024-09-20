@@ -10,6 +10,9 @@ from aiogram.dispatcher import (
     FSMContext,
 )
 from aiogram.types import (
+    InlineKeyboardButton,
+)
+from aiogram.types import (
     CallbackQuery,
 )
 
@@ -68,9 +71,28 @@ class StartFindingFailure(ActionStrategy):
 class StartFindingReachLimit(ActionStrategy):
     async def execute(self, call: CallbackQuery, state: FSMContext, **kwargs):
         await call.answer(
-            text=("Bagaimana cara mengatasi masalah ini?"), show_alert=True
+            text=("Akun anda telah mencapai limit per hari untuk reaction profil, kembali lagi besok"), show_alert=True
         )
-
+        info = await bot.get_me()
+        markup = InlineKeyboardButton(
+        text=("💤 Berhenti"),
+        callback_data=action_keyboard.new(action="stopped", target_id=call.from_user.id),
+    )
+        await call.message.answer(
+            text=(
+                "Terlalu banyak ❤️ untuk hari ini.\n\n"
+                "Undang teman dan dapatkan lebih banyak ❤️\n\n"
+                "https://t.me/{}?start={}\n\n"
+                "Atau temukan lebih banyak teman di @fwarandombot"
+            ).format(info.username, call.from_user.id), replymarkup=markup
+        )
+        await call.message.answer(
+            text=(
+                "dapatkan lebih banyak ❤️"
+                "#fwabase"
+                "📸 tiktok.com/tag/fwabase"
+            ))
+        await state.reset_data()
 
 class LikeAction(ActionStrategy):
     async def execute(
@@ -132,7 +154,6 @@ class StoppedAction(ActionStrategy):
             "🔞 Rentang usia: {min}-{max} tahun\n\n"
             "🏙️ kota: {need_city}"
         )
-        info = await bot.get_me()
         user_info = user_info_template.format(
             name=user.varname,
             age=user.age,
