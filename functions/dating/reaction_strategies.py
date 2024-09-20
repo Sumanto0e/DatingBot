@@ -44,13 +44,6 @@ from utils.db_api import (
     db_commands,
 )
 
-action_keyboard = CallbackData("questionnaire", "action", "target_id")
-action_keyboard_monitoring = CallbackData(
-    "questionnaire_monitoring", "action", "target_id"
-)
-action_reciprocity_keyboard = CallbackData("questionnaire", "action", "user_for_like")
-action_report_keyboard = CallbackData("report", "action", "target_id")
-
 class ActionStrategy(ABC):
     @abstractmethod
     async def execute(
