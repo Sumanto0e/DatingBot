@@ -380,4 +380,4 @@ async def get_report_reason(call: CallbackQuery) -> str:
         "scam": "💰 Penipuan",
         "another": "🦨 Lainnya",
     }
-    return reason_mapping.get(reason_key, "Неизвестная причина")
+    return reason_mapping.get(reason_key, "Alasan yang tidak diketahui")
