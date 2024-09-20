@@ -79,14 +79,14 @@ async def sex_reg(call: CallbackQuery) -> None:
                 telegram_id=call.from_user.id, sex="male"
             )
             await db_commands.update_user_data(
-                telegram_id=call.from_user.id, sex="female"
+                telegram_id=call.from_user.id, need_partner_sex="female"
             )
         except UniqueViolationError:
             pass
     elif call.data == "female":
         try:
             await db_commands.update_user_data(
-                telegram_id=call.from_user.id, need_partner_sex="female"
+                telegram_id=call.from_user.id, sex="female"
             )
             await db_commands.update_user_data(
                 telegram_id=call.from_user.id, need_partner_sex="male"
