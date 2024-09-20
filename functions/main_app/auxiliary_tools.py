@@ -132,12 +132,12 @@ async def registration_menu(
         "Salam, {fullname}!!\n\n"
         "{heart} <b> Querendo </b> - Platform untuk mencari kenalan baru.\n\n"
         "🪧 Anda dapat bergabung dikomunitas kami - \n\n"
-        "https://t.me/menfesfwabase\n"
-        "https://t.me/fwabasee \n\n"
+        "@menfesfwabase\n"
+        "@fwabasee \n\n"
         "@{supports}\n\n"
     ).format(fullname=obj.from_user.full_name, heart=heart, supports=support.username),
     try:
-        await obj.message.edit_text(text=text, reply_markup=markup, disable_web_page_preview=True)
+        await obj.message.edit_text(text=text, reply_markup=markup)
         scheduler.add_job(
             send_message_week,
             trigger="interval",
