@@ -97,9 +97,9 @@ async def display_profile(call: CallbackQuery, markup: InlineKeyboardMarkup) -> 
 
     user_info_template = (
         "{name}, {age} tahun, {city}, {verification}\n\n{commentary}\n\n"
-        "Filter pasangan anda:\n\n"
+        "Filter pasangan anda:\n"
         "🚻 lawan jenis anda: {need_partner_sex}\n"
-        "🔞 Rentang usia: {min}-{max} tahun\n\n"
+        "🔞 Rentang usia: {min}-{max} tahun\n"
         "🏙️ kota: {need_city}"
     )
     info = await bot.get_me()
