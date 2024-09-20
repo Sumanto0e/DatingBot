@@ -257,4 +257,4 @@ def add_returned_event_id(telegram_id: int, id_of_events_seen: int):
 
 @sync_to_async
 def reset_view_limit():
-    return User.objects.filter(limit_of_views__lt=10).update(limit_of_views=10)
+    return User.objects.filter(limit_of_views__lt=30).update(limit_of_views=30)
