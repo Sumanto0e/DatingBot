@@ -159,7 +159,6 @@ async def get_age(message: types.Message, state: FSMContext) -> None:
         return
     await message.answer(
         text=("Di kota mana anda berada? Tolong jangan singkat untuk menemukan profil yang relvan untuk anda"),
-        reply_markup=markup,
     )
     await RegData.town.set()
     
