@@ -14,6 +14,13 @@ action_keyboard_monitoring = CallbackData(
 action_reciprocity_keyboard = CallbackData("questionnaire", "action", "user_for_like")
 action_report_keyboard = CallbackData("report", "action", "target_id")
 
+async def stopped_keyboard(
+        target_id: int, monitoring: bool = False
+) -> InlineKeyboardMarkup:
+    markup = InlineKeyboardButton(
+        text=("💤 Berhenti"),
+        callback_data=action_keyboard.new(action="stopped", target_id=target_id),
+    )
 
 async def questionnaires_keyboard(
         target_id: int, monitoring: bool = False
