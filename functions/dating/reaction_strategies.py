@@ -37,6 +37,9 @@ from keyboards.inline.questionnaires_inline import (
     report_menu_keyboard,
     user_link_keyboard,
 )
+from keyboards.default.stop import (
+    stop_keyboard,
+)
 from loader import (
     bot,
 )
@@ -57,7 +60,7 @@ class StartFindingSuccess(ActionStrategy):
         await call.message.delete()
         telegram_id = call.from_user.id
         user_list = await get_next_user(telegram_id)
-        first_button = KeyboardButton(text=("💤 Berhenti"), request_stop=True)
+        reply_markup=await stop_keyboard()
         await call.message.answer("semoga mendapatkan jodoh", reply_markup=first_button)
         random_user = random.choice(user_list)
         await create_questionnaire(form_owner=random_user, chat_id=telegram_id)
