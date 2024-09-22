@@ -60,8 +60,7 @@ class StartFindingSuccess(ActionStrategy):
         await call.message.delete()
         telegram_id = call.from_user.id
         user_list = await get_next_user(telegram_id)
-        reply_markup=await stop_keyboard()
-        await call.message.answer("semoga mendapatkan jodoh", reply_markup=first_button)
+        await call.message.answer("semoga mendapatkan jodoh", reply_markup=await stop_keyboard())
         random_user = random.choice(user_list)
         await create_questionnaire(form_owner=random_user, chat_id=telegram_id)
         await state.set_state("finding")
