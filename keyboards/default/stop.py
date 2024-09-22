@@ -3,7 +3,7 @@ from aiogram.types import (
     ReplyKeyboardMarkup,
 )
 
-async def contact_keyboard() -> ReplyKeyboardMarkup:
+async def stop_keyboard() -> ReplyKeyboardMarkup:
     markup = ReplyKeyboardMarkup(resize_keyboard=True)
     first_button = KeyboardButton(text=("💤 Berhenti"), request_stop=True)
     markup.add(first_button)
