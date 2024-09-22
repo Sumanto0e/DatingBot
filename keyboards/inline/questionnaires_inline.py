@@ -75,8 +75,16 @@ async def reciprocity_keyboard(user_for_like: int) -> InlineKeyboardMarkup:
             action="dislike_reciprocity", user_for_like=user_for_like
         ),
     )
-    markup.row(like, dislike)
-
+    report = InlineKeyboardButton(
+        text="🔞",
+        callback_data=action_keyboard.new(action="report", target_id=target_id),
+    )
+    go_back = InlineKeyboardButton(
+        text=("💤 Berhenti"),
+        callback_data=action_keyboard.new(action="stopped", target_id=target_id),
+    )
+    markup.row(like, report, dislike)
+    markup.row(go_back)
     return markup
 
 
