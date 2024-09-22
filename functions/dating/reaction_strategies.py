@@ -202,7 +202,6 @@ class DislikeReciprocity(ActionStrategy):
     async def execute(
             self, call: CallbackQuery, state: FSMContext, callback_data: dict[str, str]
     ):
-        await call.answer(text, show_alert=True)
         user = await db_commands.select_user(telegram_id=call.from_user.id)
         user_verification = "✅" if user.verification else ""
         user_info_template = (
