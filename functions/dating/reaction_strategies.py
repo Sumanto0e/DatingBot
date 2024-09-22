@@ -228,7 +228,7 @@ class DislikeReciprocity(ActionStrategy):
         )
 
         await call.message.answer_photo(
-            chat_id=call.message.message_id, caption=call.message.message_id,
+            caption=call.message.message_id,
             reply_markup=await start_keyboard(call),
         )
         await state.reset_state()
