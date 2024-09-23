@@ -81,7 +81,7 @@ async def reciprocity_keyboard(user_for_like: int) -> InlineKeyboardMarkup:
     report = InlineKeyboardButton(
         text="🔞",
         callback_data=action_reciprocity_keyboard.new(
-            action="ChooseReportReason", user_for_like=user_for_like
+            action="ChooseReportReason_repiciprocity", user_for_like=user_for_like
         ),
     )
     go_back = InlineKeyboardButton(
