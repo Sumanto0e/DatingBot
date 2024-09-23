@@ -265,7 +265,7 @@ class ChooseReportReason(ActionStrategy):
             message_id=call.message.message_id,
             reply_markup=None,
         )
-        target_id = int(callback_data["target_id"])
+        target_id = int(callback_data["user_for_like"])
         await call.message.answer(
             text=("<u>Pilih alasan keluhan:</u>"),
             reply_markup=await report_menu_keyboard(telegram_id=target_id),
@@ -276,8 +276,8 @@ class SendReport(ActionStrategy):
     async def execute(
             self, call: CallbackQuery, state: FSMContext, callback_data: dict[str, str]
     ):
-        target_id = int(callback_data["target_id"])
-        target_user = await db_commands.select_user(telegram_id=target_id)
+        target_id = int(callback_data["user_for_like"])
+        target_user = await db_commands.select_user(telegram_id=user_for_like)
 
         counter_of_report = target_user.counter_of_report
         username = call.from_user.username
