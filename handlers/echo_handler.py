@@ -23,6 +23,7 @@ from keyboards.inline.questionnaires_inline import (
 from loader import (
     dp,
     logger,
+    bot,
 )
 
 
@@ -43,6 +44,19 @@ async def bot_echo_all(message: types.Message, state: FSMContext) -> None:
         "Isi pesan:",
         hcode(message.text),
     ]
+    strategy_mapping = {
+        "like": LikeAction(),
+        "dislike": DislikeAction(),
+        "stopped": StoppedAction(),
+        "report": ChooseReportReason(),
+    }
+    strategy = strategy_mapping.get(action)
+    info = await bot.get_me()
+    
+    markup = InlineKeyboardButton(
+        text=("💤 Berhenti"),
+        callback_data=action_keyboard.new(action="stopped", target_id=call.from_user.id),
+    )
     await message.answer("opsi tidak ditemukan", reply_markup=await stopped_keyboard(message.from_user.id
 ))
 
