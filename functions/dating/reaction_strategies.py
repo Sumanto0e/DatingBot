@@ -314,7 +314,7 @@ class SendReport(ActionStrategy):
             )
         await asyncio.sleep(0.5)
         
-class ChooseReportReason(ActionStrategy):
+class ChooseReportReasonReciprocity(ActionStrategy):
     async def execute(
             self, call: CallbackQuery, state: FSMContext, callback_data: dict[str, str]
     ):
