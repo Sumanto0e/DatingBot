@@ -162,7 +162,7 @@ async def handle_reciprocity_action(
     strategy_mapping = {
         "like_reciprocity": LikeReciprocity(),
         "dislike_reciprocity": DislikeReciprocity(),
-        "report_reciprocity": ChooseReportReason_repiciprocity(),
+        "report_reciprocity": hooseReportReason_repiciprocity(),
         "stopped_reciprocity": StoppedAction(),
     }
     strategy = strategy_mapping.get(action)
