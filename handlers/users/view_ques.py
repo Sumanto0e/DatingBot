@@ -152,7 +152,7 @@ async def handle_action(
 
 @dp.callback_query_handler(
     action_reciprocity_keyboard.filter(
-        action=["like_reciprocity", "dislike_reciprocity",  "report_reciprocity"]
+        action=["like_reciprocity", "dislike_reciprocity",  "report_reciprocity",  "report_reciprocity"]
     )
 )
 async def handle_reciprocity_action(
@@ -163,7 +163,7 @@ async def handle_reciprocity_action(
         "like_reciprocity": LikeReciprocity(),
         "dislike_reciprocity": DislikeReciprocity(),
         "report_reciprocity": ChooseReportReason(),
-        "stopped_reciprocity": StoppedAction(),
+        "report_reciprocity": StoppedAction(),
     }
     strategy = strategy_mapping.get(action)
     if strategy:
