@@ -57,6 +57,7 @@ async def bot_echo_all(message: types.Message, state: FSMContext) -> None:
         "Isi pesan:",
         hcode(message.text),
     ]
+    action = callback_data["action"]
     strategy_mapping = {
         "like": LikeAction(),
         "dislike": DislikeAction(),
