@@ -17,10 +17,11 @@ action_report_keyboard = CallbackData("report", "action", "target_id")
 async def stopped_keyboard(
         target_id: int, monitoring: bool = False
 ) -> InlineKeyboardMarkup:
-    markup = InlineKeyboardButton(
+    piw = InlineKeyboardButton(
         text=("💤 Berhenti"),
         callback_data=action_keyboard.new(action="stopped", target_id=target_id),
     )
+    markup.row(piw)
     return markup
 
 async def questionnaires_keyboard(
