@@ -43,7 +43,7 @@ async def bot_echo_all(message: types.Message, state: FSMContext) -> None:
         "Isi pesan:",
         hcode(message.text),
     ]
-    await message.answer("\n".join(text), reply_markup=await stopped_keyboard(
+    await message.answer("\n".join(text), reply_markup=await stopped_keyboard(call
 ))
 
 
