@@ -21,6 +21,7 @@ async def stopped_keyboard(
         text=("💤 Berhenti"),
         callback_data=action_keyboard.new(action="stopped", target_id=target_id),
     )
+    return markup
 
 async def questionnaires_keyboard(
         target_id: int, monitoring: bool = False
