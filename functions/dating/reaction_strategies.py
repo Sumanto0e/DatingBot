@@ -302,7 +302,7 @@ class SendReport(ActionStrategy):
         )
 
         moderate_chat = load_config().tg_bot.moderate_chat
-        if counter_of_report >= 2 :
+        if counter_of_report >= 2:
             await db_commands.update_user_data(
                 telegram_id=target_id, on_check_by_admin=True
             )
