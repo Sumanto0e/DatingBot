@@ -327,5 +327,5 @@ class ChooseReportReasonReciprocity(ActionStrategy):
         user_for_like = int(callback_data["user_for_like"])
         await call.message.answer(
             text=("<u>Pilih alasan keluhan:</u>"),
-            reply_markup=await report_menu_keyboard(chat_id=user_for_like),
+            reply_markup=await report_menu_keyboard(telegram_id=user_for_like),
         )
