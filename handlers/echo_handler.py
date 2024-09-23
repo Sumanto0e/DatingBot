@@ -25,6 +25,19 @@ from loader import (
     logger,
     bot,
 )
+from functions.dating import (
+    ChooseReportReason,
+    DislikeAction,
+    DislikeReciprocity,
+    GoBackToViewing,
+    LikeAction,
+    LikeReciprocity,
+    SendReport,
+    StartFindingFailure,
+    StartFindingReachLimit,
+    StartFindingSuccess,
+    StoppedAction,
+)
 
 
 @dp.message_handler(state=None)
