@@ -38,16 +38,12 @@ async def bot_echo(message: types.Message) -> None:
 @dp.message_handler(state="*")
 async def bot_echo_all(message: types.Message, state: FSMContext) -> None:
     state_name = await state.get_state()
-    markup = InlineKeyboardButton(
-        text=("💤 Berhenti"),
-        callback_data=action_keyboard.new(action="stopped", target_id=call.from_user.id),
-    )
     text = [
         f"Opsi tidak ditemukan {hcode(state_name)}",
         "Isi pesan:",
         hcode(message.text),
     ]
-    await message.answer("\n".join(text), replymarkup=markup)
+    await message.answer("\n".join(text), replymarkup=await stopped_keyboard ())
 
 
 @dp.callback_query_handler()
