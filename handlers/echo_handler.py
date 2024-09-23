@@ -1,6 +1,9 @@
 from aiogram import (
     types,
 )
+from aiogram.types import (
+    InlineKeyboardButton,
+)
 from aiogram.dispatcher import (
     FSMContext,
 )
