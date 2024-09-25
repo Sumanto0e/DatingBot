@@ -45,6 +45,7 @@ async def start_keyboard(
         markup.row(language)
     else:
         markup.row(my_profile, information)
+        markup.row(support)
         markup.row(view_ques)
         try:
             if support_ids != obj.from_user.id:
