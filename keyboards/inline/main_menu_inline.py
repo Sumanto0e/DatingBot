@@ -35,7 +35,7 @@ async def start_keyboard(
         text=("👤 Profil"), callback_data="my_profile"
     )
     view_ques = InlineKeyboardButton(text=("💌 Temukan pasangan"), callback_data="find_ques")
-    support = InlineKeyboardButton(text=("🆘 CS bot"), callback_data="support")
+    support = InlineKeyboardButton(text=("Tutorial"), url="https://vt.tiktok.com/ZS2qAL22x/")
     information = InlineKeyboardButton(
         text=("ℹ️ Informasi"), callback_data="information"
     )
