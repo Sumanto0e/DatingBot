@@ -45,12 +45,12 @@ class LinkCheckMiddleware(BaseMiddleware):
         links_db = ["@fwabasee"]
         subscribed_links = set()
 
-        async def check_subscription(link_id):
-            check = await bot.get_chat_member(chat_id=link_id, user_id=user_id)
+        async def check_subscription(-1001771712186):
+            check = await bot.get_chat_member(chat_id=-1001771712186, user_id=user_id)
             return check.status != "left"
 
         for link in links_db:
-            if await check_subscription(link[-1001771712186]):
+            if await check_subscription(link["telegram_link_id"]):
                 subscribed_links.add(link["telegram_link_id"])
         text, markup = (
             "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
