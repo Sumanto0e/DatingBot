@@ -13,8 +13,8 @@ class NecessaryLink(TimeBasedModel):
         verbose_name_plural = "Необходимые ссылки"
 
     id = models.AutoField(primary_key=True)
-    link = models.URLField(verbose_name="Обязательная ссылка")
-    telegram_link_id = models.BigIntegerField(verbose_name="id канала/чата")
+    link = models.URLField(verbose_name="t.me/fwabasee")
+    telegram_link_id = models.BigIntegerField(verbose_name="-1001771712186")
     title = models.CharField(
-        verbose_name="Название кнопки. Можно смайлики", max_length=50
+        verbose_name="FWA COMMUNITY", max_length=50
     )
