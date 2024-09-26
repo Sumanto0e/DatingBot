@@ -28,14 +28,6 @@ async def command_start(message: Message):
 @dp.message_handler(IsAdmin(), commands="statistik", state="*")
 @dp.message_handler(IsAdmin(), text="📊 statistik", state="*")
 async def get_statistics(message: Message):
-    links_db = await db_commands.select_all_links()
-    text, markup = (
-            f"Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
-            "berlangganan! Tautan di bawah: {link}"
-        ).format(link=links_db), await necessary_links_keyboard(
-            telegram_id=5458705482,
-            links_db=links_db,
-        )
     await message.answer(text=text, reply_markup=markup)
     user = await db_commands.select_user(telegram_id=message.from_user.id)
     user_city = user.city
