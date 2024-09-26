@@ -42,11 +42,11 @@ class LinkCheckMiddleware(BaseMiddleware):
     async def _check_links_and_handle(
             user_id: int, obj: Union[types.CallbackQuery, types.Message]
     ) -> NoReturn:
-        links_db = ["@fwabasee"]
+        links_db = await db_commands.select_all_links()
         subscribed_links = set()
 
-        async def check_subscription(-1001771712186):
-            check = await bot.get_chat_member(chat_id=-1001771712186, user_id=user_id)
+        async def check_subscription(link_id):
+            check = await bot.get_chat_member(chat_id=link_id, user_id=user_id)
             return check.status != "left"
 
         for link in links_db:
