@@ -1,7 +1,9 @@
 from typing import (
     Optional,
 )
-
+from aiogram import (
+    types,
+)
 from aiogram.types import (
     InlineKeyboardMarkup,
 )
@@ -130,4 +132,5 @@ async def send_questionnaire(
                 reply_markup=await reciprocity_keyboard(user_for_like=owner_id),
             )
     except BadRequest as err:
+        await message.answer("bot eror, silahkan ketik /start untuk mengulang")
         logger.info(f"{err}. Error in the send_questionnaire function")
