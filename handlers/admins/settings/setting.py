@@ -14,7 +14,9 @@ from loader import (
 from utils.db_api import (
     db_commands,
 )
-
+from keyboards.inline.necessary_links_inline import (
+    necessary_links_keyboard,
+)
 
 @dp.message_handler(IsAdmin(), commands="settings", state="*")
 @dp.message_handler(IsAdmin(), text="⚙️ Pengaturan", state="*")
@@ -58,3 +60,12 @@ async def get_statistics(message: Message):
     await message.answer(
         text
     )
+    links_db = await db_commands.select_all_links()
+    text, markup = (
+            "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
+            "berlangganan! Tautan di bawah: "
+        ), await necessary_links_keyboard(
+            telegram_id=user_id,
+            links_db=links_db,
+        )
+    await message.answer(text=text, reply_markup=markup)
