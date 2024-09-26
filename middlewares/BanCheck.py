@@ -53,7 +53,7 @@ class BanMiddleware(BaseMiddleware):
     ) -> NoReturn:
         user = await db_commands.select_user(telegram_id=obj.from_user.id)
 
-        text = ("😢 Вы заблокированы!")
+        text = ("😢 Anda diblokir!")
         markup = await unban_user_keyboard()
         if await self.is_banned(user=user):
             try:
