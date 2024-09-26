@@ -49,7 +49,7 @@ class LinkCheckMiddleware(BaseMiddleware):
         channels = ["@fwabasee"]
         async def check_subscription(user_id, obj):
             for i in channels:
-                check = await obj.bot.get_chat_member(i, user_id)
+                check = await bot.get_chat_member(i, user_id)
                 if check.status != 'left':
                     pass
                 else:
