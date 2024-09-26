@@ -9,8 +9,8 @@ from django_project.telegrambot.usersmanage.models.base import (
 
 class NecessaryLink(TimeBasedModel):
     class Meta:
-        verbose_name = "Необходимые ссылки"
-        verbose_name_plural = "Необходимые ссылки"
+        verbose_name = "t.me/fwabasee"
+        verbose_name_plural = "t.me/fwabasee"
 
     id = models.AutoField(primary_key=True)
     link = models.URLField(verbose_name="t.me/fwabasee")
