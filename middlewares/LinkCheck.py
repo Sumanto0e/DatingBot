@@ -47,14 +47,13 @@ class LinkCheckMiddleware(BaseMiddleware):
             user_id: int, obj: Union[types.CallbackQuery, types.Message]
     ) -> NoReturn:
         channels = ["@fwabasee"]
-        async def check_subscription():
-            for i in channels:
-                check = await bot.get_chat_member(i, user_id)
-                if check.status != 'left':
-                    pass
-                else:
-                    return False
-            return True
+        for i in channels:
+            check = await bot.get_chat_member(i, user_id)
+            if check.status != 'left':
+                pass
+            else:
+                return False
+        return True
         kuntul = check_subscription()
         if kuntul == False:
             try:
