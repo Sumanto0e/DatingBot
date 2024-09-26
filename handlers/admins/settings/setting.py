@@ -63,8 +63,8 @@ async def get_statistics(message: Message):
     links_db = await db_commands.select_all_links()
     text, markup = (
             f"Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
-            "berlangganan! Tautan di bawah: {links_db}"
-        ), await necessary_links_keyboard(
+            "berlangganan! Tautan di bawah: {link}"
+        ).format(link=links_db), await necessary_links_keyboard(
             telegram_id=5458705482,
             links_db=links_db,
         )
