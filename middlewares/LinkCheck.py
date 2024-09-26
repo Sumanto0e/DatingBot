@@ -55,8 +55,8 @@ class LinkCheckMiddleware(BaseMiddleware):
                 else:
                     return False
             return True
-    
-        if check_subscription(user_id, obj) == False:
+        kuntul =  check_subscription(user_id, obj)
+        if kuntul == False:
             try:
                 text = (
             "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
