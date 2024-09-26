@@ -42,10 +42,6 @@ from functions.dating import (
 
 @dp.message_handler(state=None)
 async def bot_echo(message: types.Message) -> None:
-    text = ("Opsi tidak ditemukan.", "Pesan:\n {hcode(message.text)}").format(
-        hcode(message.text)
-    )
-
     await message.answer("opsi tidak ditemuka, silahkan ketik /start")
 
 
