@@ -52,18 +52,6 @@ class LinkCheckMiddleware(BaseMiddleware):
             if check.status != 'left':
                 pass
             else:
-                return False
+                await obj.message.answer("Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, berlangganan! Tautan di bawah: @fwabase")
         return True
-        kuntul = check_subscription()
-        if kuntul == False:
-            try:
-                text = (
-            "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
-            "berlangganan! Tautan di bawah: "
-            "@fwabase"
-        )
-                await obj.answer(text=text)
-            except TypeError:
-                await obj.message.answer(text=text)
-            await asyncio.sleep(1)
-            raise CancelHandler()
+        
