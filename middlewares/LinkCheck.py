@@ -46,28 +46,25 @@ class LinkCheckMiddleware(BaseMiddleware):
     async def _check_links_and_handle(
             user_id: int, obj: Union[types.CallbackQuery, types.Message]
     ) -> NoReturn:
-        links_db = fwalink
-        subscribed_links = set()
-
-        async def check_subscription(link_id):
-            check = await bot.get_chat_member(chat_id=link_id, user_id=user_id)
-            return check.status != "left"
-
-        for link in links_db:
-            if await check_subscription(link["telegram_link_id"]):
-                subscribed_links.add(link["telegram_link_id"])
-        text, markup = (
+        channels = ["@fwabasee"]
+        async def check_subscription(user_id, obj):
+            for i in channels:
+                check = await obj.bot.get_chat_member(i, user_id)
+                if check.status != 'left':
+                    pass
+                else:
+                    return False
+            return True
+    
+        if check_subscription(user_id, obj) == False:
+            try:
+                text, markup = (
             "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
             "berlangganan! Tautan di bawah: "
         ), await necessary_links_keyboard(
             telegram_id=user_id,
-            links_db=links_db,
+            links_db=channels,
         )
-        if (
-                len(subscribed_links) != len(links_db)
-                and obj.from_user.id not in load_config().tg_bot.admin_ids
-        ):
-            try:
                 await obj.answer(text=text, reply_markup=markup)
             except TypeError:
                 await obj.message.answer(text=text, reply_markup=markup)
