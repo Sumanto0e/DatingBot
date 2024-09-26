@@ -42,7 +42,7 @@ class LinkCheckMiddleware(BaseMiddleware):
     async def _check_links_and_handle(
             user_id: int, obj: Union[types.CallbackQuery, types.Message]
     ) -> NoReturn:
-        links_db = ["@fwabasee"]
+        links_db = [-1001771712186]
         subscribed_links = set()
 
         async def check_subscription(link_id):
@@ -50,7 +50,7 @@ class LinkCheckMiddleware(BaseMiddleware):
             return check.status != "left"
 
         for link in links_db:
-            if await check_subscription(link["t.me/fwabasee"]):
+            if await check_subscription(link[-1001771712186]):
                 subscribed_links.add(link["t.me/fwabasee"])
         text, markup = (
             "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
