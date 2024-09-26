@@ -50,8 +50,8 @@ class LinkCheckMiddleware(BaseMiddleware):
             return check.status != "left"
 
         for link in links_db:
-            if await check_subscription(link["@fwabasee"]):
-                subscribed_links.add(link["@fwabasee"])
+            if await check_subscription(link["t.me/fwabasee"]):
+                subscribed_links.add(link["t.me/fwabasee"])
         text, markup = (
             "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
             "berlangganan! Tautan di bawah: "
