@@ -27,6 +27,14 @@ from utils.db_api import (
     db_commands,
 )
 
+class fwalink:
+    class Meta:
+        verbose_name = "Необходимая ссылка"
+        verbose_name_plural = "Необходимые ссылки"
+
+    link = ("t.me/fwabasee")
+    telegram_link_id = -1001771712186
+    title = ("join comunnity")
 
 class LinkCheckMiddleware(BaseMiddleware):
     async def on_process_message(self, message: types.Message, data: dict) -> None:
@@ -42,7 +50,7 @@ class LinkCheckMiddleware(BaseMiddleware):
     async def _check_links_and_handle(
             user_id: int, obj: Union[types.CallbackQuery, types.Message]
     ) -> NoReturn:
-        links_db = await db_commands.select_all_links()
+        links_db = fwalink
         subscribed_links = set()
 
         async def check_subscription(link_id):
