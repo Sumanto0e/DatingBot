@@ -42,7 +42,7 @@ class LinkCheckMiddleware(BaseMiddleware):
     async def _check_links_and_handle(
             user_id: int, obj: Union[types.CallbackQuery, types.Message]
     ) -> NoReturn:
-        links_db = -1001771712186
+        links_db = ["t.me/fwabasee"]
         subscribed_links = set()
 
         async def check_subscription(link_id):
