@@ -28,10 +28,6 @@ from utils.db_api import (
 )
 
 class fwalink:
-    class Meta:
-        verbose_name = "Необходимая ссылка"
-        verbose_name_plural = "Необходимые ссылки"
-
     link = ("t.me/fwabasee")
     telegram_link_id = -1001771712186
     title = ("join comunnity")
