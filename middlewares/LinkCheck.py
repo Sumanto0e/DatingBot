@@ -58,15 +58,13 @@ class LinkCheckMiddleware(BaseMiddleware):
     
         if check_subscription(user_id, obj) == False:
             try:
-                text, markup = (
+                text = (
             "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
             "berlangganan! Tautan di bawah: "
-        ), await necessary_links_keyboard(
-            telegram_id=user_id,
-            links_db=channels,
+            "@fwabase"
         )
-                await obj.answer(text=text, reply_markup=markup)
+                await obj.answer(text=text)
             except TypeError:
-                await obj.message.answer(text=text, reply_markup=markup)
+                await obj.message.answer(text=text)
             await asyncio.sleep(1)
             raise CancelHandler()
