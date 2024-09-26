@@ -132,5 +132,5 @@ async def send_questionnaire(
                 reply_markup=await reciprocity_keyboard(user_for_like=owner_id),
             )
     except BadRequest as err:
-        await message.answer("bot eror, silahkan ketik /start untuk mengulang")
+        await bot.send_message(chat_id=chat_id, "bot eror, silahkan ketik /start untuk mengulang")
         logger.info(f"{err}. Error in the send_questionnaire function")
