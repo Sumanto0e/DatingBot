@@ -50,7 +50,7 @@ class LinkCheckMiddleware(BaseMiddleware):
             return check.status != "left"
 
         for link in links_db:
-            if await check_subscription(link["telegram_link_id"]):
+            if await check_subscription(link["-1001771712186"]):
                 subscribed_links.add(link["telegram_link_id"])
         text, markup = (
             "Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, "
