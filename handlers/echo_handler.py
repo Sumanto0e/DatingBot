@@ -46,7 +46,7 @@ async def bot_echo(message: types.Message) -> None:
         hcode(message.text)
     )
 
-    await message.answer(text)
+    await message.answer("opsi tidak ditemuka, silahkan ketik /start")
 
 
 @dp.message_handler(state="*")
