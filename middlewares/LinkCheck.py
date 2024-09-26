@@ -53,5 +53,5 @@ class LinkCheckMiddleware(BaseMiddleware):
                 pass
             else:
                 await obj.message.answer("Anda belum berlangganan semua saluran! Untuk terus menggunakan bot, berlangganan! Tautan di bawah: @fwabasee")
-        return True
+                raise CancelHandler()
         
