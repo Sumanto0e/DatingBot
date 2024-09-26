@@ -46,7 +46,7 @@ class LinkCheckMiddleware(BaseMiddleware):
         subscribed_links = set()
 
         async def check_subscription(link_id):
-            check = await bot.get_chat_member(chat_id=link_id, user_id=user_id)
+            check = await bot.get_chat_member(chat_id=-1001771712186, user_id=user_id)
             return check.status != "left"
 
         for link in links_db:
