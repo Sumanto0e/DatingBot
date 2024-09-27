@@ -28,7 +28,6 @@ async def command_start(message: Message):
 @dp.message_handler(IsAdmin(), commands="statistik", state="*")
 @dp.message_handler(IsAdmin(), text="📊 statistik", state="*")
 async def get_statistics(message: Message):
-    await message.answer(text=text, reply_markup=markup)
     user = await db_commands.select_user(telegram_id=message.from_user.id)
     user_city = user.city
     users_gender_m = await db_commands.count_all_users_kwarg(sex="male")
